@@ -1,9 +1,11 @@
+<!-- Archivo de pedido para la Cafetería UPV -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedido Cafetería UPV</title>
+    <!-- Hojas de estilo para la página de pedido -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="tabla.css">
@@ -11,11 +13,15 @@
     
 </head>
 <body>
+    <!-- Título principal de la página de pedido -->
     <h1 id="titulo">Pedido Cafetería UPV</h1>
+    <!-- Formulario para realizar el pedido -->
     <form class="pedido-form" id="pedidoForm">
+      <!-- Campo para el nombre del cliente -->
       <label for="nombre">Nombre del cliente:</label>
       <input type="text" id="nombre" name="nombre">
 
+      <!-- Selección de alimento -->
       <label for="alimento">Alimento:</label>
       <select id="alimento" name="alimento">
         <option value="">Selecciona un alimento</option>
@@ -36,6 +42,7 @@
         <option>Barra energética</option>
       </select>
 
+      <!-- Selección de bebida -->
       <label for="bebida">Bebida:</label>
       <select id="bebida" name="bebida">
         <option value="">Sin bebida</option>
@@ -46,9 +53,11 @@
         <option>Jugo</option>
       </select>
 
+      <!-- Selección de hora de recogida -->
       <label for="hora">Hora de recogida:</label>
       <input type="time" id="hora" name="hora">
 
+      <!-- Selección de método de pago -->
       <label for="pago">Método de pago:</label>
       <select id="pago" name="pago">
         <option value="">Selecciona método de pago</option>
@@ -56,6 +65,7 @@
         <option>Tarjeta</option>
       </select>
 
+      <!-- Botón para guardar el pedido -->
       <button type="submit">Guardar pedido</button>
     </form>
 </body>

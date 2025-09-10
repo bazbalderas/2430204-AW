@@ -6,6 +6,8 @@
   justify-content: center;
   gap: 0.5rem;
 }
+
+/* Estilos generales del body: fondo, fuente, color y espaciado */
 body {
   background:
     linear-gradient(rgba(80,0,120,0.7), rgba(80,0,120,0.7)),
@@ -18,7 +20,7 @@ body {
   padding-top: 3.5rem;
 }
 
-/* Estilos para los botones llamativos */
+/* Estilos para los botones llamativos: tamaño, color, fondo y sombra */
 button#boton {
   font-size: 1.5rem;
   padding: 0.5rem 1.5rem;
@@ -30,6 +32,7 @@ button#boton {
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 
+/* Frase destacada: centrado, tamaño grande y márgenes */
 #frase{
   display: flex;
   justify-content: center;
@@ -40,6 +43,7 @@ button#boton {
   font-size: 3rem;
 }
 
+/* Logo principal: tamaño, bordes y márgenes */
 #logo {
   width: 300px;
   height: auto;

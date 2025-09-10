@@ -1,4 +1,4 @@
-/* Contenedor principal centrado */
+/* Contenedor principal centrado: fondo translúcido, bordes redondeados, sombra y padding */
 .pedido-container {
   background: rgba(40, 0, 60, 0.55);
   border-radius: 1.5rem;
@@ -13,7 +13,7 @@
   gap: 1rem;
 }
 
-/* Título */
+/* Título del formulario: centrado, grande, gradiente y sombra */
 #titulo {
   text-align: center;
   font-size: 2.5rem;
@@ -27,13 +27,14 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Formulario */
+/* Etiquetas del formulario: negritas y color blanco */
 .pedido-form label {
   font-weight: 600;
   margin-bottom: 0.3rem;
   color: #fff;
 }
 
+/* Campos de entrada y select: padding, bordes redondeados, fondo translúcido y transición */
 .pedido-form input,
 .pedido-form select {
   padding: 0.8rem;
@@ -48,13 +49,14 @@
   width: 100%;
 }
 
+/* Efecto focus en campos de entrada y select */
 .pedido-form input:focus,
 .pedido-form select:focus {
   border-color: #a259c6;
   background: rgba(255,255,255,0.25);
 }
 
-/* Botón de enviar */
+/* Botón de enviar: tamaño, color, fondo, sombra y efecto hover */
 .pedido-form button {
   margin-top: 1rem;
   font-size: 1.4rem;

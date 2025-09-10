@@ -1,7 +1,7 @@
-
+/* Importa la fuente Poppins desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-
+/* Estilos generales del body: fondo, fuente, color, layout y espaciado */
 body {
     background: linear-gradient(rgba(80, 0, 120, 0.7), rgba(80, 0, 120, 0.7)),
                 url('images/UPV.webp') center center/cover no-repeat fixed;
@@ -16,7 +16,7 @@ body {
     gap: 1.5rem;
 }
 
-/* Encabezados y títulos */
+/* Encabezados y títulos principales: tamaño, peso, alineación y decoración */
 #titulo {
     font-size: 2.5rem;
     font-weight: 700;
@@ -29,6 +29,7 @@ body {
     width: fit-content;
 }
 
+/* Frase secundaria debajo del título */
 #frase {
     font-size: 1.2rem;
     font-style: italic;
@@ -37,6 +38,7 @@ body {
     color: #f3e5f5;
 }
 
+/* Subtítulos y encabezados de secciones */
 h3, h4 {
     font-size: 1.8rem;
     font-weight: 600;
@@ -47,13 +49,14 @@ h3, h4 {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
+/* Párrafos generales */
 p {
     text-align: center;
     font-size: 1.1rem;
     margin-top: 0.5rem;
 }
 
-/* Lista de guisos */
+/* Lista de guisos: sin viñetas, flexbox y espaciado */
 ul {
     list-style-type: none;
     padding: 0;
@@ -63,6 +66,7 @@ ul {
     gap: 1.5rem;
 }
 
+/* Elementos de la lista: fondo translúcido, bordes redondeados y efecto hover */
 li {
     font-size: 1.2rem;
     background: rgba(255, 255, 255, 0.1);
@@ -78,7 +82,7 @@ li:hover {
     background: linear-gradient(90deg, #360953, #661992);
 }
 
-/* Estilos para las imagenes */
+/* Estilos para las imágenes del menú: bordes, sombra y efecto hover */
 img {
     border-radius: 1rem;
     border: 3px solid #661992;
@@ -94,7 +98,7 @@ img:hover {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-/* para telefono*/
+/* Media query para dispositivos móviles: ajustes de tamaños y layout */
 @media (max-width: 768px) {
     #titulo {
         font-size: 2rem;

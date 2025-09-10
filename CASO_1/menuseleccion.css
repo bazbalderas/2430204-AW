@@ -1,13 +1,18 @@
+/* Estilos generales para body y html: elimina márgenes y relleno, altura completa */
 body, html {
   height: 100%;
   margin: 0;
   padding: 0;
 }
+
+/* Contenedor principal del selector de menú: ocupa toda la pantalla y usa flexbox */
 .menu-selector {
   display: flex;
   height: 100vh;
   width: 100vw;
 }
+
+/* Botones de selección de menú: flexibles, centrados, fuente grande y estilos visuales */
 .menu-btn {
   flex: 1;
   display: flex;
@@ -22,6 +27,8 @@ body, html {
   transition: filter 0.2s;
   overflow: hidden;
 }
+
+/* Fondo y estilo del texto dentro de los botones */
 .menu-btn span {
   position: relative;
   z-index: 2;
@@ -30,16 +37,24 @@ body, html {
   border-radius: 1.2rem;
   background: rgba(40,0,60,0.35);
 }
+
+/* Fondo para el botón de comida regular */
 .menu-btn.regular {
   background: url('images/COMIDA_REGULAR.webp') center center/cover no-repeat;
 }
+
+/* Fondo para el botón de comida saludable (imagen externa) */
 .menu-btn.saludable {
   background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80') center center/cover no-repeat;
 }
+
+/* Efecto hover para los botones: brillo, saturación y desenfoque */
 .menu-btn:hover {
   filter: brightness(1.08) saturate(1.2) blur(0.5px);
   cursor: pointer;
 }
+
+/* Adaptación para pantallas pequeñas: botones en columna y fuente más pequeña */
 @media (max-width: 700px) {
   .menu-selector {
     flex-direction: column;

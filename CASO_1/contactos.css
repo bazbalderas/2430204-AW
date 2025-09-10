@@ -1,3 +1,4 @@
+/* Fondo general de la página, gradiente morado y fondo de imagen, texto blanco y fuente sans-serif */
 body{
     background: linear-gradient(rgba(80, 0, 120, 0.7), rgba(80, 0, 120, 0.7)),
                 url('images/UPV.webp') center center/cover no-repeat fixed;
@@ -5,6 +6,7 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Centrado de todo el contenido usando flexbox y ajuste de márgenes */
 body {
   display: flex;
   flex-direction: column;
@@ -15,8 +17,7 @@ body {
   gap: 0.5rem; /* Menor separación entre elementos */
 }
 
-/* Estilos para los botones llamativos */
-
+/* Tarjeta principal de contacto: fondo translúcido, borde morado, sombra y padding */
 .contacto-card {
   background: rgba(255,255,255,0.08);
   border: 2px solid #661992;
@@ -30,6 +31,7 @@ body {
   align-items: center;
 }
 
+/* Contenedor de tarjetas de administradores: alineación horizontal y separación */
 .admins-container {
   display: flex;
   flex-direction: row;
@@ -40,6 +42,7 @@ body {
   margin-bottom: 1rem;
 }
 
+/* Tarjeta individual de administrador: fondo translúcido, borde, sombra y padding */
 .admin-card {
   background: rgba(255,255,255,0.08);
   border: 2px solid #661992;
@@ -52,6 +55,7 @@ body {
   align-items: center;
 }
 
+/* Imagen del administrador: tamaño, borde blanco y sombra */
 .admin-logo {
   width: 110px;
   height: auto;
@@ -61,11 +65,13 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
+/* Título de administradores: centrado y margen inferior */
 #admins{
     text-align: center;
     margin-bottom: 1rem;
 }
 
+/* Frase destacada: centrado, tamaño grande y márgenes */
 #frase{
   display: flex;
   justify-content: center;
@@ -76,6 +82,7 @@ body {
   font-size: 3rem;
 }
 
+/* Logo adicional: tamaño y márgenes */
 #logo {
   width: 150px;
   height: auto;

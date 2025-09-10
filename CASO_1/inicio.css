@@ -1,4 +1,4 @@
-/* Contenedor central para centrar botones y logo */
+/* Contenedor central: organiza botones y logo en fila, centrados y con separación */
 .central-container {
   display: flex;
   flex-direction: row;
@@ -8,12 +8,14 @@
   margin-top: 1.5rem;
 }
 
+/* Contenedor de botones: columna y separación entre botones */
 .botones-box {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
+/* Estilos generales del body: fondo, fuente, color y espaciado */
 body {
   background:
     linear-gradient(rgba(80,0,120,0.7), rgba(80,0,120,0.7)),
@@ -25,6 +27,7 @@ body {
   gap: 0.5rem;
 }
 
+/* Contenedor principal: centra todo el contenido vertical y horizontalmente */
 .main-container {
   min-height: 100vh;
   width: 100vw;
@@ -36,7 +39,7 @@ body {
   background: transparent;
 }
 
-/* Estilos para los botones llamativos */
+/* Botones llamativos: tamaño, color, fondo, sombra y efecto hover */
 button#boton {
   font-size: 2rem;
   padding: 1.1rem 0;
@@ -63,6 +66,7 @@ button#boton:hover {
   background: linear-gradient(90deg, #661992, #a259c6 80%);
 }
 
+/* Encabezado: fondo translúcido, bordes redondeados, sombra y centrado */
 .header-box {
   background: rgba(40, 0, 60, 0.55);
   border-radius: 1.5rem;
@@ -76,6 +80,7 @@ button#boton:hover {
   border: 2px solid rgba(162,89,198,0.25);
 }
 
+/* Frase principal: gradiente en el texto, sombra y fuente grande */
 #frase {
   display: flex;
   justify-content: center;
@@ -95,6 +100,7 @@ button#boton:hover {
   -webkit-text-fill-color: transparent;
 }
 
+/* Subfrase (h2): tamaño menor, sombra y color blanco */
 h2#frase {
   font-size: 2rem;
   font-weight: 500;
@@ -105,6 +111,7 @@ h2#frase {
   -webkit-text-fill-color: #fff;
 }
 
+/* Logo principal: tamaño, bordes, esquinas redondeadas y sombra */
 #logo {
   width: 220px;
   height: auto;
