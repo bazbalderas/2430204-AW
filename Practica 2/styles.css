@@ -1,0 +1,100 @@
+body{
+    background-color: #555;
+    color: white;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+#header{
+    background: rgb(255, 191, 15);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.title-section{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+#header img{
+    width: 60px;
+    height: auto;
+}
+
+#header h3{
+    margin: 0;
+    font-style: italic;
+    font-weight: normal;
+    color: #333;
+}
+
+/* Estilos para el contenido principal */
+div:not(#header) {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilos para código */
+pre {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px 0;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    color: #f8f8f2;
+}
+
+code {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    color: #f8f8f2;
+}
+
+/* Estilos para separadores */
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #ffbf0f, transparent);
+    margin: 30px 0;
+}
+
+/* Estilos para títulos */
+h2 {
+    color: #ffbf0f;
+    border-bottom: 2px solid #ffbf0f;
+    padding-bottom: 5px;
+}
+
+h3 {
+    color: #ffd700;
+    margin-top: 25px;
+}
+
+h4 {
+    color: #ffeb99;
+    margin-top: 20px;
+}
+
+/* Estilos para listas */
+ul li, ol li {
+    margin-bottom: 8px;
+}
+
+/* Mejorar legibilidad de texto */
+p {
+    text-align: justify;
+    margin-bottom: 15px;
+}
