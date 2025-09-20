@@ -1,0 +1,93 @@
+<!-- Archivo de fundamentos del lenguaje JavaScript -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logojs.webp">
+    <link rel="stylesheet" href="styles.css">
+    <title>Fundamentos de lenguaje</title>
+</head>
+<body>
+    <!-- Encabezado con frase característica -->
+    <div id="header">
+        <div class="title-section">
+            <img src="logojs.webp" alt="JavaScript Logo">
+            <h1>Fundamentos del Lenguaje</h1>
+        </div>
+        <h3>"Write less, do more"</h3>
+    </div>
+
+    <!-- Contenido principal de fundamentos -->
+    <div>
+        
+        <!-- Sección de sintaxis básica y comentarios -->
+        <h3>¿Cuál es la sintaxis básica de JavaScript y cómo se escriben comentarios</h3>
+        <p>Muy parecida a la de otros lenguajes ya que se utilizan funciones, métodos, variables, etc. Pero tiene su propia gramática al momento de escribir su código. Como aclaraciones, JavaScript es muy sensible a mayúsculas y minúsculas, siempre se procura mantener una buena práctica en la escritura del código. Y sobre todo jamás olvidar el ;</p>
+        <br>
+
+        <!-- Seccion de diferencias entre var, let y const -->
+        <h3>¿Qué diferencia hay entre var, let y const?</h3>
+        <p>La principal diferencia radica en el alcance (scope) y la mutabilidad:</p>
+        <ul>
+            <li><strong>var:</strong> Tiene un alcance global o de función, y se puede redeclarar y reasignar.</li>
+            <li><strong>let:</strong> Tiene un alcance de bloque, no se puede redeclarar en el mismo bloque, pero sí se puede reasignar.</li>
+            <li><strong>const:</strong> También tiene un alcance de bloque, no se puede redeclarar ni reasignar. Se utiliza para valores constantes.</li>
+        </ul>
+        <br>
+    
+        <!-- Sección de tipos de datos primitivos -->
+        <h3>Tipos de datos primitivos + ejemplos</h3>
+        <ol>
+            <li><strong>Number (Númerica):</strong> Representa tanto números enteros como decimales. Ejemplos: 1, 2, 3, 42, 3.14, -5, 0.5.</li>
+            <li><strong>String (Cadena):</strong> Representa texto o secuencias de caracteres. Ejemplos: "Hola Mundo!", 'JavaScript', `Template literal`.</li>
+            <li><strong>Boolean (Booleano):</strong> Representa valores de verdad, solo puede ser true (verdadero) o false (falso). Se usa principalmente en condiciones y lógica. Ejemplos: true, false.</li>
+            <li><strong>Null:</strong> Representa la ausencia intencional de cualquier valor. Es un valor especial que indica "nada" o "vacío". Ejemplo: null.</li>
+            <li><strong>Undefined:</strong> Indica que una variable ha sido declarada pero no se le ha asignado ningún valor. Ejemplo: undefined.</li>
+            <li><strong>Symbol:</strong> Representa un identificador único e inmutable. Útil para crear propiedades de objetos que no colisionen. Ejemplo: Symbol('descripcion').</li>
+            <li><strong>BigInt:</strong> Permite representar números enteros de precisión arbitraria. Ejemplo: 123456789012345678901234567890n.</li>
+        </ol>
+        
+        <!-- Sección de diferencias entre Array y Objeto -->
+        <h3>¿Qué diferencia hayu entre un array y un objeto en JavaScript?</h3>
+        <p>Aunque a simple vista podríamos decir que son lo mismo, cambian en algunas cosas, por ejemplo el array guarda valores numéricos en una lista ordenada, en cambio el objeto guarda en lo que se le conoce como un mapa clave, claves tipo string.</p>
+    
+        <!-- Sección de operadores en JavaScript -->
+        <h3>¿Qué son y cómo se usan los operadores aritméticos, lógicos y relacionales?</h3>
+        
+        <!-- Subsección de operadores aritméticos -->
+        <h4>Operadores Aritméticos:</h4>
+        <ul>
+            <li><strong>+ (Suma):</strong> Suma dos números o concatena strings. Ejemplo: 5 + 3 = 8, "Hola" + " Mundo" = "Hola Mundo"</li>
+            <li><strong>- (Resta):</strong> Resta el segundo número del primero. Ejemplo: 10 - 4 = 6</li>
+            <li><strong>* (Multiplicación):</strong> Multiplica dos números. Ejemplo: 6 * 7 = 42</li>
+            <li><strong>/ (División):</strong> Divide el primer número por el segundo. Ejemplo: 15 / 3 = 5</li>
+            <li><strong>% (Módulo):</strong> Devuelve el resto de la división. Ejemplo: 10 % 3 = 1</li>
+            <li><strong>** (Exponenciación):</strong> Eleva un número a la potencia de otro. Ejemplo: 2 ** 3 = 8</li>
+            <li><strong>++ (Incremento):</strong> Aumenta el valor en 1. Ejemplo: x++ o ++x</li>
+            <li><strong>-- (Decremento):</strong> Disminuye el valor en 1. Ejemplo: x-- o --x</li>
+        </ul>
+        
+        <!-- Subsección de operadores lógicos -->
+        <h4>Operadores Lógicos:</h4>
+        <ul>
+            <li><strong>&& (AND lógico):</strong> Devuelve true solo si ambas condiciones son verdaderas. Ejemplo: true && false = false</li>
+            <li><strong>|| (OR lógico):</strong> Devuelve true si al menos una condición es verdadera. Ejemplo: true || false = true</li>
+            <li><strong>! (NOT lógico):</strong> Invierte el valor booleano. Ejemplo: !true = false, !false = true</li>
+        </ul>
+        
+        <!-- Subsección de operadores relacionales -->
+        <h4>Operadores Relacionales (Comparación):</h4>
+        <ul>
+            <li><strong>== (Igualdad):</strong> Compara valores convirtiendo tipos si es necesario. Ejemplo: 5 == "5" = true</li>
+            <li><strong>=== (Igualdad estricta):</strong> Compara valores y tipos sin conversión. Ejemplo: 5 === "5" = false</li>
+            <li><strong>!= (Desigualdad):</strong> Verifica si los valores son diferentes. Ejemplo: 5 != 3 = true</li>
+            <li><strong>!== (Desigualdad estricta):</strong> Verifica si valores o tipos son diferentes. Ejemplo: 5 !== "5" = true</li>
+            <li><strong>> (Mayor que):</strong> Verifica si el primer valor es mayor. Ejemplo: 8 > 5 = true</li>
+            <li><strong>< (Menor que):</strong> Verifica si el primer valor es menor. Ejemplo: 3 < 7 = true</li>
+            <li><strong>>= (Mayor o igual que):</strong> Verifica si es mayor o igual. Ejemplo: 5 >= 5 = true</li>
+            <li><strong><= (Menor o igual que):</strong> Verifica si es menor o igual. Ejemplo: 4 <= 6 = true</li>
+        </ul>
+    </div>
+</body>
+</html>

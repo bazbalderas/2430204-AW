@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="logojs.webp">
+    <link rel="stylesheet" href="styles.css">
+    <title>Funciones</title>
+</head>
+<body>
+
+       <div id="header">
+        <div class="title-section">
+            <img src="logojs.webp" alt="JavaScript Logo">
+            <H1>Funciones</H1>
+        </div>
+        <h3>"Write less, do more"</h3>
+    </div>
+    <div>
+                <h3>¿Cómo se declara una función y cómo se llama en JavaScript?</h3>
+                <pre><code>function sumar(a, b) { return a + b; }  // declaración (se eleva)
+const multiplicar = function(a,b){ return a*b; }; // expresión
+sumar(2,3); // 5</code></pre>
+
+                <h3>¿Qué significa que una función tenga parámetros y un valor de retorno?</h3>
+                <p>Los parámetros son entradas que una función recibe; el valor de retorno es la salida que da con return. Si no hay return, la función devuelve undefined.</p>
+
+                <h3> ¿Qué son las funciones flecha (=>) y qué ventajas tienen?</h3>
+                <pre><code>const sumar = (a,b) => a + b;      // sintaxis concisa
+const obj = { n: 1, inc: () => this.n }; // `this` léxico (cuidado con objetos)</code></pre>
+                <p><strong>Ventajas:</strong> sintaxis más corta, this léxico osea que no se vuelve a enlazar, ideal para callbacks.</p>
+
+                <h3> ¿Qué es el scope en JavaScript y cómo afecta a las variables?</h3>
+                <p>Es el ámbito en el que un nombre es visible.</p>
+                <ul>
+                    <li>Alcance global, de función y de bloque ({}).</li>
+                    <li>let/const son de alcance de bloque, var es de alcance de función.</li>
+                    <li>Los closures: las funciones internas capturan las variables externas.</li>
+                </ul>
+</body>
+</div>
+</html>
+</html>

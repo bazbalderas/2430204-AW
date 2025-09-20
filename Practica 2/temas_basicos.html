@@ -1,0 +1,60 @@
+<!-- Archivo sobre otros temas básicos de JavaScript -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logojs.webp">
+    <link rel="stylesheet" href="styles.css">
+    <title>Otros Temas Básicos</title>
+</head>
+<body>
+    <!-- Encabezado con logo y eslogan -->
+    <div id="header">
+        <div class="title-section">
+            <img src="logojs.webp" alt="JavaScript Logo">
+            <h1>Otros Temas Básicos</h1>
+        </div>
+        <h3>"Write less, do more"</h3>
+    </div>
+
+    <!-- Contenido principal sobre temas básicos -->
+    <div>
+        <!-- Sección sobre el DOM -->
+        <h3>¿Qué es el DOM y por qué es importante en el uso de JavaScript en páginas web?</h3>
+        <p>El Document Object Model (DOM) es el árbol en memoria de tu página HTML. JS lo usa para leer y cambiar elementos y estilos, habilitando la verdadera interactividad.</p>
+        <pre><code>document.querySelector('#msg').textContent = '¡Hola!';</code></pre>
+
+        <!-- Sección sobre eventos -->
+        <h3>¿Qué es un evento en JavaScript y menciona al menos 3 ejemplos comunes?</h3>
+        <p>Un evento es una señal de que algo ha ocurrido (usuario o navegador).</p>
+        <ul>
+            <li><strong>click:</strong> cuando se hace clic en un elemento
+                <pre><code>boton.addEventListener('click', () => alert('¡Hola!'));</code></pre>
+            </li>
+            <li><strong>keydown:</strong> cuando se presiona una tecla
+                <pre><code>document.addEventListener('keydown', (e) => console.log(e.key));</code></pre>
+            </li>
+            <li><strong>submit:</strong> cuando se envía un formulario
+                <pre><code>form.addEventListener('submit', (e) => e.preventDefault());</code></pre>
+            </li>
+        </ul>
+
+        <!-- Sección sobre métodos de salida -->
+        <h3>¿Cuál es la diferencia entre alert, prompt y console.log?</h3>
+        <ul>
+            <li><strong>alert(msg):</strong> popup que bloquea la ejecución y muestra texto.</li>
+            <li><strong>prompt(msg):</strong> popup que devuelve el texto que el usuario escribe (o null).</li>
+            <li><strong>console.log(valor):</strong> imprime en la consola del desarrollador (no bloquea, útil para depuración).</li>
+        </ul>
+
+        <!-- Sección sobre la consola del navegador -->
+        <h3> ¿Cómo se abre la consola del navegador y qué ventajas tiene usarla para depurar código?</h3>
+        <ul>
+            <li><strong>Chrome/Edge:</strong> Ctrl+Shift+I (Linux/Win) o Cmd+Option+I (Mac), luego pestaña Consola.</li>
+            <li><strong>Firefox:</strong> Ctrl+Shift+K o Cmd+Option+K.</li>
+        </ul>
+        <p>Es útil para ver logs/errores, ejecutar JS de forma interactiva, inspeccionar variables, probar fragmentos de código y depurar más rápido.</p>
+    </div>
+</body>
+</html>

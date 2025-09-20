@@ -1,0 +1,52 @@
+<!-- Archivo sobre objetos y colecciones en JavaScript -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logojs.webp">
+    <link rel="stylesheet" href="styles.css">
+    <title>Objetos y Colecciones</title>
+</head>
+<body>
+    <!-- Encabezado con logo y eslogan -->
+    <div id="header">
+        <div class="title-section">
+            <img src="logojs.webp" alt="JavaScript Logo">
+            <h1>Objetos y Colecciones</h1>
+        </div>
+        <h3>"Write less, do more"</h3>
+    </div>
+
+    <!-- Contenido principal sobre objetos y colecciones -->
+    <div>
+
+        <!-- Sección sobre declaración de objetos y acceso a propiedades -->
+        <h3>¿Cómo se declara un objeto y cómo se accede a sus propiedades?</h3>
+        <pre><code>const usuario = { nombre: 'Ana', edad: 20, 'color-favorito': 'azul' };
+usuario.nombre         // con punto
+usuario['color-favorito'] // con corchetes (útil para claves dinámicas o no válidas)</code></pre>
+
+        <!-- Sección sobre diferencia entre propiedades y métodos -->
+        <h3> ¿Qué diferencia hay entre una propiedad y un método en un objeto?</h3>
+        <p>Una propiedad es un dato (usuario.edad). Un método es una función almacenada en un objeto:</p>
+        <pre><code>const temporizador = {
+  inicio: 0,
+  resetear(){ this.inicio = Date.now(); } // método
+};</code></pre>
+
+        <!-- Sección sobre métodos básicos de arrays -->
+        <h3>Menciona al menos 3 métodos básicos de los arrays (push, pop, map, etc.) y explica cómo funcionan.
+</h3>
+        <ul>
+
+            <li><strong>map(fn):</strong> devuelve un nuevo array transformando cada elemento.</li>
+               <pre><code>[1,2,3].map(x=>x*2)      // [2,4,6]</code></pre>
+            <li><strong>filter(fn):</strong> devuelve un nuevo array con elementos que cumplen una condición.</li>
+            <pre><code>[1,2,3,4].filter(x=>x%2) // [1,3]</code></pre>
+            <li><strong>reduce(fn, init):</strong> reduce el array a un solo valor.</li>
+               <pre><code>[1,2,3].reduce((s,x)=>s+x,0) // 6</code></pre>
+        </ul>
+    </div>
+</body>
+</html>

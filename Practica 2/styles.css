@@ -1,34 +1,39 @@
+/* Estilos generales del body: fondo oscuro, texto blanco, fuente y espaciado */
 body{
-    background-color: #555;
+    background-color: #383838;
     color: white;
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 1.6; /* Mejora la legibilidad del texto */
     margin: 0;
     padding: 0;
 }
 
+/* Encabezado principal: fondo amarillo, texto negro, centrado con flexbox */
 #header{
     background: rgb(255, 191, 15);
     color: black;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column; /* Apila elementos verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
     padding: 20px;
 }
 
+/* Sección del título: alinea logo y texto horizontalmente */
 .title-section{
     display: flex;
-    align-items: center;
-    gap: 15px;
+    align-items: center; /* Alinea verticalmente logo y texto */
+    gap: 15px; /* Espacio entre logo y texto */
     margin-bottom: 10px;
 }
 
+/* Logo en el encabezado: tamaño fijo manteniendo proporciones */
 #header img{
-    width: 60px;
-    height: auto;
+    width: 250px;
+    height: auto; /* Mantiene la proporción original */
 }
 
+/* Eslogan del encabezado: sin márgenes, cursiva y color oscuro */
 #header h3{
     margin: 0;
     font-style: italic;
@@ -36,34 +41,35 @@ body{
     color: #333;
 }
 
-/* Estilos para el contenido principal */
+/* Contenido principal: ancho máximo, centrado y con padding */
+/* :not() excluye el header para que mantenga su propio estilo */
 div:not(#header) {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
     padding: 20px;
 }
 
-/* Estilos para código */
+/* Bloques de código: fondo oscuro, bordes y scroll horizontal si es necesario */
 pre {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
     border: 1px solid #555;
     border-radius: 5px;
     padding: 15px;
     margin: 10px 0;
-    overflow-x: auto;
-    font-family: 'Courier New', monospace;
+    overflow-x: auto; /* Scroll horizontal para código largo */
     color: #f8f8f2;
 }
 
+/* Código inline: fondo más sutil, padding menor */
 code {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 2px 5px;
     border-radius: 3px;
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier New', monospace; /* Fuente monoespaciada para código */
     color: #f8f8f2;
 }
 
-/* Estilos para separadores */
+/* Separadores: gradiente horizontal con transparencia en los extremos */
 hr {
     border: none;
     height: 2px;
@@ -71,30 +77,82 @@ hr {
     margin: 30px 0;
 }
 
-/* Estilos para títulos */
+/* Títulos principales: color amarillo con línea inferior */
 h2 {
     color: #ffbf0f;
-    border-bottom: 2px solid #ffbf0f;
     padding-bottom: 5px;
 }
 
+/* Subtítulos: amarillo más claro */
 h3 {
     color: #ffd700;
     margin-top: 25px;
 }
 
+/* Subtítulos menores: amarillo muy claro */
 h4 {
     color: #ffeb99;
     margin-top: 20px;
 }
 
-/* Estilos para listas */
+/* Elementos de lista: espaciado entre elementos */
 ul li, ol li {
     margin-bottom: 8px;
 }
 
-/* Mejorar legibilidad de texto */
+/* Párrafos: texto justificado para mejor apariencia */
 p {
-    text-align: justify;
+    text-align: justify; /* Alinea texto a ambos lados */
     margin-bottom: 15px;
+}
+
+/* Contenido de bienvenida: centrado y ancho limitado */
+.bienvenida {
+    max-width: 800px;
+    margin: 0 auto; /* Centra horizontalmente */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Sección de introducción: fondo semi-transparente amarillo */
+.intro{
+    background-color: rgba(255, 191, 15, 0.1); /* Amarillo con 10% de opacidad */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Elementos de lista en intro: fondo amarillo y borde izquierdo */
+.intro li {
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Lista en sección intro del index: sin viñetas predeterminadas */
+.intro ul {
+    list-style: none; /* Elimina puntos de lista */
+    padding: 0;
+}
+
+/* Menú de navegación: flexbox que se adapta y centra botones */
+.menu {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 15px; /* Espacio entre botones */
+    padding: 20px;
+    background-color: rgba(255, 191, 15, 0.1);
+    border-bottom: 2px solid #ffbf0f; /* Línea decorativa inferior */
+    margin-bottom: 20px;
+}
+
+/* Botones de navegación: gradiente amarillo con efectos hover */
+.nav-button {
+    background: linear-gradient(135deg, #ffbf0f, #ffd700); 
+    color: #333;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    text-align: center;
 }

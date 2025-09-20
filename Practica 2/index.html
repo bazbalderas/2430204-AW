@@ -1,3 +1,4 @@
+<!-- Archivo principal de navegación para el tutorial de JavaScript -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,190 +9,40 @@
     <title>JavaScript</title>
 </head>
 <body>
+    <!-- Encabezado principal con logo y eslogan -->
     <div id="header">
         <div class="title-section">
             <img src="logojs.webp" alt="JavaScript Logo">
-            <H1>JavaScript</H1>
+            <h1>JavaScript</h1>
         </div>
         <h3>"Write less, do more"</h3>
     </div>
 
-    <div>
-        <h2>Introducción y contexto</h2>
-        <h3>¿Qué es JavaScript y cuáles son sus principales usos en la web?</h3>
-        <p>JavaScript es un lenguaje de programación que permite implementar funciones a las páginas web que van de la mano con HTML Y CSS, sus principales usos son hacer más dinámica una página web ya que amplian el rango y alcance de la página, agregando nuevas posibilidades a lo que se esta haciendo, también el comportamiento y manejo de eventos en la página.</p><br>
+    <!-- Menú de navegación principal -->
+    <nav class="menu">
+        <a href="Intro_context.html" class="nav-button">Introducción y Contexto</a>
+        <a href="fundamentos.html" class="nav-button">Fundamentos del Lenguaje</a>
+        <a href="control_flujo.html" class="nav-button">Control de Flujo</a>
+        <a href="funciones.html" class="nav-button">Funciones</a>
+        <a href="objetos_funciones.html" class="nav-button">Objetos y Colecciones</a>
+        <a href="temas_basicos.html" class="nav-button">Otros Temas Básicos</a>
+    </nav>
 
-        <h3>¿En que año y con que proposito se creo JavaScript?</h3>
-        <p>Fue creado en 1995 por Brendan Eich, pensando en lo repetitivas y aburridas que eran las páginas web quería agregar algo que pudiera hacerlas más llamativas de lo que eran, porque de que servía que tuvieran un buen diseño sin poder llevar a la página web al siguiente nivel..</p><br>
-
-        <h3>¿Por qué JavaScript no es lo mismo que Java?</h3>
-        <p>La primera diferencia notable es que Java al igual que muchos lenguajes, es un lenguaje compilado, JavaScript es interpretado y dinámico, y bueno lo más notable es que JavaScript esta dirigido a la rama de las páginas web</p><br>
+    <!-- Contenido principal de bienvenida -->
+    <div class="bienvenida">
+        <h2>Bienvenida a JavaScript</h2>
+        <p>¡Hola!, soy Baz y al igual que tu, adentrarme al mundo de la programación me daba miedo. El objetivo de esta página es que te puedas adentrar teoricamente a lo que es JavaScript. Recuerda que si tienes miedo de empezar, entonces empieza con miedo, pero ¡EMPIEZALO YA!</p>
         
-        <h3>¿Cómo se complementa JavaScript con HTML y CSS?</h3>
-        <p>Cada una de ellas tiene una tarea diferente, pongamos de ejemplo el cuerpo humano, HTML es el esqueleto, CSS es la piel y facciones y JavaScript son los movimientos y acciones que tiene el cuerpo.</p><br>
-
-        <br><hr><h2>Fundamentos del lenguaje</h2>
-        <h3>Sintaxis básica y comentarios</h3>
-        <p>Muy parecida a la de otros lenguajes ya que se utilizan funciones, métodos, variables, etc. Pero tiene su propia gramática al momento de escribir su código. como aclaraciones, JavaScript es muy sensible a mayúsculas y minúsculas, siempre se procura mantener una buena práctica en la escritura del código. y sobre todo jamas olvidar el ;</p><br>
-    
-        <h3>Tipos de datos primitivos + ejemplos</h3>
-        <ol>
-            <li><strong>Number (Númerica):</strong> Representa tanto números enteros como decimales. Ejemplos: 1, 2, 3, 42, 3.14, -5, 0.5. </li>
-            <li><strong>String (Cadena):</strong> Representa texto o secuencias de caracteres. Ejemplos: "Hola Mundo!", 'JavaScript', `Template literal`.</li>
-            <li><strong>Boolean (Booleano):</strong> Representa valores de verdad, solo puede ser true (verdadero) o false (falso). Se usa principalmente en condiciones y lógica. Ejemplos: true, false.</li>
-            <li><strong>Null:</strong> Representa la ausencia intencional de cualquier valor. Es un valor especial que indica "nada" o "vacío". Ejemplo: null.</li>
-            <li><strong>Undefined:</strong> Indica que una variable ha sido declarada pero no se le ha asignado ningún valor. Ejemplo: undefined.</li>
-            <li><strong>Symbol:</strong> Representa un identificador único e inmutable. Útil para crear propiedades de objetos que no colisionen. Ejemplo: Symbol('descripcion').</li>
-            <li><strong>BigInt:</strong> Permite representar números enteros de precisión arbitraria. Ejemplo: 123456789012345678901234567890n.</li>
-        </ol>
-        
-        <h3>Array vs Objeto</h3>
-        <p>Aunque a simple vista podriamos decir que son lo mismo, cambian en algunas cosas, por ejemplo el array guarda valores númericos en una lista ordenada, en cambio el objeto guarda en lo que se le conoce como un mapa clave, claves tipo string.</p>
-    
-        <h3>Operadores (aritméticos, lógicos, relacionales)</h3>
-        
-        <h4>Operadores Aritméticos:</h4>
-        <ul>
-            <li><strong>+ (Suma):</strong> Suma dos números o concatena strings. Ejemplo: 5 + 3 = 8, "Hola" + " Mundo" = "Hola Mundo"</li>
-            <li><strong>- (Resta):</strong> Resta el segundo número del primero. Ejemplo: 10 - 4 = 6</li>
-            <li><strong>* (Multiplicación):</strong> Multiplica dos números. Ejemplo: 6 * 7 = 42</li>
-            <li><strong>/ (División):</strong> Divide el primer número por el segundo. Ejemplo: 15 / 3 = 5</li>
-            <li><strong>% (Módulo):</strong> Devuelve el resto de la división. Ejemplo: 10 % 3 = 1</li>
-            <li><strong>** (Exponenciación):</strong> Eleva un número a la potencia de otro. Ejemplo: 2 ** 3 = 8</li>
-            <li><strong>++ (Incremento):</strong> Aumenta el valor en 1. Ejemplo: x++ o ++x</li>
-            <li><strong>-- (Decremento):</strong> Disminuye el valor en 1. Ejemplo: x-- o --x</li>
-        </ul>
-        
-        <h4>Operadores Lógicos:</h4>
-        <ul>
-            <li><strong>&& (AND lógico):</strong> Devuelve true solo si ambas condiciones son verdaderas. Ejemplo: true && false = false</li>
-            <li><strong>|| (OR lógico):</strong> Devuelve true si al menos una condición es verdadera. Ejemplo: true || false = true</li>
-            <li><strong>! (NOT lógico):</strong> Invierte el valor booleano. Ejemplo: !true = false, !false = true</li>
-        </ul>
-        
-        <h4>Operadores Relacionales (Comparación):</h4>
-        <ul>
-            <li><strong>== (Igualdad):</strong> Compara valores convirtiendo tipos si es necesario. Ejemplo: 5 == "5" = true</li>
-            <li><strong>=== (Igualdad estricta):</strong> Compara valores y tipos sin conversión. Ejemplo: 5 === "5" = false</li>
-            <li><strong>!= (Desigualdad):</strong> Verifica si los valores son diferentes. Ejemplo: 5 != 3 = true</li>
-            <li><strong>!== (Desigualdad estricta):</strong> Verifica si valores o tipos son diferentes. Ejemplo: 5 !== "5" = true</li>
-            <li><strong>> (Mayor que):</strong> Verifica si el primer valor es mayor. Ejemplo: 8 > 5 = true</li>
-            <li><strong>< (Menor que):</strong> Verifica si el primer valor es menor. Ejemplo: 3 < 7 = true</li>
-            <li><strong>>= (Mayor o igual que):</strong> Verifica si es mayor o igual. Ejemplo: 5 >= 5 = true</li>
-            <li><strong><= (Menor o igual que):</strong> Verifica si es menor o igual. Ejemplo: 4 <= 6 = true</li>
-        </ul>
-
-                <br><hr><h2>Control de Flujo</h2>
-                <h3>If / Else / Switch</h3>
-                <p>Estas estructuras nos ayudan a poder darle un flujo al programa y cambiar lo que esta pasando dentro del mismo, osea es como darle la oportunidad que haga cosas diferentes segun lo que el usuario haga.</p>
-                <p> IF: Si se cumple una condición, se ejecuta un bloque de código. Si no, se puede ejecutar otro bloque con ELSE. Ejemplo:
-                    <pre><code>if (edad &gt;= 18) </code></pre>
-                </p>
-                <p> ELSE: Si la condición del IF no se cumple, se ejecuta este bloque. Ejemplo:
-                    <pre><code>else { alert('Menor de edad'); }</code></pre>
-                </p>
-                <p> SWITCH: Permite evaluar una expresión y ejecutar diferentes bloques de código según el valor. Ejemplo:
-                    <pre><code>switch (nombre) {
-  case 'Baz':
-    alert('Es Baz :D');
-    break;
-  case 'Falter':
-    alert('Es Falter :(');
-    break;
-  default:
-    alert('No se quien eres');
-}</code></pre>
-                </p>
-
-                <h3>if vs while vs do while</h3>
-                <p>IF: Se evalúa una condición y, si es verdadera, se ejecuta un bloque de código. Si es falsa, no se ejecuta nada.</p>
-                <p>WHILE: Se evalúa una condición antes de cada iteración. Si es verdadera, se ejecuta el bloque de código. Si es falsa, se sale del bucle.</p>
-                <p>DO WHILE: Similar al WHILE, pero se garantiza que el bloque de código se ejecute al menos una vez, ya que la condición se evalúa después de la ejecución.</p>
-
-                <h3>break & continue</h3>
-                <p><strong>break:</strong> Sale del bucle (o de un switch) inmediatamente.</p>
-                <p><strong>continue:</strong> Salta a la próxima iteración.</p>
-                <pre><code>for (let i=0;i&lt;10;i++){
-  if (i===5) continue; // saltar 5
-  if (i===8) break;    // detenerse en 8
-}</code></pre>
-
-                <br><hr><h2>Funciones</h2>
-
-                <h3>Declarar & llamar</h3>
-                <pre><code>function sumar(a, b) { return a + b; }  // declaración (se eleva)
-const multiplicar = function(a,b){ return a*b; }; // expresión
-sumar(2,3); // 5</code></pre>
-
-                <h3>Parámetros & valor de retorno</h3>
-                <p>Los parámetros son entradas que una función recibe; el valor de retorno es la salida que da con return. Si no hay return, la función devuelve undefined.</p>
-
-                <h3>Funciones flecha (=>) & ventajas</h3>
-                <pre><code>const sumar = (a,b) => a + b;      // sintaxis concisa
-const obj = { n: 1, inc: () => this.n }; // `this` léxico (cuidado con objetos)</code></pre>
-                <p><strong>Pros:</strong> sintaxis más corta, this léxico (no se vuelve a enlazar), ideal para callbacks.</p>
-                <p><strong>Limitaciones:</strong> no son constructores, no tienen arguments/prototype.</p>
-
-                <h3>Scope (alcance)</h3>
-                <p>Es el ámbito en el que un nombre es visible.</p>
-                <ul>
-                    <li>Alcance global, de función y de bloque ({}).</li>
-                    <li>let/const son de alcance de bloque, var es de alcance de función.</li>
-                    <li>Los closures: las funciones internas capturan las variables externas.</li>
-                </ul>
-
-                <br><hr><h2>Objetos y colecciones</h2>
-
-                <h3>Declarar objeto & acceder a propiedades</h3>
-                <pre><code>const usuario = { nombre: 'Ana', edad: 20, 'color-favorito': 'azul' };
-usuario.nombre         // con punto
-usuario['color-favorito'] // con corchetes (útil para claves dinámicas o no válidas)</code></pre>
-
-                <h3>Propiedad vs Método</h3>
-                <p>Una propiedad es un dato (usuario.edad). Un método es una función almacenada en un objeto:</p>
-                <pre><code>const temporizador = {
-  inicio: 0,
-  resetear(){ this.inicio = Date.now(); } // método
-};</code></pre>
-
-                <h3>Métodos básicos de los arrays (al menos 3)</h3>
-                <ul>
-                    <li><strong>push(item):</strong> añade al final; devuelve el nuevo tamaño.</li>
-                    <li><strong>pop():</strong> elimina el último; devuelve el elemento eliminado.</li>
-                    <li><strong>shift() / unshift(item):</strong> elimina/agrega al principio.</li>
-                    <li><strong>map(fn):</strong> devuelve un nuevo array transformando cada elemento.</li>
-                    <li><strong>filter(fn):</strong> devuelve un nuevo array con elementos que cumplen una condición.</li>
-                    <li><strong>reduce(fn, init):</strong> reduce el array a un solo valor.</li>
-                </ul>
-                <p><strong>Ejemplo:</strong></p>
-                <pre><code>[1,2,3].map(x=>x*2)      // [2,4,6]
-[1,2,3,4].filter(x=>x%2) // [1,3]
-[1,2,3].reduce((s,x)=>s+x,0) // 6</code></pre>
-
-                <br><hr><h2>Otros temas básicos</h2>
-
-                <h3>¿Qué es el DOM y por qué es importante?</h3>
-                <p>El Document Object Model (DOM) es el árbol en memoria de tu página HTML. JS lo usa para leer y cambiar elementos y estilos, habilitando la verdadera interactividad.</p>
-                <pre><code>document.querySelector('#msg').textContent = '¡Hola!';</code></pre>
-
-                <h3>¿Qué es un evento? (3 ejemplos)</h3>
-                <p>Un evento es una señal de que algo ha ocurrido (usuario o navegador). Ejemplos: click, input, submit, keydown, change, load.</p>
-                <pre><code>boton.addEventListener('click', () => alert('¡Hola!'));</code></pre>
-
-                <h3>¿Cuál es la diferencia entre alert, prompt y console.log?</h3>
-                <ul>
-                    <li><strong>alert(msg):</strong> popup que bloquea la ejecución y muestra texto.</li>
-                    <li><strong>prompt(msg):</strong> popup que devuelve el texto que el usuario escribe (o null).</li>
-                    <li><strong>console.log(valor):</strong> imprime en la consola del desarrollador (no bloquea, útil para depuración).</li>
-                </ul>
-
-                <h3>¿Cómo se abre la consola del navegador y qué ventajas tiene?</h3>
-                <ul>
-                    <li><strong>Chrome/Edge:</strong> Ctrl+Shift+I (Linux/Win) o Cmd+Option+I (Mac), luego pestaña Consola.</li>
-                    <li><strong>Firefox:</strong> Ctrl+Shift+K o Cmd+Option+K.</li>
-                </ul>
-                <p>Es útil para ver logs/errores, ejecutar JS de forma interactiva, inspeccionar variables, probar fragmentos de código y depurar más rápido.</p>
-
+        <!-- Sección de introducción rápida -->
+        <div class="intro">
+            <h3>¿Por qué necesito leer esto?</h3>
+            <ul>
+                <li>Veras una introducción básica a JavaScript</li>
+                <li>La teoría es el raíz principal de todo lenguaje</li>
+                <li>Nuevo aprendizaje orientado a páginas web</li>
+                <li>Comportamiento dinámico de las páginas web</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>

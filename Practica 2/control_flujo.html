@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="shortcut icon" href="logojs.webp">
+    <link rel="stylesheet" href="styles.css">
+    <title>Control de flujo</title>
+</head>
+<body>
+       <div id="header">
+        <div class="title-section">
+            <img src="logojs.webp" alt="JavaScript Logo">
+            <H1>Control de Flujo</H1>
+        </div>
+        <h3>"Write less, do more"</h3>
+    </div>
+    <div>
+                <h3>¿Cómo funcionan las sentencias condicionales if, else y switch?</h3>
+                <p>Estas estructuras nos ayudan a poder darle un flujo al programa y cambiar lo que esta pasando dentro del mismo, osea es como darle la oportunidad que haga cosas diferentes segun lo que el usuario haga.</p>
+                <p> IF: Si se cumple una condición, se ejecuta un bloque de código. Si no, se puede ejecutar otro bloque con ELSE. Ejemplo:
+                    <pre><code>if (edad &gt;= 18) </code></pre>
+                </p>
+                <p> ELSE: Si la condición del IF no se cumple, se ejecuta este bloque. Ejemplo:
+                    <pre><code>else { alert('Menor de edad'); }</code></pre>
+                </p>
+                <p> SWITCH: Permite evaluar una expresión y ejecutar diferentes bloques de código según el valor. Ejemplo:
+                    <pre><code>switch (nombre) {
+  case 'Baz':
+    alert('Es Baz :D');
+    break;
+  case 'Falter':
+    alert('Es Falter :(');
+    break;
+  default:
+    alert('No se quien eres');
+}</code></pre>
+                </p>
+
+                <h3> ¿Cuáles son las diferencias entre los bucles for, while y do...while?</h3>
+                <p>IF: Se evalúa una condición y, si es verdadera, se ejecuta un bloque de código. Si es falsa, no se ejecuta nada.</p>
+                <p>WHILE: Se evalúa una condición antes de cada iteración. Si es verdadera, se ejecuta el bloque de código. Si es falsa, se sale del bucle.</p>
+                <p>DO WHILE: Similar al WHILE, pero se garantiza que el bloque de código se ejecute al menos una vez, ya que la condición se evalúa después de la ejecución.</p>
+
+                <h3>¿Para qué sirven las palabras clave break y continue?</h3>
+                <p><strong>break:</strong> Sale del bucle (o de un switch) inmediatamente.</p>
+                <p><strong>continue:</strong> Salta a la próxima iteración.</p>
+                <pre><code>for (let i=0;i&lt;10;i++){
+  if (i===5) continue; // saltar 5
+  if (i===8) break;    // detenerse en 8
+}</code></pre>
+    </div>
+</body>
+</html>
