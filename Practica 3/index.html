@@ -1,0 +1,86 @@
+<!-- Sistema de Gestión de Estudiantes de la UPV -->
+<!-- Archivo HTML principal que contiene la estructura de la página -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/LOGO_SIGEA.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="actions.js"></script>
+    <title>SIGEA</title>
+</head>
+<body>
+    <!-- Encabezado principal de la página -->
+    <div id="divsuperior">
+        <h1>Universidad Politécnica de Victoria</h1>
+        <h2>Sistema de Gestión de Alumnos</h2>
+    </div>
+
+    <!-- Contenedor principal que organiza las dos secciones lado a lado -->
+    <div class="contenedor-principal">
+        <!-- Sección izquierda: Formulario de registro -->
+        <div class="tablas">
+            <div class="superiortabla">Registro de alumnos</div>
+            
+            <!-- Campo para matrícula -->
+            <h2>Matricula:</h2>
+            <textarea></textarea>
+
+            <!-- Campo para nombre completo -->
+            <h2>Nombre Completo:</h2>
+            <textarea></textarea>
+
+            <!-- Dropdown para selección de carrera -->
+            <h2>Carrera:</h2>
+            <div class="dropdown">
+                <button class="dropdown-button" onclick="toggleMenu()">Seleccionar carrera</button>
+                <div id="dropdown-content" class="dropdown-content">
+                    <a href="#">Ingeniería en Tecnologías de la información e Innovación Digital</a>
+                    <a href="#">Ingeniería en Mecatrónica</a>
+                    <a href="#">Ingeniería en Sistemas Automotrices</a>
+                    <a href="#">Ingeniería en Manufactura Avanzada</a>
+                    <a href="#">Licenciatura en Comercio Internacional y Aduanas</a>
+                    <a href="#">Licenciatura en Administración</a>
+                </div>
+            </div>
+
+            <!-- Campo para email -->
+            <h2>Email:</h2>
+            <textarea></textarea>
+
+            <!-- Campo para teléfono -->
+            <h2>Teléfono:</h2>
+            <textarea></textarea>
+        
+            <!-- Botones de acción del formulario -->
+            <button id="guardar">Guardar</button>
+            <button id="limpiar">Limpiar</button>
+        </div>
+
+        <!-- Sección derecha: Lista de estudiantes -->
+        <div class="tablas">
+            <div class="superiortabla">Lista de alumnos</div>
+            
+            <!-- Tabla que muestra los estudiantes registrados -->
+            <table id="tablaEstudiantes">
+                <thead>
+                    <tr>
+                        <th>Matrícula</th>
+                        <th>Nombre</th>
+                        <th>Carrera</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6">No hay estudiantes registrados</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
