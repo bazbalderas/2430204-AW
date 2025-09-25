@@ -1,86 +1,122 @@
-<!-- Sistema de Gestión de Estudiantes de la UPV -->
-<!-- Archivo HTML principal que contiene la estructura de la página -->
+<!-- Sistema de Gestión de Estudiantes para la Universidad Politécnica de Victoria -->
+<!-- Esta página permite registrar estudiantes y ver la lista de todos los registrados -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/LOGO_SIGEA.png">
+    <!-- Se incluye Bootstrap para que la página se vea mejor y sea responsiva -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="actions.js"></script>
     <title>SIGEA</title>
 </head>
 <body>
-    <!-- Encabezado principal de la página -->
-    <div id="divsuperior">
-        <h1>Universidad Politécnica de Victoria</h1>
-        <h2>Sistema de Gestión de Alumnos</h2>
+    <!-- Encabezado principal de la página con el nombre de la universidad -->
+    <div class="bg-primary text-white text-center py-4 mb-4">
+        <div class="container">
+            <h1 class="display-6">Universidad Politécnica de Victoria</h1>
+            <h2 class="fs-4 opacity-75">Sistema de Gestión de Alumnos</h2>
+        </div>
     </div>
 
-    <!-- Contenedor principal que organiza las dos secciones lado a lado -->
-    <div class="contenedor-principal">
-        <!-- Sección izquierda: Formulario de registro -->
-        <div class="tablas">
-            <div class="superiortabla">Registro de alumnos</div>
-            
-            <!-- Campo para matrícula -->
-            <h2>Matricula:</h2>
-            <textarea></textarea>
+    <!-- Contenedor principal que divide la página en dos columnas -->
+    <div class="container-fluid">
+        <div class="row g-3">
+            <!-- Columna izquierda: Formulario para registrar nuevos estudiantes -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-secondary text-white text-center">
+                        <h4 class="mb-0">Registro de alumnos</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Campo donde el usuario escribe la matrícula del estudiante -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Matrícula:</label>
+                            <textarea class="form-control" rows="2"></textarea>
+                        </div>
 
-            <!-- Campo para nombre completo -->
-            <h2>Nombre Completo:</h2>
-            <textarea></textarea>
+                        <!-- Campo donde el usuario escribe el nombre completo del estudiante -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nombre Completo:</label>
+                            <textarea class="form-control" rows="2"></textarea>
+                        </div>
 
-            <!-- Dropdown para selección de carrera -->
-            <h2>Carrera:</h2>
-            <div class="dropdown">
-                <button class="dropdown-button" onclick="toggleMenu()">Seleccionar carrera</button>
-                <div id="dropdown-content" class="dropdown-content">
-                    <a href="#">Ingeniería en Tecnologías de la información e Innovación Digital</a>
-                    <a href="#">Ingeniería en Mecatrónica</a>
-                    <a href="#">Ingeniería en Sistemas Automotrices</a>
-                    <a href="#">Ingeniería en Manufactura Avanzada</a>
-                    <a href="#">Licenciatura en Comercio Internacional y Aduanas</a>
-                    <a href="#">Licenciatura en Administración</a>
+                        <!-- Menú desplegable para que el usuario elija la carrera del estudiante -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Carrera:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" 
+                                        data-bs-toggle="dropdown" id="dropdownCarrera">
+                                    Seleccionar carrera
+                                </button>
+                                <ul class="dropdown-menu w-100">
+                                    <li><a class="dropdown-item" href="#" onclick="selectCarrera(this.textContent)">Ingeniería en Tecnologías de la información e Innovación Digital</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="selectCarrera(this.textContent)">Ingeniería en Mecatrónica</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="selectCarrera(this.textContent)">Ingeniería en Sistemas Automotrices</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="selectCarrera(this.textContent)">Ingeniería en Manufactura Avanzada</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="selectCarrera(this.textContent)">Licenciatura en Comercio Internacional y Aduanas</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="selectCarrera(this.textContent)">Licenciatura en Administración</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Campo donde el usuario escribe el email del estudiante -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Email:</label>
+                            <textarea class="form-control" rows="2"></textarea>
+                        </div>
+
+                        <!-- Campo donde el usuario escribe el teléfono del estudiante -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Teléfono:</label>
+                            <textarea class="form-control" rows="2"></textarea>
+                        </div>
+                    
+                        <!-- Botones para guardar el estudiante o limpiar el formulario -->
+                        <div class="d-flex gap-2">
+                            <button id="guardar" class="btn btn-success">Guardar</button>
+                            <button id="limpiar" class="btn btn-secondary">Limpiar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Campo para email -->
-            <h2>Email:</h2>
-            <textarea></textarea>
-
-            <!-- Campo para teléfono -->
-            <h2>Teléfono:</h2>
-            <textarea></textarea>
-        
-            <!-- Botones de acción del formulario -->
-            <button id="guardar">Guardar</button>
-            <button id="limpiar">Limpiar</button>
-        </div>
-
-        <!-- Sección derecha: Lista de estudiantes -->
-        <div class="tablas">
-            <div class="superiortabla">Lista de alumnos</div>
-            
-            <!-- Tabla que muestra los estudiantes registrados -->
-            <table id="tablaEstudiantes">
-                <thead>
-                    <tr>
-                        <th>Matrícula</th>
-                        <th>Nombre</th>
-                        <th>Carrera</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="6">No hay estudiantes registrados</td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Columna derecha: Tabla que muestra todos los estudiantes registrados -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-secondary text-white text-center">
+                        <h4 class="mb-0">Lista de alumnos</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Tabla responsiva que se adapta a diferentes tamaños de pantalla -->
+                        <div class="table-responsive">
+                            <table id="tablaEstudiantes" class="table table-striped table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Matrícula</th>
+                                        <th>Nombre</th>
+                                        <th>Carrera</th>
+                                        <th>Email</th>
+                                        <th>Teléfono</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted">No hay estudiantes registrados</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Se cargan los scripts necesarios: Bootstrap y el archivo JavaScript personalizado -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="actions.js"></script>
 </body>
 </html>

@@ -1,63 +1,53 @@
-// Sistema de Gestión de Estudiantes - JavaScript
-// Variables globales para almacenar datos
-let estudiantes = []; // Array que almacena todos los estudiantes registrados
-let carreraSeleccionada = ''; // Variable que guarda la carrera seleccionada del dropdown
+// Sistema de registro de estudiantes para la UPV
+// Código hecho por un estudiante de JavaScript básico
 
-// Función para mostrar/ocultar el menú desplegable de carreras
-function toggleMenu() {
-    const menu = document.getElementById("dropdown-content");
-    if (menu.style.display === "block") {
-        menu.style.display = "none"; // Si está visible, lo oculta
-    } else {
-        menu.style.display = "block"; // Si está oculto, lo muestra
-    }
-}
+let estudiantes = []; // Esta variable guarda todos los estudiantes que se van registrando
+let carreraSeleccionada = ''; // Esta variable guarda la carrera que el usuario selecciona del menú
 
-// Función para seleccionar una carrera del menú desplegable
+// Esta función se activa cuando el usuario hace clic en una carrera del menú desplegable
 function selectCarrera(carrera) {
-    carreraSeleccionada = carrera; // Guarda la carrera seleccionada
-    document.querySelector('.dropdown-button').textContent = carrera; // Cambia el texto del botón
-    document.getElementById("dropdown-content").style.display = "none"; // Oculta el menú
+    carreraSeleccionada = carrera; // Guarda la carrera que eligió el usuario
+    document.getElementById('dropdownCarrera').textContent = carrera; // Cambia el texto del botón para mostrar la carrera elegida
 }
 
-// Función para guardar un nuevo estudiante
+// Esta función guarda un nuevo estudiante en el sistema
 function guardarEstudiante() {
-    // Obtiene todos los campos de texto del formulario
+    // Busca todas las cajas de texto donde el usuario escribió los datos
     const textareas = document.querySelectorAll('textarea');
     
-    // Crea un objeto con los datos del estudiante
+    // Crea un nuevo objeto estudiante con todos los datos que escribió el usuario
     const nuevoEstudiante = {
-        matricula: textareas[0].value, // Primera textarea: matrícula
-        nombre: textareas[1].value,    // Segunda textarea: nombre
-        carrera: carreraSeleccionada,  // Carrera del dropdown
-        email: textareas[2].value,     // Tercera textarea: email
-        telefono: textareas[3].value   // Cuarta textarea: teléfono
+        matricula: textareas[0].value, // Toma el valor de la primera caja de texto (matrícula)
+        nombre: textareas[1].value,    // Toma el valor de la segunda caja de texto (nombre)
+        carrera: carreraSeleccionada,  // Usa la carrera que seleccionó del menú
+        email: textareas[2].value,     // Toma el valor de la tercera caja de texto (email)
+        telefono: textareas[3].value   // Toma el valor de la cuarta caja de texto (teléfono)
     };
     
-    // Agrega el estudiante al array y actualiza la vista
+    // Agrega el nuevo estudiante a la lista y actualiza lo que se ve en pantalla
     estudiantes.push(nuevoEstudiante);
     mostrarEstudiantes();
     limpiarFormulario();
 }
 
-// Función para limpiar todos los campos del formulario
+// Esta función borra todos los datos del formulario para poder registrar otro estudiante
 function limpiarFormulario() {
-    // Borra el contenido de todas las textareas
+    // Borra el contenido de todas las cajas de texto
     document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
-    carreraSeleccionada = ''; // Resetea la carrera seleccionada
-    document.querySelector('.dropdown-button').textContent = 'Seleccionar carrera';
+    carreraSeleccionada = ''; // Quita la carrera seleccionada
+    document.getElementById('dropdownCarrera').textContent = 'Seleccionar carrera'; // Regresa el texto original del botón
 }
 
-// Función para mostrar los estudiantes en la tabla
+// Esta función muestra todos los estudiantes registrados en una tabla
 function mostrarEstudiantes() {
     const tabla = document.querySelector('#tablaEstudiantes tbody');
-    tabla.innerHTML = ''; // Limpia la tabla
+    tabla.innerHTML = ''; // Limpia la tabla antes de mostrar los datos
     
-    // Si no hay estudiantes, muestra mensaje
+    // Si no hay estudiantes registrados, muestra un mensaje
     if (estudiantes.length === 0) {
         tabla.innerHTML = '<tr><td colspan="6">No hay estudiantes registrados</td></tr>';
     } else {
-        // Recorre cada estudiante y crea una fila en la tabla
+        // Si hay estudiantes, crea una fila en la tabla para cada uno
         estudiantes.forEach((estudiante, index) => {
             tabla.innerHTML += `
                 <tr>
@@ -67,7 +57,7 @@ function mostrarEstudiantes() {
                     <td>${estudiante.email}</td>
                     <td>${estudiante.telefono}</td>
                     <td>
-                        <button onclick="eliminarEstudiante(${index})" class="btn-eliminar">Eliminar</button>
+                        <button onclick="eliminarEstudiante(${index})" class="btn btn-danger btn-sm">Eliminar</button>
                     </td>
                 </tr>
             `;
@@ -75,23 +65,24 @@ function mostrarEstudiantes() {
     }
 }
 
-// Función para eliminar un estudiante de la lista
+// Esta función elimina un estudiante específico de la lista
 function eliminarEstudiante(index) {
-    estudiantes.splice(index, 1); // Remueve el estudiante del array
-    mostrarEstudiantes(); // Actualiza la tabla
+    estudiantes.splice(index, 1); // Quita el estudiante de la posición indicada
+    mostrarEstudiantes(); // Actualiza la tabla para que ya no aparezca el estudiante eliminado
 }
 
-// Configuración inicial cuando la página carga
+// Este código se ejecuta automáticamente cuando la página termina de cargar
 document.addEventListener('DOMContentLoaded', function() {
-    // Conecta los botones con sus funciones
+    // Conecta el botón "Guardar" con la función para guardar estudiantes
     document.getElementById('guardar').addEventListener('click', guardarEstudiante);
+    // Conecta el botón "Limpiar" con la función para limpiar el formulario
     document.getElementById('limpiar').addEventListener('click', limpiarFormulario);
     
-    // Configura los enlaces del dropdown de carreras
-    document.querySelectorAll('#dropdown-content a').forEach(link => {
+    // Hace que funcione el menú desplegable de carreras
+    document.querySelectorAll('.dropdown-item').forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault(); // Previene el comportamiento por defecto del enlace
-            selectCarrera(this.textContent); // Selecciona la carrera
+            e.preventDefault(); // Evita que la página se recargue cuando hacen clic
+            selectCarrera(this.textContent); // Llama la función para seleccionar la carrera
         });
     });
 });   
