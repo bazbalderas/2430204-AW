@@ -3,25 +3,6 @@
 
 /* Fondo personalizado con gradiente e imagen para hacer la página más atractiva */
 body {
-    background: linear-gradient(rgba(46, 11, 63, 0.7), rgba(255, 255, 255, 0.7)),
-                url('images/FONDO.webp') center center/cover no-repeat fixed;
+    background: url('images/FONDO.webp') center center/cover no-repeat fixed;
     min-height: 100vh;
-}
-
-/* Mejoras visuales para las tarjetas de Bootstrap */
-.card {
-    border: none;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-}
-
-/* Estilo para los encabezados de las tarjetas */
-.card-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-/* Ajustes para pantallas pequeñas para mejorar la experiencia en móviles */
-@media (max-width: 768px) {
-    .table-responsive {
-        font-size: 0.875rem;
-    }
 }
