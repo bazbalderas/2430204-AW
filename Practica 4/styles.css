@@ -28,12 +28,14 @@ body{
       padding: 30px 50px;
       border-radius: 20px;
       text-align: center;
-      max-width: 600px;
+      max-width: 500px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
   
 }
 #btnInicioSesion{
 font-family: 'Segoe UI', Arial, sans-serif;
+font-size: large;
+color: white;
     background: rgba(84, 204, 219, 0.55);
   border-radius: 1.5rem;
   box-shadow: 0 6px 32px rgba(80,0,120,0.18);
@@ -89,5 +91,10 @@ font-family: 'Segoe UI', Arial, sans-serif;
 
 #mexicolindo{
     border-radius: 1rem;
+
+}
+
+#mensajito{
+    background-color: rgba(255, 255, 255, 0.6);
 
 }
