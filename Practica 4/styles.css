@@ -1,100 +1,103 @@
+/* Diseño sencillo del body donde definimos dos colores y el tamaño vertical de la pagina */
 body{
-        background:
-        linear-gradient(rgba(11, 113, 121, 0.7), rgba(80,0,120,0.7));
-        height: 1200px;
+    background: linear-gradient(rgba(11, 113, 121, 0.7), rgba(80,0,120,0.7));
+    height: 1200px;
 }
 
+/* Encabezado que dice iniciar sesion arriba de la pedida de datos en el apartado izquierdo*/
 .encabezadoIniciarSesion{
- background: rgba(84, 204, 219, 0.55);
-  border-radius: 1.5rem;
-  box-shadow: 0 6px 32px rgba(80,0,120,0.18);
-  padding: 2.2rem 2.5rem 1.5rem 2.5rem;
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#registro{
-    top: 100px;
-        min-height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-        background-color: rgba(64, 0, 128, 0.6); /* Morado con opacidad */
-      color: white;
-      padding: 30px 50px;
-      border-radius: 20px;
-      text-align: center;
-      max-width: 500px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  
-}
-#btnInicioSesion{
-font-family: 'Segoe UI', Arial, sans-serif;
-font-size: large;
-color: white;
     background: rgba(84, 204, 219, 0.55);
-  border-radius: 1.5rem;
-  box-shadow: 0 6px 32px rgba(80,0,120,0.18);
-  padding: 2.2rem 2.5rem 1.5rem 2.5rem;
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    border-radius: 1.5rem;
+    box-shadow: 0 6px 32px rgba(80,0,120,0.18);
+    max-width: 900px; /* max-width: Define el ancho máximo que puede tener el elemento */
+    display: flex; /* display: flex hace que el contenedor se comporte como una caja flexible */
+    flex-direction: column; /* flex-direction: column organiza los elementos uno debajo del otro */
+    align-items: center; /* align-items: center centra los elementos horizontalmente */
 }
 
+/* El diseño de todo el apartado de iniciar sesión (Apartado izquierdo) - MOVIDO MÁS A LA DERECHA */
+#registro{
+    position: absolute; /* position: absolute saca el elemento del flujo normal y lo posiciona donde tú quieras */
+    left: 250px; /* Movido más a la derecha (antes estaba muy pegado a la izquierda) */
+    top: 100px;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex; /* display: flex convierte el contenedor en una caja flexible */
+    flex-direction: column; /* flex-direction: column apila los elementos verticalmente */
+    align-items: center; /* align-items: center centra todo el contenido horizontalmente */
+    justify-content: center; /* justify-content: center centra el contenido verticalmente */
+    background-color: rgba(64, 0, 128, 0.6);
+    color: white;
+    padding: 30px 50px; /* padding: espacio interno entre el borde y el contenido (arriba/abajo izquierda/derecha) */
+    border-radius: 20px;
+    text-align: center; /* text-align: center centra todo el texto */
+    max-width: 500px; /* max-width: el ancho máximo que puede tener esta caja */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Diseño del botón de ingresar (Apartado izquierdo) */
+#btnInicioSesion{
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: large;
+    color: white;
+    background: rgba(101, 238, 22, 0.55);
+    border-radius: 1.5rem;
+    box-shadow: 0 6px 32px rgba(80,0,120,0.18);
+    padding: 2.2rem 2.5rem 1.5rem 2.5rem; /* padding: espacio interno (arriba, derecha, abajo, izquierda) */
+    max-width: 900px; /* max-width: ancho máximo del botón */
+    display: flex; /* display: flex hace que el botón sea flexible */
+    flex-direction: column; /* flex-direction: column organiza el contenido del botón verticalmente */
+    align-items: center; /* align-items: center centra el texto del botón */
+}
+
+/* Diseño del apartado superior derecho */
 #promocionsuperior{
-    position: absolute; /* Saca el elemento del flujo normal */
-    top: 20px; /* Distancia desde la parte superior */
-    right: 200px; /* Distancia desde la derecha */
-    width: 1000px; /* Establece un ancho fijo o el que necesites */
+    position: absolute; /* position: absolute posiciona el elemento donde tú quieras en la pantalla */
+    top: 20px;
+    right: 200px;
+    width: 1000px;
     height: auto;
-  display: right;
-  flex-direction: column;
-  align-items: center;
-        background-color: rgba(64, 0, 128, 0.6); /* Morado con opacidad */
-      color: white;
-      padding: 30px 50px;
-      border-radius: 20px;
-      text-align: center;
-      max-width: 600px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: right;
+    flex-direction: column; /* flex-direction: column apila el contenido verticalmente */
+    align-items: center; /* align-items: center centra el contenido horizontalmente */
+    background-color: rgba(64, 0, 128, 0.6);
+    color: white;
+    padding: 30px 50px; /* padding: espacio interno para que el texto no toque los bordes */
+    border-radius: 20px;
+    text-align: center; /* text-align: center centra todo el texto dentro de la caja */
+    max-width: 600px; /* max-width: ancho máximo de esta sección */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
+/* Diseño del apartado inferior derecho */
 #promocioninferior{
-    position: absolute; /* Saca el elemento del flujo normal */
-    top: 450px; /* Distancia desde la parte superior */
-    right: 200px; /* Distancia desde la derecha */
-    width: 1000px; /* Establece un ancho fijo o el que necesites */
+    position: absolute; /* position: absolute coloca el elemento en una posición fija */
+    top: 450px;
+    right: 200px;
+    width: 1000px;
     height: auto;
-  display: right;
-  flex-direction: column;
-  align-items: center;
-        background-color: rgba(64, 0, 128, 0.6); /* Morado con opacidad */
-      color: white;
-      padding: 30px 50px;
-      border-radius: 20px;
-      text-align: center;
-      max-width: 600px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: right;
+    flex-direction: column; /* flex-direction: column organiza los elementos uno debajo del otro */
+    align-items: center; /* align-items: center centra horizontalmente el contenido */
+    background-color: rgba(64, 0, 128, 0.6);
+    color: white;
+    padding: 30px 50px; /* padding: espacio interno para separar el contenido de los bordes */
+    border-radius: 20px;
+    text-align: center; /* text-align: center centra el texto */
+    max-width: 600px; /* max-width: define el ancho máximo de esta caja */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
 #logo{
     border-radius: 1.5rem;
     width: 150px;
     height: auto;
-
 }
 
 #mexicolindo{
     border-radius: 1rem;
-
 }
 
 #mensajito{
     background-color: rgba(255, 255, 255, 0.6);
-
 }
