@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="styles.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="shortcut icon" href="images/RISEBOOK.png">
+    <title>Dashboard - RiseBook</title>
+</head>
+<body id="dashboard-body">
+    <!-- Parte superior del dashboard con logo, nombre de usuario y botón de salir -->
+    <div id="dashboard-header">
+        <div id="logo-dashboard">
+            <!-- Logo de la aplicación -->
+            <img src="images/RISEBOOK.png" alt="RiseBook Logo" id="logo-pequeño">
+        </div>
+        <!-- Aquí aparece el nombre del usuario que se logueó -->
+        <h1 id="nombreUsuario">Dashboard - Usuario</h1>
+        <!-- Botón para cerrar sesión y regresar al login -->
+        <button id="btnCerrarSesion">Cerrar Sesión</button>
+    </div>
+
+    <!-- Contador que muestra cuántas tareas tiene el usuario -->
+    <div id="contador-container">
+        <h2 id="contadorTareas">Tareas pendientes: 2</h2>
+    </div>
+
+    <!-- Formulario donde el usuario puede agregar nuevas tareas -->
+    <div id="form-tareas">
+        <!-- Campo para escribir el nombre de la tarea -->
+        <div class="input-group">
+            <label>Nombre de Tarea:</label>
+            <input type="text" id="nombreTarea" placeholder="Escribe el nombre de la tarea">
+        </div>
+        <!-- Campo para escribir la descripción de la tarea -->
+        <div class="input-group">
+            <label>Descripción de Tarea:</label>
+            <input type="text" id="descripcionTarea" placeholder="Escribe la descripción">
+        </div>
+        <!-- Campo para escribir el nombre del proyecto -->
+         <div class = "input-group">
+            <label>Asignación al proyecto:</label>
+            <input type="text" id="proyectoTarea" placeholder="Dirección de tarea">
+         </div>
+
+        <!-- Botón que guarda la nueva tarea cuando lo presionas -->
+        <button id="btnAgregarTarea">Agregar Tarea</button>
+    </div>
+
+    <!-- Tabla que muestra todas las tareas que tiene el usuario -->
+    <div id="tabla-container">
+        <table id="tablaTareas">
+            <!-- Encabezados de la tabla -->
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Proyecto</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <!-- Aquí aparecen las tareas, JavaScript las agrega automáticamente -->
+            <tbody>
+                <!-- La tabla estará vacía al inicio, JavaScript agregará las tareas -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Archivo JavaScript que hace funcionar todo el dashboard -->
+    <script src="dashboard.js"></script>
+</body>
+</html>
