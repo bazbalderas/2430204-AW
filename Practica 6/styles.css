@@ -138,7 +138,7 @@ body{
 }
 
 /* Contador que muestra cuántas tareas hay */
-#contadorTareas {
+#contadorProyectos {
     background: rgba(84, 204, 219, 0.55);
     border-radius: 1.5rem;
     padding: 15px;
@@ -147,7 +147,7 @@ body{
 }
 
 /* Formulario para agregar nuevas tareas */
-#form-tareas {
+#form-tareas, #form-proyectos {
     background-color: rgba(64, 0, 128, 0.6);
     padding: 20px;
     border-radius: 20px;
@@ -164,8 +164,8 @@ body{
     width: 200px;
 }
 
-/* Botón "Agregar Tarea" del formulario */
-#btnAgregarTarea {
+/* Botón "Agregar Tarea" y "Crear Proyecto"del formulario */
+#btnAgregarTarea, #btnCrearProyecto {
     background: rgba(101, 238, 22, 0.55);
     color: white;
     border: none;

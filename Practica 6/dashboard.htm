@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="styles.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="shortcut icon" href="images/RISEBOOK.png">
+    <link rel="shortcut icon" href="images/RISEBOOK.png">
     <title>Dashboard - RiseBook</title>
 </head>
 <body id="dashboard-body">
@@ -21,9 +20,36 @@
         <button id="btnCerrarSesion">Cerrar Sesión</button>
     </div>
 
-    <!-- Contador que muestra cuántas tareas tiene el usuario -->
+    <!-- Contador que muestra cuántos proyectos tiene el usuario -->
     <div id="contador-container">
-        <h2 id="contadorTareas">Tareas pendientes: 2</h2>
+        <h2 id="contadorProyectos">Proyectos creados: 0</h2>
+    </div>
+
+    <!-- Formulario donde el usuario puede agregar nuevos proyectos -->
+    <div id="form-proyectos">
+        <!-- Campo para escribir el nombre del proyecto -->
+        <div class="input-group">
+            <label>Nombre del Proyecto:</label>
+            <input type="text" id="nombreProyecto" placeholder="Escribe el nombre del proyecto">
+        </div>
+        <!-- Campo para escribir la descripción del proyecto -->
+        <div class="input-group">
+            <label>Descripción del Proyecto:</label>
+            <input type="text" id="descripcionProyecto" placeholder="Escribe la descripción">
+        </div>
+        <!-- Botón que guarda el nuevo proyecto -->
+        <button id="btnCrearProyecto">Crear Proyecto</button>
+    </div>
+
+    <!-- Tabla que muestra todos los proyectos creados -->
+    <div id="tabla-proyectos-container">
+        <table id="tablaProyectos">
+            
+            <!-- Aquí aparecen los proyectos, JavaScript los agrega automáticamente -->
+            <tbody>
+                <!-- La tabla estará vacía al inicio, JavaScript agregará los proyectos -->
+            </tbody>
+        </table>
     </div>
 
     <!-- Formulario donde el usuario puede agregar nuevas tareas -->
@@ -38,26 +64,29 @@
             <label>Descripción de Tarea:</label>
             <input type="text" id="descripcionTarea" placeholder="Escribe la descripción">
         </div>
-        <!-- Campo para escribir el nombre del proyecto -->
-         <div class = "input-group">
-            <label>Asignación al proyecto:</label>
-            <input type="text" id="proyectoTarea" placeholder="Dirección de tarea">
-         </div>
-
-        <!-- Botón que guarda la nueva tarea cuando lo presionas -->
+        <!-- Menú desplegable para asignar la tarea a un proyecto -->
+        <div class="input-group">
+            <label>Asignación al Proyecto:</label>
+            <button id="proyectoSeleccionado" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                Asignación al proyecto:
+            </button>
+            <ul class="dropdown-menu w-100">
+                <!-- Los proyectos se agregarán dinámicamente aquí -->
+            </ul>
+        </div>
+        <!-- Botón que guarda la nueva tarea -->
         <button id="btnAgregarTarea">Agregar Tarea</button>
     </div>
 
-    <!-- Tabla que muestra todas las tareas que tiene el usuario -->
-    <div id="tabla-container">
+    <!-- Tabla que muestra todas las tareas del proyecto seleccionado -->
+    <div id="tabla-tareas-container">
         <table id="tablaTareas">
             <!-- Encabezados de la tabla -->
             <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
-                    <th>Proyecto</th>
-                    <th>Editar</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <!-- Aquí aparecen las tareas, JavaScript las agrega automáticamente -->

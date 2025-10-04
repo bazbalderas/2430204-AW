@@ -1,10 +1,8 @@
-// Código JavaScript para hacer funcionar el dashboard de tareas
-// Este archivo maneja todas las funciones para agregar, mostrar y eliminar tareas
+// Código JavaScript para manejar proyectos y tareas en el dashboard
+// Este archivo maneja todas las funciones para agregar, mostrar y eliminar proyectos y tareas
 
-// Vector que guarda todas las tareas del usuario
-// Cada tarea es un objeto con nombre y descripción
-// Empieza vacío para que el usuario agregue sus propias tareas
-let tareas = [];
+// Vector global para almacenar los proyectos y sus tareas
+let proyectos = [];
 
 // Esta función busca el nombre del usuario que se logueó y lo muestra en el dashboard
 function mostrarUsuarioDashboard() {
@@ -21,75 +19,114 @@ function mostrarUsuarioDashboard() {
     }
 }
 
-// Esta función actualiza la tabla para mostrar todas las tareas
-function mostrarTareas() {
-    // Buscar el cuerpo de la tabla (tbody) donde van las filas de datos
-    const tablaTareas = document.querySelector('#tablaTareas tbody');
-    // innerHTML = '' borra todo lo que había en la tabla
-    tablaTareas.innerHTML = '';
-    
-    // Si no hay tareas en el array, mostrar un mensaje
-    if (tareas.length === 0) {
-        // colspan="3" hace que la celda ocupe 3 columnas
-        tablaTareas.innerHTML = '<tr><td colspan="3" class="text-center">No hay tareas pendientes</td></tr>';
+// Esta función actualiza la tabla para mostrar todos los proyectos
+function mostrarProyectos() {
+    const tablaProyectos = document.querySelector('#tablaTareas tbody');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    tablaProyectos.innerHTML = ''; // Limpiar la tabla
+    dropdownMenu.innerHTML = ''; // Limpiar el menú desplegable
+
+    if (proyectos.length === 0) {
+        tablaProyectos.innerHTML = '<tr><td colspan="4" class="text-center">No hay proyectos creados</td></tr>';
+        dropdownMenu.innerHTML = '<li><a class="dropdown-item">No hay proyectos</a></li>';
     } else {
-        // forEach() recorre cada elemento del array de tareas
-        // (tarea, index) => tarea es el elemento actual, index es su posición (0, 1, 2...)
-        tareas.forEach((tarea, index) => {
-            // += agrega contenido sin borrar lo que ya había
-            // ${} permite insertar variables dentro de texto
+        proyectos.forEach((proyecto, index) => {
+            // Agregar proyectos a la tabla
+            tablaProyectos.innerHTML += `
+                <tr>
+                    <td>${proyecto.nombre}</td>
+                    <td>${proyecto.descripcion}</td>
+                    <td>${proyecto.tareas.length} tareas</td>
+                    <td>
+                        <button onclick="mostrarTareasProyecto(${index})" class="btn-ver-tareas">Ver Tareas</button>
+                        <button onclick="eliminarProyecto(${index})" class="btn-eliminar">Eliminar</button>
+                    </td>
+                </tr>
+            `;
+
+            // Agregar proyectos al menú desplegable
+            dropdownMenu.innerHTML += `
+                <li><a class="dropdown-item" href="#" onclick="seleccionarProyecto('${proyecto.nombre}')">${proyecto.nombre}</a></li>
+            `;
+        });
+    }
+
+    document.getElementById('contadorProyectos').textContent = `Proyectos creados: ${proyectos.length}`;
+}
+
+// Esta función actualiza la tabla para mostrar todas las tareas de un proyecto
+function mostrarTareasProyecto(index) {
+    const proyecto = proyectos[index];
+    const tablaTareas = document.querySelector('#tablaTareas tbody');
+    tablaTareas.innerHTML = ''; // Limpiar la tabla
+
+    if (proyecto.tareas.length === 0) {
+        tablaTareas.innerHTML = '<tr><td colspan="4" class="text-center">No hay tareas en este proyecto</td></tr>';
+    } else {
+        proyecto.tareas.forEach((tarea, tareaIndex) => {
             tablaTareas.innerHTML += `
                 <tr>
                     <td>${tarea.nombre}</td>
                     <td>${tarea.descripcion}</td>
+                    <td>${proyecto.nombre}</td>
                     <td>
-                        <button onclick="eliminarTarea(${index})" class="btn-eliminar">Eliminar</button>
+                        <button onclick="eliminarTarea(${index}, ${tareaIndex})" class="btn-eliminar">Eliminar</button>
                     </td>
                 </tr>
             `;
         });
     }
-    
-    // Actualizar el contador que muestra cuántas tareas hay
-    // .length nos dice cuántos elementos tiene el array
-    document.getElementById('contadorTareas').textContent = `Tareas pendientes: ${tareas.length}`;
+
+    document.getElementById('contadorTareas').textContent = `Tareas en "${proyecto.nombre}": ${proyecto.tareas.length}`;
+}
+
+// Esta función se ejecuta cuando el usuario presiona "Agregar Proyecto"
+function agregarProyecto() {
+    const nombreProyecto = document.getElementById('nombreProyecto').value.trim();
+    const descripcionProyecto = document.getElementById('descripcionProyecto').value.trim();
+
+    if (nombreProyecto && descripcionProyecto) {
+        const nuevoProyecto = { nombre: nombreProyecto, descripcion: descripcionProyecto, tareas: [] };
+        proyectos.push(nuevoProyecto);
+        mostrarProyectos();
+
+        document.getElementById('nombreProyecto').value = '';
+        document.getElementById('descripcionProyecto').value = '';
+    } else {
+        alert('Por favor, completa todos los campos del proyecto.');
+    }
 }
 
 // Esta función se ejecuta cuando el usuario presiona "Agregar Tarea"
 function agregarTarea() {
-    // .value obtiene lo que el usuario escribió en cada campo
-    const nombreTarea = document.getElementById('nombreTarea').value;
-    const descripcionTarea = document.getElementById('descripcionTarea').value;
-    const proyectoTarea = document.getElementById('proyectoTarea').value;
-    
-    // .trim() quita espacios en blanco al inicio y final
-    // !== '' verifica que no esté vacío
-    if (nombreTarea.trim() !== '' && descripcionTarea.trim() !== '') {
-        // Crear un nuevo objeto tarea con los datos que escribió el usuario
-        const nuevaTarea = {
-            nombre: nombreTarea,
-            descripcion: descripcionTarea,
-            proyecto: proyectoTarea
-        };
-        
-        // .push() agrega la nueva tarea al final del array
-        tareas.push(nuevaTarea);
-        // Llamar la función para actualizar la tabla y mostrar la nueva tarea
-        mostrarTareas();
-        
-        // Limpiar los campos para que el usuario pueda escribir otra tarea
-        document.getElementById('nombreTarea').value = '';
-        document.getElementById('descripcionTarea').value = '';
+    const nombreTarea = document.getElementById('nombreTarea').value.trim();
+    const descripcionTarea = document.getElementById('descripcionTarea').value.trim();
+    const proyectoSeleccionado = document.getElementById('proyectoSeleccionado').textContent;
+
+    if (nombreTarea && descripcionTarea && proyectoSeleccionado !== 'Asignación al proyecto:') {
+        const proyecto = proyectos.find(p => p.nombre === proyectoSeleccionado);
+        if (proyecto) {
+            proyecto.tareas.push({ nombre: nombreTarea, descripcion: descripcionTarea });
+            mostrarTareasProyecto(proyectos.indexOf(proyecto));
+
+            document.getElementById('nombreTarea').value = '';
+            document.getElementById('descripcionTarea').value = '';
+        }
+    } else {
+        alert('Por favor, completa todos los campos de la tarea.');
     }
 }
 
-// Esta función elimina una tarea específica de la lista
-function eliminarTarea(index) {
-    // .splice(posición, cantidad) quita elementos del array
-    // splice(index, 1) quita 1 elemento en la posición "index"
-    tareas.splice(index, 1);
-    // Actualizar la tabla para que ya no aparezca la tarea eliminada
-    mostrarTareas();
+// Esta función elimina un proyecto específico de la lista
+function eliminarProyecto(index) {
+    proyectos.splice(index, 1);
+    mostrarProyectos();
+}
+
+// Esta función elimina una tarea específica de un proyecto
+function eliminarTarea(proyectoIndex, tareaIndex) {
+    proyectos[proyectoIndex].tareas.splice(tareaIndex, 1);
+    mostrarTareasProyecto(proyectoIndex);
 }
 
 // Esta función se ejecuta cuando el usuario presiona "Cerrar Sesión"
@@ -126,14 +163,15 @@ function cerrarSesion() {
     window.location.href = 'index.html';
 }
 
-// Este código se ejecuta automáticamente cuando la página termina de cargar
+// Esta función se ejecuta automáticamente cuando la página termina de cargar
 document.addEventListener('DOMContentLoaded', function() {
-    // Llamar las funciones para mostrar el usuario y las tareas
+    // Llamar las funciones para mostrar el usuario y los proyectos
     mostrarUsuarioDashboard();
-    mostrarTareas();
+    mostrarProyectos();
     
     // Conectar los botones con sus funciones
     // .addEventListener() hace que cuando hagan clic, se ejecute la función
+    document.getElementById('btnCrearProyecto').addEventListener('click', agregarProyecto);
     document.getElementById('btnAgregarTarea').addEventListener('click', agregarTarea);
     document.getElementById('btnCerrarSesion').addEventListener('click', cerrarSesion);
 });
