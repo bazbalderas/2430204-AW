@@ -1,177 +1,197 @@
-// Código JavaScript para manejar proyectos y tareas en el dashboard
-// Este archivo maneja todas las funciones para agregar, mostrar y eliminar proyectos y tareas
+// ===================== DASHBOARD.JS =====================
+// Panel: proyectos y tareas (versión comentada simple)
 
-// Vector global para almacenar los proyectos y sus tareas
-let proyectos = [];
+// --------------------- ESTRUCTURAS PRINCIPALES ---------------------
+// Array (lista) que almacenará todos los proyectos. Cada proyecto tendrá su propio
+// array interno de tareas.
+let proyectos = []; // Lista de proyectos
 
-// Esta función busca el nombre del usuario que se logueó y lo muestra en el dashboard
-function mostrarUsuarioDashboard() {
-    // localStorage.getItem() busca información guardada en el navegador
-    const usuarioLogueado = localStorage.getItem('usuarioActivo');
-    
-    // Si encontró un usuario guardado
-    if (usuarioLogueado) {
-        // JSON.parse() convierte texto en un objeto JavaScript que podemos usar
-        const usuario = JSON.parse(usuarioLogueado);
-        // document.getElementById() busca un elemento en el HTML por su ID
-        // textContent cambia el texto que aparece en ese elemento
-        document.getElementById('nombreUsuario').textContent = `Dashboard - ${usuario.nombre}`;
-    }
-}
-
-// Esta función actualiza la tabla para mostrar todos los proyectos
+// --------------------- FUNCION: mostrarProyectos ---------------------
+// Llena tabla y menú
 function mostrarProyectos() {
-    const tablaProyectos = document.querySelector('#tablaTareas tbody');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
-    tablaProyectos.innerHTML = ''; // Limpiar la tabla
-    dropdownMenu.innerHTML = ''; // Limpiar el menú desplegable
-
+    const cuerpo = document.querySelector('#tablaProyectos tbody');
+    const menu = document.querySelector('.menu-desplegable');
+    cuerpo.innerHTML = '';
+    menu.innerHTML = '';
     if (proyectos.length === 0) {
-        tablaProyectos.innerHTML = '<tr><td colspan="4" class="text-center">No hay proyectos creados</td></tr>';
-        dropdownMenu.innerHTML = '<li><a class="dropdown-item">No hay proyectos</a></li>';
+        cuerpo.innerHTML = '<tr><td colspan="3" class="text-center">No hay proyectos</td></tr>';
+        menu.innerHTML = '<li><span class="item-desplegable">(vacío)</span></li>';
     } else {
-        proyectos.forEach((proyecto, index) => {
-            // Agregar proyectos a la tabla
-            tablaProyectos.innerHTML += `
-                <tr>
-                    <td>${proyecto.nombre}</td>
-                    <td>${proyecto.descripcion}</td>
-                    <td>${proyecto.tareas.length} tareas</td>
-                    <td>
-                        <button onclick="mostrarTareasProyecto(${index})" class="btn-ver-tareas">Ver Tareas</button>
-                        <button onclick="eliminarProyecto(${index})" class="btn-eliminar">Eliminar</button>
-                    </td>
-                </tr>
-            `;
-
-            // Agregar proyectos al menú desplegable
-            dropdownMenu.innerHTML += `
-                <li><a class="dropdown-item" href="#" onclick="seleccionarProyecto('${proyecto.nombre}')">${proyecto.nombre}</a></li>
-            `;
+        proyectos.forEach((p, i) => {
+            cuerpo.innerHTML += `
+            <tr>
+                <td>${p.nombre}</td>
+                <td>${p.descripcion}</td>
+                <td>
+                    <button onclick="mostrarTareas(${i})" class="btn-ver-tareas">Ver</button>
+                    <button onclick="eliminarProyecto(${i})" class="btn-eliminar">Eliminar</button>
+                </td>
+            </tr>`;
+            menu.innerHTML += `<li><a href="#" class="item-desplegable" onclick="seleccionarProyecto('${p.id}')">${p.nombre}</a></li>`;
         });
     }
-
     document.getElementById('contadorProyectos').textContent = `Proyectos creados: ${proyectos.length}`;
 }
 
-// Esta función actualiza la tabla para mostrar todas las tareas de un proyecto
-function mostrarTareasProyecto(index) {
-    const proyecto = proyectos[index];
-    const tablaTareas = document.querySelector('#tablaTareas tbody');
-    tablaTareas.innerHTML = ''; // Limpiar la tabla
-
-    if (proyecto.tareas.length === 0) {
-        tablaTareas.innerHTML = '<tr><td colspan="4" class="text-center">No hay tareas en este proyecto</td></tr>';
-    } else {
-        proyecto.tareas.forEach((tarea, tareaIndex) => {
-            tablaTareas.innerHTML += `
-                <tr>
-                    <td>${tarea.nombre}</td>
-                    <td>${tarea.descripcion}</td>
-                    <td>${proyecto.nombre}</td>
-                    <td>
-                        <button onclick="eliminarTarea(${index}, ${tareaIndex})" class="btn-eliminar">Eliminar</button>
-                    </td>
-                </tr>
-            `;
-        });
-    }
-
-    document.getElementById('contadorTareas').textContent = `Tareas en "${proyecto.nombre}": ${proyecto.tareas.length}`;
-}
-
-// Esta función se ejecuta cuando el usuario presiona "Agregar Proyecto"
+// --------------------- FUNCION: agregarProyecto ---------------------
+// Crea proyecto nuevo
 function agregarProyecto() {
-    const nombreProyecto = document.getElementById('nombreProyecto').value.trim();
-    const descripcionProyecto = document.getElementById('descripcionProyecto').value.trim();
-
-    if (nombreProyecto && descripcionProyecto) {
-        const nuevoProyecto = { nombre: nombreProyecto, descripcion: descripcionProyecto, tareas: [] };
-        proyectos.push(nuevoProyecto);
-        mostrarProyectos();
-
-        document.getElementById('nombreProyecto').value = '';
-        document.getElementById('descripcionProyecto').value = '';
-    } else {
-        alert('Por favor, completa todos los campos del proyecto.');
-    }
-}
-
-// Esta función se ejecuta cuando el usuario presiona "Agregar Tarea"
-function agregarTarea() {
-    const nombreTarea = document.getElementById('nombreTarea').value.trim();
-    const descripcionTarea = document.getElementById('descripcionTarea').value.trim();
-    const proyectoSeleccionado = document.getElementById('proyectoSeleccionado').textContent;
-
-    if (nombreTarea && descripcionTarea && proyectoSeleccionado !== 'Asignación al proyecto:') {
-        const proyecto = proyectos.find(p => p.nombre === proyectoSeleccionado);
-        if (proyecto) {
-            proyecto.tareas.push({ nombre: nombreTarea, descripcion: descripcionTarea });
-            mostrarTareasProyecto(proyectos.indexOf(proyecto));
-
-            document.getElementById('nombreTarea').value = '';
-            document.getElementById('descripcionTarea').value = '';
-        }
-    } else {
-        alert('Por favor, completa todos los campos de la tarea.');
-    }
-}
-
-// Esta función elimina un proyecto específico de la lista
-function eliminarProyecto(index) {
-    proyectos.splice(index, 1);
+    const nombre = document.getElementById('nombreProyecto').value.trim();
+    const descripcion = document.getElementById('descripcionProyecto').value.trim();
+    const fechaFin = document.getElementById('fechaFinProyecto').value.trim();
+    const nuevo = {
+        id: generarIdUnicoProyecto(),
+        nombre: nombre || '',
+        descripcion: descripcion || '',
+        estado: 'activo',
+        fecha_inicio: new Date().toISOString().split('T')[0],
+        fecha_fin: fechaFin || '',
+        tareas: []
+    };
+    proyectos.push(nuevo);
     mostrarProyectos();
+    document.getElementById('nombreProyecto').value = '';
+    document.getElementById('descripcionProyecto').value = '';
+    document.getElementById('fechaFinProyecto').value = '';
 }
 
-// Esta función elimina una tarea específica de un proyecto
-function eliminarTarea(proyectoIndex, tareaIndex) {
-    proyectos[proyectoIndex].tareas.splice(tareaIndex, 1);
-    mostrarTareasProyecto(proyectoIndex);
+// --------------------- FUNCION: eliminarProyecto ---------------------
+// Borra proyecto
+function eliminarProyecto(i) {
+    proyectos.splice(i, 1);
+    mostrarProyectos();
+    // Si quitamos el que se mostraba, limpiar tabla tareas
+    document.querySelector('#tablaTareas tbody').innerHTML = '';
+    document.getElementById('tituloTareas').textContent = 'Tareas del proyecto: (ninguno)';
 }
 
-// Esta función se ejecuta cuando el usuario presiona "Cerrar Sesión"
-function cerrarSesion() {
-    // Buscar la información del usuario en el localStorage
-    const usuarioLogueado = localStorage.getItem('usuarioActivo');
-    
-    if (usuarioLogueado) {
-        // Convertir el texto guardado en un objeto JavaScript
-        const usuario = JSON.parse(usuarioLogueado);
-        
-        // Acceder al vector global usuarioActivo para limpiarlo
-        if (typeof window.usuarioActivo !== 'undefined') {
-            // .findIndex() busca un elemento en el array y devuelve su posición
-            // u => u.email === usuario.email busca por email igual
-            const indiceUsuario = window.usuarioActivo.findIndex(u => u.email === usuario.email);
-            
-            // Si encontró el usuario (índice diferente de -1)
-            if (indiceUsuario !== -1) {
-                // Quitarlo del array de usuarios activos
-                window.usuarioActivo.splice(indiceUsuario, 1);
-                // Mostrar en consola para verificar que se eliminó
-                console.log('Usuario eliminado del vector usuarioActivo:', window.usuarioActivo);
-            }
-        }
-        
-        // .removeItem() borra la información guardada en el navegador
-        localStorage.removeItem('usuarioActivo');
-        
-        console.log('Sesión cerrada correctamente');
+// --------------------- FUNCION: mostrarTareas ---------------------
+// Llena tabla de tareas
+function mostrarTareas(indiceProyecto) {
+    const proyecto = proyectos[indiceProyecto];
+    const cuerpo = document.querySelector('#tablaTareas tbody');
+    const titulo = document.getElementById('tituloTareas');
+    titulo.textContent = `Tareas del proyecto: ${proyecto.nombre}`;
+    cuerpo.innerHTML = '';
+    if (proyecto.tareas.length === 0) {
+        cuerpo.innerHTML = '<tr><td colspan="6" class="text-center">No hay tareas</td></tr>';
+        return;
     }
-    
-    // window.location.href redirige a otra página
+    proyecto.tareas.forEach((t, j) => {
+        cuerpo.innerHTML += `
+        <tr>
+            <td>${t.titulo || ''}</td>
+            <td>${t.descripcion || ''}</td>
+            <td>${t.estado || ''}</td>
+            <td>${t.prioridad || ''}</td>
+            <td>${t.fecha_vencimiento || ''}</td>
+            <td><button class="btn-eliminar" onclick="eliminarTarea(${indiceProyecto}, ${j})">X</button></td>
+        </tr>`;
+    });
+}
+
+// --------------------- FUNCION: agregarTarea ---------------------
+// Agrega tarea al proyecto elegido en menú
+function agregarTarea() {
+    const botonProyecto = document.getElementById('proyectoSeleccionado');
+    const idProyecto = botonProyecto.getAttribute('data-proyecto-id');
+    if (!idProyecto) { alert('Selecciona un proyecto'); return; }
+    const proyecto = proyectos.find(p => p.id === idProyecto);
+    if (!proyecto) return;
+    const titulo = document.getElementById('nombreTarea').value.trim();
+    const desc = document.getElementById('descripcionTarea').value.trim();
+    const estado = document.getElementById('estadoTarea').value;
+    const prioridad = document.getElementById('prioridadTarea').value;
+    const vence = document.getElementById('fechaVencimientoTarea').value.trim();
+    proyecto.tareas.push({
+        proyecto_id: proyecto.id,
+        titulo: titulo || '',
+        descripcion: desc || '',
+        estado: estado,
+        prioridad: prioridad,
+        fecha_vencimiento: vence || ''
+    });
+    // Limpiar inputs
+    document.getElementById('nombreTarea').value = '';
+    document.getElementById('descripcionTarea').value = '';
+    document.getElementById('estadoTarea').selectedIndex = 0;
+    document.getElementById('prioridadTarea').selectedIndex = 0;
+    document.getElementById('fechaVencimientoTarea').value = '';
+    botonProyecto.textContent = 'Seleccionar proyecto';
+    botonProyecto.removeAttribute('data-proyecto-id');
+    // Refrescar tabla tareas
+    const indice = proyectos.findIndex(p => p.id === proyecto.id);
+    mostrarTareas(indice);
+}
+
+// --------------------- FUNCION: eliminarTarea ---------------------
+// Borra tarea
+function eliminarTarea(iProyecto, iTarea) {
+    if (!proyectos[iProyecto]) return;
+    proyectos[iProyecto].tareas.splice(iTarea, 1);
+    mostrarTareas(iProyecto);
+}
+
+// --------------------- FUNCION: seleccionarProyecto ---------------------
+// Guarda proyecto elegido en el botón
+function seleccionarProyecto(id) {
+    const proyecto = proyectos.find(p => p.id === id);
+    if (!proyecto) return;
+    const boton = document.getElementById('proyectoSeleccionado');
+    boton.textContent = proyecto.nombre;
+    boton.setAttribute('data-proyecto-id', id);
+    const menu = document.querySelector('.menu-desplegable');
+    if (menu) menu.style.display = 'none';
+}
+
+// --------------------- FUNCION: alternarMenu ---------------------
+// Abre/cierra lista proyectos
+function alternarMenu() {
+    const menu = document.querySelector('.menu-desplegable');
+    if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
+// --------------------- FUNCION: generarIdUnicoProyecto ---------------------
+// Id simple
+function generarIdUnicoProyecto() {
+    return 'proyecto-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+}
+
+// --------------------- FUNCION: cerrarSesion ---------------------
+// Cierra sesión básica
+function cerrarSesion() {
+    if (typeof window.usuarioActivo !== 'undefined') {
+        const dato = localStorage.getItem('usuarioActivo');
+        if (dato) {
+            const u = JSON.parse(dato);
+            const idx = window.usuarioActivo.findIndex(x => x.email === u.email);
+            if (idx !== -1) window.usuarioActivo.splice(idx, 1);
+        }
+    }
+    localStorage.removeItem('usuarioActivo');
     window.location.href = 'index.html';
 }
 
-// Esta función se ejecuta automáticamente cuando la página termina de cargar
-document.addEventListener('DOMContentLoaded', function() {
-    // Llamar las funciones para mostrar el usuario y los proyectos
-    mostrarUsuarioDashboard();
+// --------------------- EVENTO PRINCIPAL: DOMContentLoaded ---------------------
+// Inicio
+document.addEventListener('DOMContentLoaded', () => {
     mostrarProyectos();
-    
-    // Conectar los botones con sus funciones
-    // .addEventListener() hace que cuando hagan clic, se ejecute la función
-    document.getElementById('btnCrearProyecto').addEventListener('click', agregarProyecto);
-    document.getElementById('btnAgregarTarea').addEventListener('click', agregarTarea);
-    document.getElementById('btnCerrarSesion').addEventListener('click', cerrarSesion);
+    document.getElementById('btnCrearProyecto')?.addEventListener('click', agregarProyecto);
+    document.getElementById('btnAgregarTarea')?.addEventListener('click', agregarTarea);
+    document.getElementById('btnCerrarSesion')?.addEventListener('click', cerrarSesion);
+    // Cerrar menú si clic fuera
+    document.addEventListener('click', e => {
+        if (!e.target.matches('.boton-desplegable')) {
+            const menu = document.querySelector('.menu-desplegable');
+            if (menu && menu.style.display === 'block') menu.style.display = 'none';
+        }
+    });
+    // Nombre usuario
+    const guardado = localStorage.getItem('usuarioActivo');
+    if (guardado) {
+        const u = JSON.parse(guardado);
+        const titulo = document.getElementById('nombreUsuario');
+        if (titulo) titulo.textContent = 'Dashboard - ' + u.nombre;
+    }
 });
+// ===================== FIN DEL ARCHIVO =====================

@@ -1,7 +1,8 @@
 /* Diseño sencillo del body donde definimos dos colores y el tamaño vertical de la pagina */
 body{
     background: linear-gradient(rgba(11, 113, 121, 0.7), rgba(80,0,120,0.7));
-    height: 1200px;
+    min-height: 100vh;
+    background-attachment: fixed;
 }
 
 /* Encabezado que dice iniciar sesion arriba de la pedida de datos en el apartado izquierdo*/
@@ -107,7 +108,8 @@ body{
 /* Fondo general del dashboard - página completa */
 #dashboard-body {
     background: linear-gradient(rgba(11, 113, 121, 0.7), rgba(80,0,120,0.7));
-    height: 1200px;
+    min-height: 100vh;
+    background-attachment: fixed;
     color: white;
 }
 
@@ -148,11 +150,26 @@ body{
 
 /* Formulario para agregar nuevas tareas */
 #form-tareas, #form-proyectos {
-    background-color: rgba(64, 0, 128, 0.6);
+    background-color: rgba(64, 0, 128, 1);
     padding: 20px;
     border-radius: 20px;
-    margin: 20px;
+    margin: 0; /* Ajustado para usar el espacio dentro del contenedor flex */
     text-align: center;
+}
+
+/* ===== CONTENEDOR FLEX DE FORMULARIOS (DASHBOARD) ===== */
+.dashboard-forms {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px;
+    flex-wrap: wrap; /* Para que se acomoden en móviles */
+}
+.dashboard-forms #form-proyectos, .dashboard-forms #form-tareas {
+    flex: 1;
+    min-width: 300px;
+    max-width: 48%;
+    margin: 0;
 }
 
 /* Campos de texto del formulario */
@@ -212,4 +229,120 @@ body{
     padding: 5px 15px;
     border-radius: 1rem;
     cursor: pointer;
+}
+
+/* === ESTILOS EXTRA DEL DASHBOARD (fusionados) === */
+/* Botones de acción en tabla */
+.btn-ver-tareas {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 12px;
+}
+.btn-ver-tareas:hover { background-color: #0056b3; }
+
+/* Botón eliminar ya existía; se mantiene (si quieres sobrescribir, descomenta)
+.btn-eliminar { }
+*/
+
+/* Dropdown personalizado */
+.dropdown-button {
+    background-color: white;
+    border: none;
+    padding: 8px;
+    width: 80%;
+    cursor: pointer;
+    color: black;
+    border-radius: 1rem;
+    text-align: center;
+    margin: 0 auto 8px auto;
+    display: block;
+}
+.dropdown-button:hover { background-color: #f8f9fa; }
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    left: 50%;
+    transform: translateX(-50%);
+}
+.dropdown-item {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+.dropdown-item:hover { background-color: #f1f1f1; }
+
+/* Tabla de proyectos */
+#tablaProyectos { /* similar a #tablaTareas si existía */
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    margin-top: 15px;
+    color: black;
+}
+#tablaProyectos th {
+    background: rgba(84, 204, 219, 0.55);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+#tablaProyectos td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+#tablaProyectos tr:nth-child(even) { background-color: rgba(255,255,255,0.1); }
+#tablaProyectos tr:hover { background-color: rgba(84,204,219,0.1); }
+
+/* Contenedor de tabla proyectos (si se usa) */
+#tabla-proyectos-container {
+    background-color: rgba(64, 0, 128, 0.6);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Contenedor flex para formularios (si no estaba) */
+.dashboard-forms {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px;
+    flex-wrap: wrap;
+}
+.dashboard-forms #form-proyectos, .dashboard-forms #form-tareas {
+    flex: 1;
+    min-width: 300px;
+    max-width: 48%;
+    margin: 0;
+}
+
+/* Responsive: apila formularios cuando el ancho es pequeño */
+@media (max-width: 800px) {
+    .dashboard-forms {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .dashboard-forms #form-proyectos, .dashboard-forms #form-tareas {
+        max-width: 100%;
+    }
 }
