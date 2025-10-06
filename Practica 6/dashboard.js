@@ -9,21 +9,21 @@ function mostrarProyectos() {
     const menu = document.querySelector('.menu-desplegable'); // Menú donde seleccionas proyecto para tareas
     
     // innerHTML = '' limpia todo lo que había dentro de esos elementos
-    cuerpo.innerHTML = '';
-    menu.innerHTML = '';
+    cuerpo.innerHTML = ''; // Borra toda la tabla para evitar duplicar filas al actualizar
+    menu.innerHTML = ''; // Vacía el menú desplegable para cargar opciones frescas
     
     // length es una propiedad que te dice cuántos elementos tiene un array
     if (proyectos.length === 0) {
         // Si no hay proyectos, mostramos un mensaje
-        cuerpo.innerHTML = '<tr><td colspan="3" class="text-center">No hay proyectos</td></tr>';
-        menu.innerHTML = '<li><span class="item-desplegable">(vacío)</span></li>';
+        cuerpo.innerHTML = '<tr><td colspan="3" class="text-center">No hay proyectos</td></tr>'; // Crea una fila que ocupa 3 columnas con mensaje informativo
+        menu.innerHTML = '<li><span class="item-desplegable">(vacío)</span></li>'; // Muestra opción deshabilitada en el menú
     } else {
         // forEach() recorre cada elemento del array proyectos
         // (p, i) significa: p = proyecto actual, i = posición del proyecto en el array
         proyectos.forEach((p, i) => {
             // += significa "agregar al final"
             // Las comillas `` (backticks) permiten usar ${variable} dentro del texto
-            cuerpo.innerHTML += `
+            cuerpo.innerHTML += ` // Construye dinámicamente cada fila de la tabla con datos del proyecto
             <tr>
                 <td>${p.nombre}</td>
                 <td>${p.descripcion}</td>
@@ -33,7 +33,7 @@ function mostrarProyectos() {
                 </td>
             </tr>`;
             // Agregamos cada proyecto al menú desplegable también
-            menu.innerHTML += `<li><a href="#" class="item-desplegable" onclick="seleccionarProyecto('${p.id}')">${p.nombre}</a></li>`;
+            menu.innerHTML += `<li><a href="#" class="item-desplegable" onclick="seleccionarProyecto('${p.id}')">${p.nombre}</a></li>`; // Crea opción clickeable en menú para seleccionar proyecto
         });
     }
     // textContent cambia solo el texto de un elemento HTML
@@ -81,7 +81,7 @@ function eliminarProyecto(i) {
     mostrarProyectos();
     
     // Como eliminamos un proyecto, limpiamos la tabla de tareas por si las moscas
-    document.querySelector('#tablaTareas tbody').innerHTML = '';
+    document.querySelector('#tablaTareas tbody').innerHTML = ''; // Borra tabla de tareas porque el proyecto ya no existe
     document.getElementById('tituloTareas').textContent = 'Tareas del proyecto: (ninguno)';
 }
 
@@ -94,18 +94,18 @@ function mostrarTareas(indiceProyecto) {
     
     // Cambiamos el título para mostrar de qué proyecto son las tareas
     titulo.textContent = `Tareas del proyecto: ${proyecto.nombre}`;
-    cuerpo.innerHTML = '';
+    cuerpo.innerHTML = ''; // Limpia tabla de tareas antes de mostrar las del proyecto seleccionado
     
     // Si el proyecto no tiene tareas, mostramos un mensaje
     if (proyecto.tareas.length === 0) {
-        cuerpo.innerHTML = '<tr><td colspan="6" class="text-center">No hay tareas</td></tr>';
+        cuerpo.innerHTML = '<tr><td colspan="6" class="text-center">No hay tareas</td></tr>'; // Crea fila informativa que abarca las 6 columnas de la tabla
         return; // return sale de la función aquí mismo
     }
     
     // Recorremos cada tarea del proyecto y la mostramos en la tabla
     // (t, j) significa: t = tarea actual, j = posición de la tarea
     proyecto.tareas.forEach((t, j) => {
-        cuerpo.innerHTML += `
+        cuerpo.innerHTML += ` // Genera una fila HTML por cada tarea con todos sus datos y botón eliminar
         <tr>
             <td>${t.titulo || ''}</td>
             <td>${t.descripcion || ''}</td>
