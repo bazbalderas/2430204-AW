@@ -249,8 +249,8 @@ body{
 .btn-eliminar { }
 */
 
-/* Dropdown personalizado */
-.dropdown-button {
+/* Dropdown personalizado en español */
+.boton-desplegable {
     background-color: white;
     border: none;
     padding: 8px;
@@ -262,8 +262,8 @@ body{
     margin: 0 auto 8px auto;
     display: block;
 }
-.dropdown-button:hover { background-color: #f8f9fa; }
-.dropdown-menu {
+.boton-desplegable:hover { background-color: #f8f9fa; }
+.menu-desplegable {
     display: none;
     position: absolute;
     background-color: white;
@@ -277,7 +277,7 @@ body{
     left: 50%;
     transform: translateX(-50%);
 }
-.dropdown-item {
+.item-desplegable {
     color: black;
     padding: 10px 16px;
     text-decoration: none;
@@ -285,7 +285,7 @@ body{
     cursor: pointer;
     border-bottom: 1px solid #ddd;
 }
-.dropdown-item:hover { background-color: #f1f1f1; }
+.item-desplegable:hover { background-color: #f1f1f1; }
 
 /* Tabla de proyectos */
 #tablaProyectos { /* similar a #tablaTareas si existía */
