@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta etiquetas básicas para compatibilidad y responsive -->
+    <meta charset="UTF-8"> <!-- Define el conjunto de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que se adapte a móviles -->
+    <link rel="shortcut icon" href="images/RISEBOOK.png"> <!-- Icono de pestaña -->
+    <link rel="stylesheet" href="styles.css"> <!-- Hoja de estilos principal -->
+    <title>Dashboard - RiseBook</title>
+</head>
+<body id="dashboard-body"> <!-- id usado para estilos del fondo del dashboard -->
+    <!-- ===================== HEADER (LOGO + NOMBRE USUARIO + BOTÓN SALIR) ===================== -->
+    <div id="dashboard-header">
+        <div id="logo-dashboard">
+            <img src="images/RISEBOOK.png" alt="RiseBook Logo" id="logo-pequeño"> <!-- Logo pequeño -->
+        </div>
+        <h1 id="nombreUsuario">Dashboard - Usuario</h1> <!-- Nombre dinámico del usuario -->
+        <button id="btnCerrarSesion">Cerrar Sesión</button> <!-- Botón para salir -->
+    </div>
+
+    <!-- ===================== CONTADOR DE PROYECTOS ===================== -->
+    <div id="contador-container">
+        <h2 id="contadorProyectos">Proyectos creados: 0</h2> <!-- Actualizado desde JS -->
+    </div>
+
+    <!-- ===================== FORMULARIOS (PROYECTOS / TAREAS) ===================== -->
+    <div class="dashboard-forms"> <!-- Contenedor flex (lado a lado) -->
+        <!-- -------- FORMULARIO CREAR PROYECTO -------- -->
+        <div id="form-proyectos">
+            <!-- Campo: Nombre del proyecto -->
+            <div class="input-group">
+                <label>Nombre del Proyecto:</label>
+                <input type="text" id="nombreProyecto" placeholder="Escribe el nombre del proyecto">
+            </div>
+            <!-- Campo: Descripción proyecto -->
+            <div class="input-group">
+                <label>Descripción del Proyecto:</label>
+                <input type="text" id="descripcionProyecto" placeholder="Escribe la descripción">
+            </div>
+            <!-- Campo: Fecha fin -->
+            <div class="input-group">
+                <label>Fecha de Fin:</label>
+                <input type="date" id="fechaFinProyecto">
+            </div>
+            <button id="btnCrearProyecto">Crear Proyecto</button>
+        </div>
+
+        <!-- -------- FORMULARIO AGREGAR TAREA -------- -->
+        <div id="form-tareas">
+            <!-- Campo: Título tarea -->
+            <div class="input-group">
+                <label>Nombre de Tarea:</label>
+                <input type="text" id="nombreTarea" placeholder="Escribe el nombre de la tarea">
+            </div>
+            <!-- Campo: Descripción tarea -->
+            <div class="input-group">
+                <label>Descripción de Tarea:</label>
+                <input type="text" id="descripcionTarea" placeholder="Escribe la descripción">
+            </div>
+            <!-- Campo: Estado -->
+            <div class="input-group">
+                <label>Estado:</label>
+                <select id="estadoTarea">
+                    <option value="pendiente">Pendiente</option>
+                    <option value="en_proceso">En Proceso</option>
+                    <option value="hecha">Hecha</option>
+                </select>
+            </div>
+            <!-- Campo: Prioridad -->
+            <div class="input-group">
+                <label>Prioridad:</label>
+                <select id="prioridadTarea">
+                    <option value="alta">Alta</option>
+                    <option value="media">Media</option>
+                    <option value="baja">Baja</option>
+                </select>
+            </div>
+            <!-- Campo: Fecha vencimiento -->
+            <div class="input-group">
+                <label>Fecha de Vencimiento:</label>
+                <input type="date" id="fechaVencimientoTarea">
+            </div>
+            <!-- Selector de proyecto destino -->
+            <div class="input-group">
+                <label>Asignación al Proyecto:</label>
+                <button id="proyectoSeleccionado" class="boton-desplegable" type="button" onclick="alternarMenu()">Seleccionar proyecto</button>
+                <ul class="menu-desplegable w-100"><!-- Se llena dinámicamente --></ul>
+            </div>
+            <button id="btnAgregarTarea">Agregar Tarea</button>
+        </div>
+    </div>
+
+    <!-- ===================== TABLA DE PROYECTOS ===================== -->
+    <div id="tabla-proyectos-container">
+        <table id="tablaProyectos">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody><!-- Filas agregadas desde JS --></tbody>
+        </table>
+    </div>
+
+    <!-- ===================== TABLA DE TAREAS (DEPENDE DEL PROYECTO SELECCIONADO) ===================== -->
+    <div id="tabla-tareas-container">
+        <h2 id="tituloTareas">Tareas del proyecto: (ninguno)</h2>
+        <table id="tablaTareas">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Prioridad</th>
+                    <th>Vence</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody><!-- Se llena con mostrarTareasProyecto() --></tbody>
+        </table>
+    </div>
+
+    <!-- Lógica del dashboard -->
+    <script src="dashboard.js"></script>
+</body>
+</html>
