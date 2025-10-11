@@ -247,6 +247,11 @@ function cerrarSesion() {
     window.location.href = 'index.html';
 }
 
+// Nueva función para abrir notas
+function abrirNotas() {
+    window.location.href = '../Practica 7/notas.html';
+}
+
 // Este evento se ejecuta cuando la página termina de cargar
 // DOMContentLoaded significa "cuando todo el HTML esté listo"
 document.addEventListener('DOMContentLoaded', () => {

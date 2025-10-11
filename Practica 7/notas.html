@@ -11,9 +11,12 @@
   <header class="app-header">
     <h1>Notas</h1>
     <div class="actions">
-      <input id="new-note-input" type="text" placeholder="Escribe una nota y presiona Enter" />
-      <button id="add-note-btn">Agregar</button>
-      <a class="back-link" href="index.html">Volver</a>
+      <div class="input-group">
+        <input id="new-note-title" type="text" placeholder="Título de la nota" />
+        <textarea id="new-note-description" placeholder="Descripción de la nota..."></textarea>
+      </div>
+      <button id="add-note-btn">Agregar Nota</button>
+      <a class="back-link" href="dashboard.htm">Volver al Dashboard</a>
     </div>
   </header>
 
@@ -42,7 +45,11 @@
 
   <template id="note-template">
     <article class="note" draggable="true">
-      <div class="note-text" contenteditable="true" spellcheck="false"></div>
+      <div class="note-header">
+        <h3 class="note-title" contenteditable="true" spellcheck="false"></h3>
+        <span class="note-date"></span>
+      </div>
+      <div class="note-description" contenteditable="true" spellcheck="false"></div>
       <div class="note-actions">
         <button class="delete-btn" title="Eliminar">✕</button>
       </div>

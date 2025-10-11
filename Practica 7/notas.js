@@ -1,154 +1,213 @@
 (function(){
-  const INPUT = document.getElementById('new-note-input');
-  const BTN_ADD = document.getElementById('add-note-btn');
-  const COLS = {
-    todo: document.getElementById('col-todo'),
-    doing: document.getElementById('col-doing'),
-    done: document.getElementById('col-done')
-  };
-  const TRASH = document.getElementById('trash');
-  const TPL = document.getElementById('note-template');
-
-  const STORAGE_KEY = 'p7_notas_v1';
-  let state = loadState();
-
-  // Render inicial
-  renderAll();
-
-  // Eventos creación
-  BTN_ADD?.addEventListener('click', () => tryCreate());
-  INPUT?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      tryCreate();
+  class NotesApp {
+    constructor() {
+      this.notes = JSON.parse(localStorage.getItem('notes')) || [];
+      this.draggedNote = null;
+      this.init();
     }
-  });
 
-  function tryCreate(){
-    const text = (INPUT?.value || '').trim();
-    if(!text) return;
-    const note = createNote(text, 'todo');
-    INPUT.value = '';
-    saveState();
-  }
+    init() {
+      this.bindEvents();
+      this.renderNotes();
+    }
 
-  function createNote(text, column){
-    const id = cryptoRandomId();
-    const node = instantiateNote({ id, text, column });
-    state.push({ id, text, column });
-    COLS[column].appendChild(node);
-    return node;
-  }
+    bindEvents() {
+      // Agregar nota
+      document.getElementById('add-note-btn').addEventListener('click', () => this.addNote());
+      document.getElementById('new-note-title').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') this.addNote();
+      });
 
-  function instantiateNote({ id, text, column }){
-    const clone = TPL.content.firstElementChild.cloneNode(true);
-    clone.dataset.id = id;
-    const textDiv = clone.querySelector('.note-text');
-    const delBtn = clone.querySelector('.delete-btn');
-    textDiv.textContent = text;
+      // Eventos de drag and drop
+      document.addEventListener('dragstart', (e) => this.handleDragStart(e));
+      document.addEventListener('dragover', (e) => this.handleDragOver(e));
+      document.addEventListener('drop', (e) => this.handleDrop(e));
+      document.addEventListener('dragend', (e) => this.handleDragEnd(e));
 
-    enableDragAndDrop(clone);
+      // Papelera
+      const trash = document.getElementById('trash');
+      trash.addEventListener('dragover', (e) => this.handleTrashDragOver(e));
+      trash.addEventListener('drop', (e) => this.handleTrashDrop(e));
+      trash.addEventListener('dragleave', () => trash.classList.remove('drag-over'));
+    }
 
-    // Editar texto inline
-    textDiv.addEventListener('input', () => {
-      const item = state.find(n => n.id === id);
-      if(item){ item.text = textDiv.textContent || ''; saveState(); }
-    });
+    addNote() {
+      const titleInput = document.getElementById('new-note-title');
+      const descriptionInput = document.getElementById('new-note-description');
+      
+      const title = titleInput.value.trim();
+      const description = descriptionInput.value.trim();
 
-    // Borrar por botón
-    delBtn.addEventListener('click', () => removeNoteElement(clone));
+      if (!title) {
+        titleInput.focus();
+        return;
+      }
 
-    return clone;
-  }
+      const note = {
+        id: Date.now().toString(),
+        title: title,
+        description: description,
+        column: 'todo',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
 
-  function enableDragAndDrop(el){
-    el.addEventListener('dragstart', (e) => {
-      el.classList.add('dragging');
-      e.dataTransfer.setData('text/plain', el.dataset.id);
-      e.dataTransfer.effectAllowed = 'move';
-    });
-    el.addEventListener('dragend', () => {
-      el.classList.remove('dragging');
-    });
-  }
+      this.notes.push(note);
+      this.saveNotes();
+      this.renderNotes();
+      
+      // Limpiar campos
+      titleInput.value = '';
+      descriptionInput.value = '';
+      titleInput.focus();
+    }
 
-  // Set up drop zones (columnas)
-  Object.entries(COLS).forEach(([colKey, container]) => {
-    container.addEventListener('dragover', (e) => {
+    deleteNote(noteId) {
+      this.notes = this.notes.filter(note => note.id !== noteId);
+      this.saveNotes();
+      this.renderNotes();
+    }
+
+    updateNote(noteId, field, value) {
+      const note = this.notes.find(n => n.id === noteId);
+      if (note) {
+        note[field] = value;
+        note.updatedAt = new Date().toISOString();
+        this.saveNotes();
+      }
+    }
+
+    moveNote(noteId, newColumn) {
+      const note = this.notes.find(n => n.id === noteId);
+      if (note) {
+        note.column = newColumn;
+        note.updatedAt = new Date().toISOString();
+        this.saveNotes();
+        this.renderNotes();
+      }
+    }
+
+    formatDate(dateString) {
+      const date = new Date(dateString);
+      const now = new Date();
+      const diffTime = now - date;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+      if (diffDays === 0) {
+        return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+      } else if (diffDays === 1) {
+        return 'Ayer';
+      } else if (diffDays < 7) {
+        return `${diffDays} días`;
+      } else {
+        return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' });
+      }
+    }
+
+    createNoteElement(note) {
+      const template = document.getElementById('note-template');
+      const noteElement = template.content.cloneNode(true);
+      
+      const noteArticle = noteElement.querySelector('.note');
+      noteArticle.dataset.noteId = note.id;
+      
+      const titleElement = noteElement.querySelector('.note-title');
+      titleElement.textContent = note.title;
+      titleElement.addEventListener('blur', (e) => {
+        this.updateNote(note.id, 'title', e.target.textContent.trim());
+      });
+      
+      const dateElement = noteElement.querySelector('.note-date');
+      dateElement.textContent = this.formatDate(note.createdAt);
+      
+      const descriptionElement = noteElement.querySelector('.note-description');
+      descriptionElement.textContent = note.description;
+      descriptionElement.addEventListener('blur', (e) => {
+        this.updateNote(note.id, 'description', e.target.textContent.trim());
+      });
+      
+      const deleteBtn = noteElement.querySelector('.delete-btn');
+      deleteBtn.addEventListener('click', () => {
+        if (confirm('¿Estás seguro de que quieres eliminar esta nota?')) {
+          this.deleteNote(note.id);
+        }
+      });
+      
+      return noteElement;
+    }
+
+    renderNotes() {
+      // Limpiar columnas - Borra todas las notas antes de renderizar nuevamente
+      document.getElementById('col-todo').innerHTML = '';
+      document.getElementById('col-doing').innerHTML = '';
+      document.getElementById('col-done').innerHTML = '';
+      
+      // Renderizar notas por columna - Agregar cada nota a su columna correspondiente
+      this.notes.forEach(note => {
+        const noteElement = this.createNoteElement(note);
+        const columnElement = document.getElementById(`col-${note.column}`);
+        columnElement.appendChild(noteElement);
+      });
+    }
+
+    handleDragStart(e) {
+      if (e.target.classList.contains('note')) {
+        this.draggedNote = e.target;
+        e.target.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+      }
+    }
+
+    handleDragOver(e) {
       e.preventDefault();
       e.dataTransfer.dropEffect = 'move';
-      container.classList.add('drag-over');
-    });
-    container.addEventListener('dragleave', () => container.classList.remove('drag-over'));
-    container.addEventListener('drop', (e) => {
-      e.preventDefault();
-      container.classList.remove('drag-over');
-      const id = e.dataTransfer.getData('text/plain');
-      const noteEl = findNoteEl(id);
-      if(noteEl){
-        container.appendChild(noteEl);
-        updateNoteColumn(id, colKey);
-      }
-    });
-  });
-
-  // Papelera
-  TRASH.addEventListener('dragover', (e) => { e.preventDefault(); TRASH.classList.add('drag-over'); });
-  TRASH.addEventListener('dragleave', () => TRASH.classList.remove('drag-over'));
-  TRASH.addEventListener('drop', (e) => {
-    e.preventDefault();
-    TRASH.classList.remove('drag-over');
-    const id = e.dataTransfer.getData('text/plain');
-    const noteEl = findNoteEl(id);
-    if(noteEl){ removeNoteElement(noteEl); }
-  });
-
-  function removeNoteElement(el){
-    const id = el.dataset.id;
-    el.remove();
-    state = state.filter(n => n.id !== id);
-    saveState();
-  }
-
-  function updateNoteColumn(id, column){
-    const item = state.find(n => n.id === id);
-    if(item){ item.column = column; saveState(); }
-  }
-
-  function renderAll(){
-    // limpiar
-    Object.values(COLS).forEach(c => c.innerHTML = '');
-    // render
-    state.forEach(n => {
-      const node = instantiateNote(n);
-      const container = COLS[n.column] || COLS.todo;
-      container.appendChild(node);
-    });
-  }
-
-  function saveState(){
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
-  }
-  function loadState(){
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(!raw) return [];
-      const parsed = JSON.parse(raw);
-      if(Array.isArray(parsed)) return parsed.filter(v => v && typeof v.id==='string');
-      return [];
-    } catch { return []; }
-  }
-
-  function findNoteEl(id){
-    return document.querySelector(`.note[data-id="${id}"]`);
-  }
-
-  function cryptoRandomId(){
-    if (window.crypto?.getRandomValues) {
-      const buf = new Uint8Array(8);
-      window.crypto.getRandomValues(buf);
-      return [...buf].map(b => b.toString(16).padStart(2,'0')).join('');
     }
-    return Math.random().toString(16).slice(2) + Date.now().toString(16);
+
+    handleDrop(e) {
+      e.preventDefault();
+      
+      if (!this.draggedNote) return;
+      
+      const column = e.target.closest('.column');
+      if (column) {
+        const columnType = column.dataset.column;
+        const noteId = this.draggedNote.dataset.noteId;
+        this.moveNote(noteId, columnType);
+      }
+    }
+
+    handleDragEnd(e) {
+      if (e.target.classList.contains('note')) {
+        e.target.classList.remove('dragging');
+      }
+      this.draggedNote = null;
+    }
+
+    handleTrashDragOver(e) {
+      e.preventDefault();
+      e.target.classList.add('drag-over');
+    }
+
+    handleTrashDrop(e) {
+      e.preventDefault();
+      const trash = e.target;
+      trash.classList.remove('drag-over');
+      
+      if (this.draggedNote) {
+        const noteId = this.draggedNote.dataset.noteId;
+        if (confirm('¿Estás seguro de que quieres eliminar esta nota?')) {
+          this.deleteNote(noteId);
+        }
+      }
+    }
+
+    saveNotes() {
+      localStorage.setItem('notes', JSON.stringify(this.notes));
+    }
   }
+
+  // Inicializar la aplicación
+  document.addEventListener('DOMContentLoaded', () => {
+    new NotesApp();
+  });
 })();

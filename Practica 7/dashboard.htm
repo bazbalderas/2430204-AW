@@ -18,6 +18,14 @@
         <button id="btnCerrarSesion">Cerrar Sesión</button> <!-- Botón para salir -->
     </div>
 
+    <header class="top-nav">
+      <nav class="nav-buttons">
+        <button onclick="window.location.href='dashboard.htm'" class="nav-btn">Dashboard</button>
+        <button onclick="window.location.href='notas.html'" class="nav-btn">Notas</button>
+        <button onclick="cerrarSesion()" class="nav-btn logout">Cerrar Sesión</button>
+      </nav>
+    </header>
+
     <!-- ===================== CONTADOR DE PROYECTOS ===================== -->
     <div id="contador-container">
         <h2 id="contadorProyectos">Proyectos creados: 0</h2> <!-- Actualizado desde JS -->
