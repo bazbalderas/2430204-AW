@@ -11,10 +11,13 @@ body {
   color: #333;
 }
 
-.app-header {
+/* HEADER ESTILO DASHBOARD */
+.encabezado-app {
   background: rgba(255, 255, 255, 0.95);
-  padding: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px 30px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,137 +25,171 @@ body {
   gap: 1rem;
 }
 
-.app-header h1 {
-  color: #4a5568;
-  font-size: 2rem;
-  font-weight: 700;
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.actions {
+.logo-nav {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.encabezado-app h1 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.acciones {
   display: flex;
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
-.input-group {
+/* INPUTS ESTILO DASHBOARD */
+.grupo-entradas {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: stretch;
   gap: 0.5rem;
   min-width: 300px;
 }
 
-#new-note-title {
-  padding: 0.75rem;
+#nota-nueva-titulo {
+  padding: 12px;
   border: 2px solid #e2e8f0;
   border-radius: 8px;
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.3s ease;
+  background: #f8f9fa;
+  min-width: 220px;
 }
 
-#new-note-description {
-  padding: 0.75rem;
+#nota-nueva-descripcion {
+  padding: 12px;
   border: 2px solid #e2e8f0;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   outline: none;
   resize: vertical;
   min-height: 60px;
   font-family: inherit;
-  transition: border-color 0.3s ease;
+  background: #f8f9fa;
+  width: 36vw;
+  max-width: 560px;
 }
 
-#new-note-title:focus,
-#new-note-description:focus {
+#nota-nueva-fecha {
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  background: #f8f9fa;
+  min-width: 160px;
+}
+
+#nota-nueva-titulo:focus,
+#nota-nueva-descripcion:focus,
+#nota-nueva-fecha:focus {
   border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-#add-note-btn {
+/* BOTONES ESTILO DASHBOARD */
+#btn-agregar-nota {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 14px;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
 }
 
-#add-note-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-.back-link {
+.enlace-volver {
+  padding: 10px 20px;
+  border: 2px solid #667eea;
+  background: transparent;
   color: #667eea;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
   text-decoration: none;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
 }
 
-.back-link:hover {
-  background-color: rgba(102, 126, 234, 0.1);
+.enlace-volver:hover {
+  background: #667eea;
+  color: white;
 }
 
-.board {
+/* TABLERO ESTILO DASHBOARD */
+.tablero {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
+  gap: 25px;
+  padding: 30px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-.column {
+.columna {
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   min-height: 400px;
 }
 
-.column h2 {
-  color: #4a5568;
-  margin-bottom: 1rem;
+/* Sin animaciones al hover de columna */
+
+.columna h2 {
+  color: #2d3748;
+  margin-bottom: 20px;
   font-size: 1.3rem;
   text-align: center;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #e2e8f0;
+  font-weight: 600;
 }
 
-.column-content {
+.contenido-columna {
   min-height: 300px;
   padding: 1rem 0;
 }
 
-.note {
-  background: #fff;
-  border-radius: 8px;
+/* NOTAS ESTILO DASHBOARD */
+.nota {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: grab;
-  transition: all 0.3s ease;
   border-left: 4px solid #667eea;
 }
 
-.note:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
+/* Sin animaciones al hover de nota */
 
-.note.dragging {
+.nota.dragging {
   opacity: 0.5;
   transform: rotate(5deg);
   cursor: grabbing;
 }
 
-.note-header {
+.nota-encabezado {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -160,7 +197,7 @@ body {
   gap: 1rem;
 }
 
-.note-title {
+.nota-titulo {
   font-size: 1.1rem;
   font-weight: 600;
   color: #2d3748;
@@ -171,23 +208,30 @@ body {
   min-height: 1.5rem;
 }
 
-.note-title:focus {
+.nota-titulo:focus {
   background: rgba(102, 126, 234, 0.05);
   border-radius: 4px;
   padding: 0.25rem;
 }
 
-.note-date {
-  font-size: 0.75rem;
+.nota-fecha-entrada {
+  font-size: 0.85rem;
   color: #718096;
   font-weight: 500;
-  white-space: nowrap;
+  border: 1px solid #e2e8f0;
   background: #f7fafc;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
+  outline: none;
 }
 
-.note-description {
+.nota-fecha-entrada:focus {
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+.nota-descripcion {
   color: #4a5568;
   line-height: 1.5;
   border: none;
@@ -198,25 +242,25 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.note-description:focus {
+.nota-descripcion:focus {
   background: rgba(102, 126, 234, 0.05);
   border-radius: 4px;
   padding: 0.25rem;
 }
 
-.note-description:empty:before {
+.nota-descripcion:empty:before {
   content: "Añadir descripción...";
   color: #a0aec0;
   font-style: italic;
 }
 
-.note-actions {
+.nota-acciones {
   display: flex;
   justify-content: flex-end;
   margin-top: 0.5rem;
 }
 
-.delete-btn {
+.btn-eliminar-nota {
   background: #e53e3e;
   color: white;
   border: none;
@@ -225,71 +269,59 @@ body {
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 600;
-  transition: background-color 0.3s ease;
 }
 
-.delete-btn:hover {
+.btn-eliminar-nota:hover {
   background: #c53030;
 }
 
-.trash-footer {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-}
 
-.trash {
-  background: #e53e3e;
-  color: white;
-  padding: 1rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 600;
-  box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
 
-.trash:hover {
-  background: #c53030;
-  transform: scale(1.05);
-}
-
-.trash.drag-over {
-  background: #c53030;
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(229, 62, 62, 0.5);
-}
-
-/* Responsive */
+/* RESPONSIVE ESTILO DASHBOARD */
 @media (max-width: 768px) {
-  .app-header {
+  .encabezado-app {
     flex-direction: column;
     align-items: stretch;
     text-align: center;
+    padding: 20px;
   }
   
-  .actions {
+  .marca {
+    justify-content: center;
+  }
+  
+  .encabezado-app h1 {
+    font-size: 1.2rem;
+  }
+  
+  .acciones {
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
   }
   
-  .input-group {
+  .grupo-entradas {
     min-width: auto;
+    flex-direction: column;
   }
   
-  .board {
+  .tablero {
     grid-template-columns: 1fr;
-    padding: 1rem;
-    gap: 1rem;
+    padding: 20px;
+    gap: 20px;
   }
   
-  .note-header {
+  .columna {
+    padding: 20px;
+  }
+  
+  .nota-encabezado {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
   
-  .note-date {
+  .nota-fecha-entrada {
     align-self: flex-end;
   }
 }

@@ -85,4 +85,4 @@ document.addEventListener('DOMContentLoaded', function() {
             selectCarrera(this.textContent); // Llama la función para seleccionar la carrera
         });
     });
-});   
+});

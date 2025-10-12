@@ -1,27 +1,14 @@
-/*
-    Página: Dashboard (lógica)
-    Descripción: Gestión de proyectos y tareas en memoria (arreglo local) con renderizado en tablas.
-    Almacenamiento: No persiste proyectos/tareas en localStorage (solo sesión actual).
-    Convenciones: Nombres e IDs en español; sin animaciones salvo en botones.
-*/
-
-// Estado global de la sesión del Dashboard
 let proyectos = [];
 
-/**
- * Pinta la tabla de proyectos y el menú desplegable.
- * - Muestra mensaje vacío cuando no hay proyectos.
- * - Actualiza el contador de proyectos.
- */
 function mostrarProyectos() {
     const cuerpo = document.querySelector('#tablaProyectos tbody');
-    const menu = document.querySelector('.menu-desplegable');
+    const menu = document.querySelector('.dropdown-menu');
     
     cuerpo.innerHTML = '';
     menu.innerHTML = '';
     
     if (proyectos.length === 0) {
-        cuerpo.innerHTML = '<tr><td colspan="4" class="text-center">No hay proyectos</td></tr>';
+        cuerpo.innerHTML = '<tr><td colspan="3" class="text-center">No hay proyectos</td></tr>';
         menu.innerHTML = '<li><span class="item-desplegable">(vacío)</span></li>';
     } else {
         proyectos.forEach((p, i) => {
@@ -29,7 +16,6 @@ function mostrarProyectos() {
             <tr>
                 <td>${p.nombre}</td>
                 <td>${p.descripcion}</td>
-                <td>${p.fecha_fin || ''}</td>
                 <td>
                     <button onclick="mostrarTareas(${i})" class="btn-ver-tareas">Ver</button>
                     <button onclick="eliminarProyecto(${i})" class="btn-eliminar">Eliminar</button>
@@ -38,13 +24,9 @@ function mostrarProyectos() {
             menu.innerHTML += `<li><a href="#" class="item-desplegable" onclick="seleccionarProyecto('${p.id}')">${p.nombre}</a></li>`;
         });
     }
-    document.getElementById('contadorProyectos').textContent = `${proyectos.length}`;
+    document.getElementById('contadorProyectos').textContent = `Proyectos creados: ${proyectos.length}`;
 }
 
-/**
- * Crea un nuevo proyecto con datos del formulario y lo agrega a la lista.
- * Limpia el formulario al finalizar.
- */
 function agregarProyecto() {
     const nombre = document.getElementById('nombreProyecto').value.trim();
     const descripcion = document.getElementById('descripcionProyecto').value.trim();
@@ -61,7 +43,6 @@ function agregarProyecto() {
     };
     
     proyectos.push(nuevo);
-    
     mostrarProyectos();
     
     document.getElementById('nombreProyecto').value = '';
@@ -69,23 +50,13 @@ function agregarProyecto() {
     document.getElementById('fechaFinProyecto').value = '';
 }
 
-/**
- * Elimina un proyecto por índice y refresca las tablas.
- * También limpia la sección de tareas visible si pertenecía al proyecto eliminado.
- */
 function eliminarProyecto(i) {
     proyectos.splice(i, 1);
-    
     mostrarProyectos();
-    
     document.querySelector('#tablaTareas tbody').innerHTML = '';
     document.getElementById('tituloTareas').textContent = 'Tareas del proyecto: (ninguno)';
 }
 
-/**
- * Pinta la tabla de tareas del proyecto seleccionado.
- * @param {number} indiceProyecto - Índice del proyecto en el arreglo.
- */
 function mostrarTareas(indiceProyecto) {
     const proyecto = proyectos[indiceProyecto];
     const cuerpo = document.querySelector('#tablaTareas tbody');
@@ -112,10 +83,6 @@ function mostrarTareas(indiceProyecto) {
     });
 }
 
-/**
- * Agrega una tarea al proyecto actualmente seleccionado en el botón desplegable.
- * Valida selección de proyecto y limpia el formulario al terminar.
- */
 function agregarTarea() {
     const botonProyecto = document.getElementById('proyectoSeleccionado');
     const idProyecto = botonProyecto.getAttribute('data-proyecto-id');
@@ -156,49 +123,34 @@ function agregarTarea() {
     mostrarTareas(indice);
 }
 
-/** Elimina una tarea por índices de proyecto y tarea, y refresca la tabla. */
 function eliminarTarea(iProyecto, iTarea) {
     if (!proyectos[iProyecto]) return;
-    
     proyectos[iProyecto].tareas.splice(iTarea, 1);
-    
     mostrarTareas(iProyecto);
 }
 
-/**
- * Selecciona un proyecto en el botón personalizado y cierra el menú.
- * @param {string} id - ID único del proyecto.
- */
 function seleccionarProyecto(id) {
     const proyecto = proyectos.find(p => p.id === id);
     if (!proyecto) return;
     
     const boton = document.getElementById('proyectoSeleccionado');
     boton.textContent = proyecto.nombre;
-    
     boton.setAttribute('data-proyecto-id', id);
     
-    const menu = document.querySelector('.menu-desplegable');
+    const menu = document.querySelector('.dropdown-menu');
     if (menu) menu.style.display = 'none';
 }
 
-/** Alterna la visibilidad del menú desplegable de proyectos. */
 function alternarMenu() {
-    const menu = document.querySelector('.menu-desplegable');
+    const menu = document.querySelector('.dropdown-menu');
     if (!menu) return;
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
 }
 
-/** Genera un identificador único básico para nuevos proyectos. */
 function generarIdUnicoProyecto() {
     return 'proyecto-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
 }
 
-/**
- * Cierra la sesión actual:
- * - Limpia usuarioActivo de localStorage y del arreglo global opcional window.usuarioActivo.
- * - Redirige a index.html.
- */
 function cerrarSesion() {
     if (typeof window.usuarioActivo !== 'undefined') {
         const dato = localStorage.getItem('usuarioActivo');
@@ -213,7 +165,6 @@ function cerrarSesion() {
     window.location.href = 'index.html';
 }
 
-// Inicio: enlaza eventos de la UI y saluda al usuario si existe en localStorage
 document.addEventListener('DOMContentLoaded', () => {
     mostrarProyectos();
     
@@ -222,8 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnCerrarSesion')?.addEventListener('click', cerrarSesion);
     
     document.addEventListener('click', e => {
-        if (!e.target.matches('.btn-desplegable')) {
-            const menu = document.querySelector('.menu-desplegable');
+        if (!e.target.matches('.dropdown-btn')) {
+            const menu = document.querySelector('.dropdown-menu');
             if (menu && menu.style.display === 'block') menu.style.display = 'none';
         }
     });

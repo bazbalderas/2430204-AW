@@ -8,54 +8,53 @@
   <link rel="stylesheet" href="notas.css" />
 </head>
 <body>
-  <header class="app-header">
-    <h1>Notas</h1>
-    <div class="actions">
-      <div class="input-group">
-        <input id="new-note-title" type="text" placeholder="Título de la nota" />
-        <textarea id="new-note-description" placeholder="Descripción de la nota..."></textarea>
+  <header class="encabezado-app">
+    <div class="marca">
+      <img src="images/RISEBOOK.png" alt="RiseBook Logo" class="logo-nav">
+      <h1>RiseBook - Notas</h1>
+    </div>
+    <div class="acciones">
+      <div class="grupo-entradas">
+        <input id="nota-nueva-titulo" type="text" placeholder="Título de la nota" />
+        <textarea id="nota-nueva-descripcion" placeholder="Descripción de la nota..."></textarea>
+        <input id="nota-nueva-fecha" type="date" />
       </div>
-      <button id="add-note-btn">Agregar Nota</button>
-      <a class="back-link" href="dashboard.htm">Volver al Dashboard</a>
+      <button id="btn-agregar-nota">Agregar Nota</button>
+      <a class="enlace-volver" href="dashboard.htm">Volver al Dashboard</a>
     </div>
   </header>
 
-  <main class="board" aria-label="Tablero de notas">
-    <section class="column" data-column="todo" aria-label="Por hacer">
+  <main class="tablero" aria-label="Tablero de notas">
+    <section class="columna" data-column="todo" aria-label="Por hacer">
       <h2>Por hacer</h2>
-      <div class="column-content" id="col-todo"></div>
+      <div class="contenido-columna" id="col-todo"></div>
     </section>
 
-    <section class="column" data-column="doing" aria-label="En progreso">
+    <section class="columna" data-column="doing" aria-label="En progreso">
       <h2>En progreso</h2>
-      <div class="column-content" id="col-doing"></div>
+      <div class="contenido-columna" id="col-doing"></div>
     </section>
 
-    <section class="column" data-column="done" aria-label="Hecho">
+    <section class="columna" data-column="done" aria-label="Hecho">
       <h2>Hecho</h2>
-      <div class="column-content" id="col-done"></div>
+      <div class="contenido-columna" id="col-done"></div>
     </section>
   </main>
 
-  <footer class="trash-footer">
-    <div id="trash" class="trash" aria-label="Papelera" title="Arrastra aquí para borrar">
-      🗑️ Papelera
-    </div>
-  </footer>
 
-  <template id="note-template">
-    <article class="note" draggable="true">
-      <div class="note-header">
-        <h3 class="note-title" contenteditable="true" spellcheck="false"></h3>
-        <span class="note-date"></span>
+
+  <template id="plantilla-nota">
+    <article class="nota" draggable="true">
+      <div class="nota-encabezado">
+        <h3 class="nota-titulo" contenteditable="true" spellcheck="false"></h3>
+        <input type="date" class="nota-fecha-entrada" />
       </div>
-      <div class="note-description" contenteditable="true" spellcheck="false"></div>
-      <div class="note-actions">
-        <button class="delete-btn" title="Eliminar">✕</button>
+      <div class="nota-descripcion" contenteditable="true" spellcheck="false"></div>
+      <div class="nota-acciones">
+        <button class="btn-eliminar-nota" title="Eliminar">✕</button>
       </div>
     </article>
   </template>
-
   <script src="notas.js"></script>
 </body>
 </html>
