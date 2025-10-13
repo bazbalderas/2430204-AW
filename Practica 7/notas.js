@@ -1,64 +1,62 @@
-/*
-  Página: Notas (lógica)
-  Descripción: CRUD + Drag & Drop de tarjetas de notas tipo Kanban.
-  Almacenamiento: localStorage key "notas".
-  Estructura de nota:
-    {
-      id: string,
-      titulo: string,
-      descripcion: string,
-      fecha: YYYY-MM-DD,
-      columna: 'todo' | 'doing' | 'done',
-      createdAt: ISOString,
-      updatedAt: ISOString
-    }
-*/
+// Página: Notas
 (function(){
+  //Creamos una clase para manejar la aplicación de notas que es la principal
   class NotasApp {
-    constructor() {
-      this.notas = JSON.parse(localStorage.getItem('notas')) || [];
+    constructor() { // Inicializa estado y carga notas desde localStorage
+      this.notas = JSON.parse(localStorage.getItem('notas')) || []; // Arreglo de notas
+
+      // Normalizamos columnas antiguas (todo/doing/done) a español (porhacer/enprogreso/hecho)
+      this.notas = this.notas.map(n => {
+        const mapa = { todo: 'porhacer', doing: 'enprogreso', done: 'hecho' };
+        return { ...n, columna: mapa[n.columna] || n.columna || 'porhacer' };
+      });
+
       this.notaArrastrada = null;
-      this.init();
+      this.init(); // Configura eventos y renderiza notas
     }
 
+    // Configura eventos y renderiza notas
     init() {
       this.bindEvents();
       this.renderizarNotas();
     }
 
-    /** Registra listeners de UI y DnD */
+    // Registra listeners de los botones y eventos de arrastre
     bindEvents() {
       document.getElementById('btn-agregar-nota').addEventListener('click', () => this.agregarNota());
       document.getElementById('nota-nueva-titulo').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') this.agregarNota();
       });
 
+      // Eventos de arrastre para notas que es lo que mencionamos unas 7 lineas antes
       document.addEventListener('dragstart', (e) => this.inicioArrastre(e));
       document.addEventListener('dragover', (e) => this.mientrasArrastra(e));
       document.addEventListener('drop', (e) => this.soltar(e));
       document.addEventListener('dragend', (e) => this.finArrastre(e));
     }
-    /** Crea una nueva nota desde los campos del encabezado */
+    // Crea una nueva nota desde los campos del encabezado tomando los valores desde
+    // los textarea del formulario html
     agregarNota() {
-      const titleInput = document.getElementById('nota-nueva-titulo');
-      const descriptionInput = document.getElementById('nota-nueva-descripcion');
-      const dateInput = document.getElementById('nota-nueva-fecha');
+      const inputTitulo = document.getElementById('nota-nueva-titulo');
+      const inputDescripcion = document.getElementById('nota-nueva-descripcion');
+      const inputFecha = document.getElementById('nota-nueva-fecha');
       
-      const title = titleInput.value.trim();
-      const description = descriptionInput.value.trim();
-      const date = dateInput.value || new Date().toISOString().split('T')[0];
+      // Validar título no vacío
+      const titulo = inputTitulo.value.trim();
+      const descripcion = inputDescripcion.value.trim();
+      const fecha = inputFecha.value || new Date().toISOString().split('T')[0]; //
 
-      if (!title) {
-        titleInput.focus();
+      if (!titulo) {
+        inputTitulo.focus();
         return;
       }
 
       const nota = {
         id: Date.now().toString(),
-        titulo: title,
-        descripcion: description,
-        fecha: date,
-        columna: 'todo',
+        titulo: titulo,
+        descripcion: descripcion,
+        fecha: fecha,
+        columna: 'porhacer',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       };
@@ -67,20 +65,20 @@
       this.guardarNotas();
       this.renderizarNotas();
       
-      titleInput.value = '';
-      descriptionInput.value = '';
-      dateInput.value = '';
-      titleInput.focus();
+      inputTitulo.value = '';
+      inputDescripcion.value = '';
+      inputFecha.value = '';
+      inputTitulo.focus();
     }
 
-  /** Elimina nota por id */
+  // Elimina nota por id
   eliminarNota(notaId) {
       this.notas = this.notas.filter(n => n.id !== notaId);
       this.guardarNotas();
       this.renderizarNotas();
     }
 
-  /** Actualiza un campo de una nota y persiste */
+  // Actualiza un campo de una nota y persiste
   actualizarNota(notaId, campo, valor) {
       const nota = this.notas.find(n => n.id === notaId);
       if (nota) {
@@ -90,67 +88,73 @@
       }
     }
 
-  /** Cambia la columna de una nota y vuelve a renderizar */
+  // Cambia la columna de una nota y vuelve a renderizar
   moverNota(notaId, nuevaColumna) {
       const nota = this.notas.find(n => n.id === notaId);
       if (nota) {
-        nota.columna = nuevaColumna;
+        // valores esperados: porhacer | enprogreso | hecho
+        const mapa = { todo: 'porhacer', doing: 'enprogreso', done: 'hecho' };
+        nota.columna = mapa[nuevaColumna] || nuevaColumna || 'porhacer';
         nota.updatedAt = new Date().toISOString();
         this.guardarNotas();
         this.renderizarNotas();
       }
     }
 
-  /** Construye el elemento DOM de una nota desde la plantilla */
+  // Construye el elemento DOM de una nota desde la plantilla
   crearElementoNota(nota) {
       const template = document.getElementById('plantilla-nota');
-      const noteElement = template.content.cloneNode(true);
+      const fragmento = template.content.cloneNode(true);
       
-      const noteArticle = noteElement.querySelector('.nota');
-      noteArticle.dataset.noteId = nota.id;
+      const articuloNota = fragmento.querySelector('.nota');
+      articuloNota.dataset.noteId = nota.id;
       
-      const titleElement = noteElement.querySelector('.nota-titulo');
-      titleElement.textContent = nota.titulo;
-      titleElement.addEventListener('blur', (e) => {
+      const elemTitulo = fragmento.querySelector('.nota-titulo');
+      elemTitulo.textContent = nota.titulo;
+      elemTitulo.addEventListener('blur', (e) => {
         this.actualizarNota(nota.id, 'titulo', e.target.textContent.trim());
       });
       
-      const dateElement = noteElement.querySelector('.nota-fecha-entrada');
-      dateElement.value = nota.fecha || new Date().toISOString().split('T')[0];
-      dateElement.addEventListener('change', (e) => {
+      const elemFecha = fragmento.querySelector('.nota-fecha-entrada');
+      elemFecha.value = nota.fecha || new Date().toISOString().split('T')[0];
+      elemFecha.addEventListener('change', (e) => {
         this.actualizarNota(nota.id, 'fecha', e.target.value);
       });
       
-      const descriptionElement = noteElement.querySelector('.nota-descripcion');
-      descriptionElement.textContent = nota.descripcion;
-      descriptionElement.addEventListener('blur', (e) => {
+      const elemDescripcion = fragmento.querySelector('.nota-descripcion');
+      elemDescripcion.textContent = nota.descripcion;
+      elemDescripcion.addEventListener('blur', (e) => {
         this.actualizarNota(nota.id, 'descripcion', e.target.textContent.trim());
       });
       
-      const deleteBtn = noteElement.querySelector('.btn-eliminar-nota');
-      deleteBtn.addEventListener('click', () => {
+      const btnEliminar = fragmento.querySelector('.btn-eliminar-nota');
+      btnEliminar.addEventListener('click', () => {
         if (confirm('¿Estás seguro de que quieres eliminar esta nota?')) {
           this.eliminarNota(nota.id);
         }
       });
       
-      return noteElement;
+      return fragmento;
     }
 
-  /** Limpia columnas y pinta todas las notas según su columna */
+  // Limpia columnas y pinta todas las notas según su columna
   renderizarNotas() {
-      document.getElementById('col-todo').innerHTML = '';
-      document.getElementById('col-doing').innerHTML = '';
-      document.getElementById('col-done').innerHTML = '';
+      // IDs en español
+      const cPH = document.getElementById('col-porhacer');
+      const cEP = document.getElementById('col-enprogreso');
+      const cH = document.getElementById('col-hecho');
+      if (cPH) cPH.innerHTML = '';
+      if (cEP) cEP.innerHTML = '';
+      if (cH) cH.innerHTML = '';
       
       this.notas.forEach(nota => {
-        const noteElement = this.crearElementoNota(nota);
-        const columnElement = document.getElementById(`col-${nota.columna}`);
-        columnElement.appendChild(noteElement);
+        const col = nota.columna || 'porhacer';
+        const columnaDestino = document.getElementById(`col-${col}`);
+        if (columnaDestino) columnaDestino.appendChild(this.crearElementoNota(nota));
       });
     }
 
-  /** Marca inicio de arrastre de tarjeta */
+  // Marca inicio de arrastre de tarjeta
   inicioArrastre(e) {
       if (e.target.classList.contains('nota')) {
         this.notaArrastrada = e.target;
@@ -159,27 +163,27 @@
       }
     }
 
-  /** Permite el drop en áreas válidas */
+  // Permite el drop en áreas válidas
   mientrasArrastra(e) {
       e.preventDefault();
       e.dataTransfer.dropEffect = 'move';
     }
 
-  /** Mueve la nota a la columna de destino */
+  // Mueve la nota a la columna de destino
   soltar(e) {
       e.preventDefault();
       
       if (!this.notaArrastrada) return;
       
-      const column = e.target.closest('.columna');
-      if (column) {
-        const columnType = column.dataset.column;
-        const noteId = this.notaArrastrada.dataset.noteId;
-        this.moverNota(noteId, columnType);
+      const columna = e.target.closest('.columna');
+      if (columna) {
+        const tipoColumna = columna.dataset.column; // porhacer | enprogreso | hecho
+        const idNota = this.notaArrastrada.dataset.noteId;
+        this.moverNota(idNota, tipoColumna);
       }
     }
 
-  /** Limpia estilos de arrastre */
+  // Limpia estilos de arrastre
   finArrastre(e) {
       if (e.target.classList.contains('nota')) {
         e.target.classList.remove('dragging');
@@ -187,7 +191,7 @@
       this.notaArrastrada = null;
     }
 
-  /** Persiste el arreglo de notas en localStorage */
+  // Persiste el arreglo de notas en localStorage
   guardarNotas() {
       localStorage.setItem('notas', JSON.stringify(this.notas));
     }

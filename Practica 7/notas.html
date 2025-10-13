@@ -25,19 +25,19 @@
   </header>
 
   <main class="tablero" aria-label="Tablero de notas">
-    <section class="columna" data-column="todo" aria-label="Por hacer">
+    <section class="columna" data-column="porhacer" aria-label="Por hacer">
       <h2>Por hacer</h2>
-      <div class="contenido-columna" id="col-todo"></div>
+      <div class="contenido-columna" id="col-porhacer"></div>
     </section>
 
-    <section class="columna" data-column="doing" aria-label="En progreso">
+    <section class="columna" data-column="enprogreso" aria-label="En progreso">
       <h2>En progreso</h2>
-      <div class="contenido-columna" id="col-doing"></div>
+      <div class="contenido-columna" id="col-enprogreso"></div>
     </section>
 
-    <section class="columna" data-column="done" aria-label="Hecho">
+    <section class="columna" data-column="hecho" aria-label="Hecho">
       <h2>Hecho</h2>
-      <div class="contenido-columna" id="col-done"></div>
+      <div class="contenido-columna" id="col-hecho"></div>
     </section>
   </main>
 
@@ -51,7 +51,7 @@
       </div>
       <div class="nota-descripcion" contenteditable="true" spellcheck="false"></div>
       <div class="nota-acciones">
-        <button class="btn-eliminar-nota" title="Eliminar">✕</button>
+        <button class="btn-eliminar-nota" title="Eliminar">Eliminar</button>
       </div>
     </article>
   </template>
