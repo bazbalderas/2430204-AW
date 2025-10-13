@@ -1,2 +1,118 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="refresh" content="0; url=dashboard.htm"><script>location.href='dashboard.htm'</script></head><body></body></html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/RISEBOOK.png">
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Dashboard - RiseBook</title>
+</head>
+<body id="dashboard-body">
+    <div id="dashboard-header">
+        <div id="logo-dashboard">
+            <img src="images/RISEBOOK.png" alt="RiseBook Logo" id="logo-pequeño">
+        </div>
+        <h1 id="nombreUsuario">Dashboard - Usuario</h1>
+        <button id="btnCerrarSesion">Cerrar Sesión</button>
+    </div>
+
+    <header class="top-nav">
+      <nav class="nav-buttons">
+        <button onclick="window.location.href='dashboard.html'" class="nav-btn">Dashboard</button>
+        <button onclick="window.location.href='notas.html'" class="nav-btn">Notas</button>
+        <button onclick="cerrarSesion()" class="nav-btn logout">Cerrar Sesión</button>
+      </nav>
+    </header>
+
+    <div id="contador-container">
+        <h2 id="contadorProyectos">Proyectos: 0</h2>
+    </div>
+
+    <div class="dashboard-forms">
+        <div id="form-proyectos">
+            <div class="input-group">
+                <label>Nombre del Proyecto:</label>
+                <input type="text" id="nombreProyecto" placeholder="Escribe el nombre del proyecto">
+            </div>
+            <div class="input-group">
+                <label>Descripción del Proyecto:</label>
+                <input type="text" id="descripcionProyecto" placeholder="Escribe la descripción">
+            </div>
+            <div class="input-group">
+                <label>Fecha de Fin:</label>
+                <input type="date" id="fechaFinProyecto">
+            </div>
+            <button id="btnCrearProyecto">Crear Proyecto</button>
+        </div>
+
+        <div id="form-tareas">
+            <div class="input-group">
+                <label>Nombre de Tarea:</label>
+                <input type="text" id="nombreTarea" placeholder="Escribe el nombre de la tarea">
+            </div>
+            <div class="input-group">
+                <label>Descripción de Tarea:</label>
+                <input type="text" id="descripcionTarea" placeholder="Escribe la descripción">
+            </div>
+            <div class="input-group">
+                <label>Estado:</label>
+                <select id="estadoTarea">
+                    <option value="pendiente">Pendiente</option>
+                    <option value="en_proceso">En Proceso</option>
+                    <option value="hecha">Hecha</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Prioridad:</label>
+                <select id="prioridadTarea">
+                    <option value="alta">Alta</option>
+                    <option value="media">Media</option>
+                    <option value="baja">Baja</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Fecha de Vencimiento:</label>
+                <input type="date" id="fechaVencimientoTarea">
+            </div>
+            <div class="input-group">
+                <label>Asignación al Proyecto:</label>
+                <button id="proyectoSeleccionado" class="boton-desplegable" type="button" onclick="alternarMenu()">Seleccionar proyecto</button>
+                <ul class="menu-desplegable w-100"></ul>
+            </div>
+            <button id="btnAgregarTarea">Agregar Tarea</button>
+        </div>
+    </div>
+
+    <div id="tabla-proyectos-container">
+        <table id="tablaProyectos">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="tabla-tareas-container">
+        <h2 id="tituloTareas">Tareas del proyecto: (ninguno)</h2>
+        <table id="tablaTareas">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Prioridad</th>
+                    <th>Vence</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

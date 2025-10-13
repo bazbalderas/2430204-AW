@@ -129,7 +129,7 @@ if (inicioSesion) {
             messageElement.style.color = 'green';
             messageElement.textContent = `¡Bienvenido! Redirigiendo...`;
             setTimeout(() => {
-                window.location.href = 'dashboard.htm';
+                window.location.href = 'dashboard.html';
             }, 2000);
         } else {
             messageElement.style.color = 'red';

@@ -8,11 +8,15 @@
   <link rel="stylesheet" href="notas.css" />
 </head>
 <body>
+
+  <!-- Encabezado de la aplicación -->
   <header class="encabezado-app">
     <div class="marca">
       <img src="images/RISEBOOK.png" alt="RiseBook Logo" class="logo-nav">
       <h1>RiseBook - Notas</h1>
     </div>
+
+    <!--Formulario de la nota en el mismo apartado que el encabezado-->
     <div class="acciones">
       <div class="grupo-entradas">
         <input id="nota-nueva-titulo" type="text" placeholder="Título de la nota" />
@@ -20,10 +24,11 @@
         <input id="nota-nueva-fecha" type="date" />
       </div>
       <button id="btn-agregar-nota">Agregar Nota</button>
-      <a class="enlace-volver" href="dashboard.htm">Volver al Dashboard</a>
+      <a class="enlace-volver" href="dashboard.html">Volver al Dashboard</a>
     </div>
   </header>
 
+  <!--Las 3 columnas del tablero de notas, aquí se permite el uso de drag&drop para poder moverlas-->
   <main class="tablero" aria-label="Tablero de notas">
     <section class="columna" data-column="porhacer" aria-label="Por hacer">
       <h2>Por hacer</h2>

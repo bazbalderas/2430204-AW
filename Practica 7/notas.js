@@ -46,11 +46,13 @@
       const descripcion = inputDescripcion.value.trim();
       const fecha = inputFecha.value || new Date().toISOString().split('T')[0]; //
 
+      // Fecha por defecto hoy si no se proporciona
       if (!titulo) {
         inputTitulo.focus();
         return;
       }
 
+      // Crear objeto nota
       const nota = {
         id: Date.now().toString(),
         titulo: titulo,
@@ -61,6 +63,7 @@
         updatedAt: new Date().toISOString()
       };
 
+      // Agregar nota, persistir y renderizar
       this.notas.push(nota);
       this.guardarNotas();
       this.renderizarNotas();
@@ -105,32 +108,36 @@
   crearElementoNota(nota) {
       const template = document.getElementById('plantilla-nota');
       const fragmento = template.content.cloneNode(true);
-      
+
+      // Asignar ID a la nota
       const articuloNota = fragmento.querySelector('.nota');
       articuloNota.dataset.noteId = nota.id;
       
+      // Hacer la nota arrastrable
       const elemTitulo = fragmento.querySelector('.nota-titulo');
       elemTitulo.textContent = nota.titulo;
       elemTitulo.addEventListener('blur', (e) => {
         this.actualizarNota(nota.id, 'titulo', e.target.textContent.trim());
       });
       
+      // Fecha editable
       const elemFecha = fragmento.querySelector('.nota-fecha-entrada');
       elemFecha.value = nota.fecha || new Date().toISOString().split('T')[0];
       elemFecha.addEventListener('change', (e) => {
         this.actualizarNota(nota.id, 'fecha', e.target.value);
       });
-      
+
+      // Descripción editable
       const elemDescripcion = fragmento.querySelector('.nota-descripcion');
       elemDescripcion.textContent = nota.descripcion;
       elemDescripcion.addEventListener('blur', (e) => {
-        this.actualizarNota(nota.id, 'descripcion', e.target.textContent.trim());
+        this.actualizarNota(nota.id, 'descripcion', e.target.textContent.trim()); 
       });
       
       const btnEliminar = fragmento.querySelector('.btn-eliminar-nota');
       btnEliminar.addEventListener('click', () => {
         if (confirm('¿Estás seguro de que quieres eliminar esta nota?')) {
-          this.eliminarNota(nota.id);
+          this.eliminarNota(nota.id); //Buscamos y eliminamos por id
         }
       });
       
@@ -179,25 +186,26 @@
       if (columna) {
         const tipoColumna = columna.dataset.column; // porhacer | enprogreso | hecho
         const idNota = this.notaArrastrada.dataset.noteId;
-        this.moverNota(idNota, tipoColumna);
+        this.moverNota(idNota, tipoColumna); // Mueve la nota a la nueva columna
       }
     }
 
   // Limpia estilos de arrastre
   finArrastre(e) {
-      if (e.target.classList.contains('nota')) {
+      if (e.target.classList.contains('nota')) { //Asegurar q es una nota
         e.target.classList.remove('dragging');
       }
-      this.notaArrastrada = null;
+      this.notaArrastrada = null; //Si no no hace nada
     }
 
   // Persiste el arreglo de notas en localStorage
   guardarNotas() {
-      localStorage.setItem('notas', JSON.stringify(this.notas));
+      localStorage.setItem('notas', JSON.stringify(this.notas)); // Guardar en localStorage
     }
   }
 
+  // Inicia el apartado de notas cuando el DOM está listo
   document.addEventListener('DOMContentLoaded', () => {
-    new NotasApp();
+    new NotasApp(); 
   });
 })();

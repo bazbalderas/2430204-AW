@@ -35,7 +35,7 @@ function mostrarProyectos() {
         });
     }
     // Se incrementa el contador por cada proyecto más que haya
-    document.getElementById('contadorProyectos').textContent = `${proyectos.length}`;
+    document.getElementById('contadorProyectos').textContent = `Proyectos: ${proyectos.length}`;
 }
 
 // Crea un nuevo proyecto con datos del formulario y lo agrega a la lista.
