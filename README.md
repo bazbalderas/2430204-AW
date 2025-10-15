@@ -5,3 +5,6 @@ FIGMA: https://www.figma.com/proto/w0NTG004Rpe3f1Q6vFn26J/Sin-t%C3%ADtulo?node-i
 
 Avance 1 Figma:
 https://docs.google.com/spreadsheets/d/1uMm90HI2nCQP7hfbHa5FXKaPrsTr33vo8QmHhNUnpi0/edit?gid=1115838130#gid=1115838130
+
+Avance video (No juzgue la duració prometo hacerla mas corta 😭):
+https://studio.youtube.com/video/ElcxbwShfyQ/edit
