@@ -7,4 +7,4 @@ Avance 1 Figma:
 https://docs.google.com/spreadsheets/d/1uMm90HI2nCQP7hfbHa5FXKaPrsTr33vo8QmHhNUnpi0/edit?gid=1115838130#gid=1115838130
 
 Avance video (No juzgue la duración prometo hacerla mas corta 😭):
-https://studio.youtube.com/video/ElcxbwShfyQ/edit
+https://youtu.be/ElcxbwShfyQ
