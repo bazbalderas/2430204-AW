@@ -1,3 +1,7 @@
+body{
+    background-image: url('FONDO_CODING.jpeg');
+}
+
 .header {
     text-align: center;
     margin-bottom: 40px;
@@ -73,7 +77,7 @@
 
 /* Botones */
 .btn-practice {
-    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    background: linear-gradient(45deg, #1342c2, #109ffd);
     color: white;
     border: none;
     padding: 15px 30px;
@@ -90,7 +94,7 @@
 .btn-practice:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(238, 90, 36, 0.4);
-    background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+    background: linear-gradient(45deg, #1342c2, #109ffd);
 }
 
 .btn-practice:active {
