@@ -15,7 +15,7 @@ loginFormulario.addEventListener('submit', function(event){
     if((user === ADMIN && pass === PASS) ||
     (user === usuario && pass === contraseña)){
         alert("Bien venido al SCHSM");
-        window.location.href = "dashboard.html";
+        window.location.href = "/Práctica 9/Dashboard/dashboard.html";
                 loginFormulario.reset();
     } else{
         alert("Usuario o contraseña incorrectos");

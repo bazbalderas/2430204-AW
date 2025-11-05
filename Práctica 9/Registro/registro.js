@@ -25,6 +25,14 @@ function validarEmail(email) {
     return regex.test(email);
 }
 
+if(!validarEmail(email)){
+    alert("El correo electrónico no es válido");
+    return;
+}
+
+// Inicializar arreglo de usuarios
+let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
 const newUser = {
     name: name,
     phone: phone,
@@ -33,10 +41,10 @@ const newUser = {
     password: pass
 };
 
-inicializarUsuarios.push(newUser);
+usuarios.psuh(newUser);
 localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
-alert("¡Se completo tu registro!")
+alert("Se completo tu registro")
 loginFormulario.reset();
 window.location.href = "/Práctica 9/Index/index.html";
 
