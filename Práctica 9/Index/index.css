@@ -20,7 +20,7 @@ div{
 }
 
 a{
-    top: 45.5%;
+    top: 61.27%;
     left: 58%;
     position: absolute;
     background-color: rgba(127, 194, 199, 0.7);
@@ -34,9 +34,16 @@ a{
 }
 
 textarea{
-    border: 0.5px;
-    border-color: aqua;
+    width: 400px;
+    border-color: rgb(189, 189, 189);
     border-radius: 1.5rem;
+
+}
+
+textarea:focus{
+    outline: none;
+    border-color: rgba(127, 194, 199, 0.7);
+
 }
 
 button{
@@ -48,4 +55,8 @@ button{
     border-radius: 1.5rem;
     border-color: rgba(127, 194, 199, 0.7);
     background-color: rgba(127, 194, 199, 0.7);
+}
+
+h4{
+    color: grey
 }
