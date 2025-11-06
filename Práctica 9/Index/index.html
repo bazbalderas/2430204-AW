@@ -3,35 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="shortcut icon" href="logo.webp">
+    <link rel="shortcut icon" href="/Práctica 9/logo.webp">
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/Práctica 9/output.css">
     <title>Login - SCHSM</title>
 </head>
-<body class = "min-h-screen h-full bg-gradient-to-br from-blue-400 via-blue-200 flex items-center justify-center">
+<body class="min-h-screen h-full bg-gradient-to-br from-blue-400 via-blue-200 flex items-center justify-center">
     <div class="max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center">
-        <!-- Formualario del login -->
-        <h1 class= "text-3xl text-blue-700"><img src="logo.webp"> Hospital San Mario</h1><br>
-        <form id = "loginFormulario">
-            <h2 class="font-bold">¡Bienvenido al Sistema de Control del Hospital San Mario! </h2><br><br>
+        
+        <!-- Formulario del login -->
+        <div class="flex items-center mb-4">
+            <img src="/Práctica 9/logo_azul.webp" class="w-8 h-8 mr-2">
+            <h1 class="text-3xl text-blue-700">Hospital San Mario</h1>
+        </div>
+        
+        <form id="loginFormulario">
+            <h2 class="font-bold">¡Bienvenido al Sistema de Control del Hospital San Mario!</h2>
+            <br><br>
 
             <h2 class="font-bold text-blue-700">Usuario</h2>
-            <textarea id = "usuario" placeholder = "Usuario" class = "bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+            <textarea id="usuario" placeholder="Usuario" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
 
             <br><br>
             <h2 class="font-bold text-blue-700">Contraseña</h2>
-            <textarea id = "contraseña" placeholder = "Ingrese su contraseña" class = "bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+            <textarea id="contraseña" placeholder="Ingrese su contraseña" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
             <br><br>
 
-            <button id = "enviar" type="submit" class = "w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-black bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">Ingresar</button>
-                </form>
+            <button id="enviar" type="submit" class="w-full py-3 px-4 bg-blue-700 rounded-xl shadow-lg hover:shadow-xl text-white font-bold text-base transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                Ingresar
+            </button>
+        </form>
 
         <!-- Usuario por defecto -->
         <br>
         <div class="border w-56 border-blue-950 focus:animate-bounce">
-        <h4><h4 class="font-bold">Correo:</h4>admin</h4>
-        <h4><h4 class="font-bold">Contraseña:</h4>colofox</h4>
-        </div><br>
+            <h4>
+                <h4 class="font-bold">Correo:</h4>admin
+            </h4>
+            <h4>
+                <h4 class="font-bold">Contraseña:</h4>colofox
+            </h4>
+        </div>
+        <br>
 
         <!-- Botón de redirección hacia crear una nueva cuenta -->
         <h3>¿Aún no tienes una cuenta? <a href="/Práctica 9/Registro/registro.html">Registrate aquí</a></h3>

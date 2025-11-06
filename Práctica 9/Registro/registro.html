@@ -1,44 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Práctica 9/Index/index.css">
+    <link rel="shortcut icon" href="/Práctica 9/logo.webp">
+    <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/Práctica 9/output.css">
     <title>Registro - SCHSM</title>
 </head>
-<body>
-    <!-- Formulario de registro para un nuevo usuario -->
-        <div>
-        <h1>Registro</h1>
-        <form id = "loginFormulario">
-            <h2>¡Hey chic@ nuev@ , bienvenido al Sistema de Control del Hospital San Mario! </h2>
-            <h3>Porfavor ingresa tus datos para registrarte</h3>
-
-            <h2>Nombre</h2>
-            <textarea id="nombre" placeholder="Ingrese su nombre"></textarea>
-
-            <h2>Teléfono</h2>
-            <textarea id="telefono" placeholder="Ingrese su teléfono"></textarea>
-
-            <h2>Correo Electrónico</h2>
-            <textarea id="correo" placeholder="Ingrese su correo electrónico"></textarea>
-
-            <h2>Usuario</h2>
-            <textarea id = "usuario" placeholder = "Usuario"></textarea>
-
-            <h2>Contraseña</h2>
-            <textarea id = "contraseña" placeholder = "Ingrese su contraseña"></textarea>
-
-            <h2>Confirmar contraseña</h2>
-            <textarea id = "conf_contraseña" placeholder = "Confirme su contraseña"></textarea>
+<body class="min-h-screen h-full bg-gradient-to-br from-blue-400 via-blue-200 flex items-center justify-center">
+    <div class="max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center">
+        
+        <!-- Formulario de registro -->
+        <div class="flex items-center mb-4">
+            <img src="/Práctica 9/logo_azul.webp" class="w-8 h-8 mr-2">
+            <h1 class="text-3xl text-blue-700">Registro</h1>
+        </div>
+        
+        <form id="loginFormulario">
+            <h2 class="font-bold">¡Hey chic@ nuev@, bienvenido al Sistema de Control del Hospital San Mario!</h2>
+            <h3>Por favor ingresa tus datos para registrarte</h3>
             <br><br>
 
-            <button class = "registrar" type="submit">Registrarse</button>
+            <h2 class="font-bold text-blue-700">Nombre</h2>
+            <textarea id="nombre" placeholder="Ingrese su nombre" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+
+            <br><br>
+            <h2 class="font-bold text-blue-700">Teléfono</h2>
+            <textarea id="telefono" placeholder="Ingrese su teléfono" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+
+            <br><br>
+            <h2 class="font-bold text-blue-700">Correo Electrónico</h2>
+            <textarea id="correo" placeholder="Ingrese su correo electrónico" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+
+            <br><br>
+            <h2 class="font-bold text-blue-700">Usuario</h2>
+            <textarea id="usuario" placeholder="Usuario" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+
+            <br><br>
+            <h2 class="font-bold text-blue-700">Contraseña</h2>
+            <textarea id="contraseña" placeholder="Ingrese su contraseña" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+
+            <br><br>
+            <h2 class="font-bold text-blue-700">Confirmar contraseña</h2>
+            <textarea id="conf_contraseña" placeholder="Confirme su contraseña" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+            <br><br>
+
+            <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 rounded-xl shadow-lg hover:shadow-xl text-white font-bold text-base transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                Registrarse
+            </button>
         </form>
 
-        <!-- Botón de redirección hacia el Inicio de Sesión cuando ya hayas creado tu cuenta -->
-        <h3>¿Ya tienes una cuenta? <a href="index.html">Inicia sesión aquí</a></h3>
+        <!-- Botón de redirección hacia el Inicio de Sesión -->
+        <br>
+        <h3>¿Ya tienes una cuenta? <a href="/Práctica 9/Index/index.html">Inicia sesión aquí</a></h3>
     </div>
 </body>
 <script src="/Práctica 9/Registro/registro.js"></script>
