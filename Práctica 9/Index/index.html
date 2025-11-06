@@ -1,33 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel ="stylesheet" href="/Práctica 9/Index/index.css">
+            <link rel="shortcut icon" href="logo.webp">
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/Práctica 9/output.css">
     <title>Login - SCHSM</title>
 </head>
-<body>
-    <div>
+<body class = "min-h-screen h-full bg-gradient-to-br from-blue-400 via-blue-200 flex items-center justify-center">
+    <div class="max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center">
         <!-- Formualario del login -->
-        <h1>Login</h1>
-        <form id = "loginFormulario" class = "login">
-            <h2>¡Bienvenido al Sistema de Control del Hospital San Mario! </h2>
-            <h3>Porfavor ingresa tus datos</h3>
+        <h1 class= "text-3xl text-blue-700"><img src="logo.webp"> Hospital San Mario</h1><br>
+        <form id = "loginFormulario">
+            <h2 class="font-bold">¡Bienvenido al Sistema de Control del Hospital San Mario! </h2><br><br>
 
-            <h2>Usuario</h2>
-            <textarea id = "usuario" placeholder = "Usuario"></textarea>
+            <h2 class="font-bold text-blue-700">Usuario</h2>
+            <textarea id = "usuario" placeholder = "Usuario" class = "bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
 
-            <h2>Contraseña</h2>
-            <textarea id = "contraseña" placeholder = "Ingrese su contraseña"></textarea>
+            <br><br>
+            <h2 class="font-bold text-blue-700">Contraseña</h2>
+            <textarea id = "contraseña" placeholder = "Ingrese su contraseña" class = "bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
             <br><br>
 
-            <button class = "enviar" type="submit">Ingresar</button>
-        
+            <button id = "enviar" type="submit" class = "w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-black bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">Ingresar</button>
+                </form>
+
         <!-- Usuario por defecto -->
-        <br><br>
-            <h4>Admin: admin</h4>
-        <h4>Password: colofox</h4>
-        </form>
+        <br>
+        <div class="border w-56 border-blue-950 focus:animate-bounce">
+        <h4><h4 class="font-bold">Correo:</h4>admin</h4>
+        <h4><h4 class="font-bold">Contraseña:</h4>colofox</h4>
+        </div><br>
 
         <!-- Botón de redirección hacia crear una nueva cuenta -->
         <h3>¿Aún no tienes una cuenta? <a href="/Práctica 9/Registro/registro.html">Registrate aquí</a></h3>
