@@ -32,6 +32,7 @@
             <br><br>
             <h2 class="font-bold text-blue-700">Correo Electrónico</h2>
             <textarea id="correo" placeholder="Ingrese su correo electrónico" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+            <div id="correoError" class="text-red-500 text-sm mt-1"></div>
 
             <br><br>
             <h2 class="font-bold text-blue-700">Usuario</h2>
@@ -40,10 +41,13 @@
             <br><br>
             <h2 class="font-bold text-blue-700">Contraseña</h2>
             <textarea id="contraseña" placeholder="Ingrese su contraseña" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+            <div id="contraseñaError" class="text-red-500 text-sm mt-1"></div>
 
+            
             <br><br>
             <h2 class="font-bold text-blue-700">Confirmar contraseña</h2>
             <textarea id="conf_contraseña" placeholder="Confirme su contraseña" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+            <div id="confPassError" class="text-red-500 text-sm mt-1"></div>
             <br><br>
 
             <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 rounded-xl shadow-lg hover:shadow-xl text-white font-bold text-base transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
@@ -56,5 +60,6 @@
         <h3>¿Ya tienes una cuenta? <a href="/Práctica 9/Index/index.html">Inicia sesión aquí</a></h3>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/Práctica 9/Registro/registro.js"></script>
 </html>
