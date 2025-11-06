@@ -3,20 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pacientes SGHSM</title>
+    <title>Pacientes - SGHSM</title>
     <link rel="stylesheet" href="/Práctica 9/output.css">
 </head>
 <body>
-    <h1>Pacientes</h1>
-    <form class="hidden">
+    <!-- Formulario de Pacientes -->
+    <h1>Control de Pacientes</h1>
+    <form class="hidden mt-4">
         <h1>Agregar Paciente</h1>
         <br>
-        <textarea placeholder="Ricardo Sebastian Balderas González"></textarea>
-        <textarea placeholder="BAGR061229HTSLNCA0"></textarea>
-        <textarea placeholder="Fecha de Nacimiento"></textarea>
-        <input type="radio" name="Hombre" value="1">
-        <input type="radio" name="Hombre" value="1">
-        <input type="radio" name="Hombre" value="1">
+        <h3 class="font-bold">Nombre: </h3><textarea placeholder="Ricardo Sebastian Balderas González"></textarea>
+        <h3 class="font-bold">CURP: </h3><textarea placeholder="BAGR061229HTSLNCA0"></textarea>
+       <h3 class="font-bold">Fecha de Nacimiento: </h3><input type="date">
+
+        <div>
+       <h3 class="font-bold">Sexo (Female, Man, Other): </h3>
+        <textarea placeholder="F, M u O"></textarea>
+        </div>
+
+       <h3 class="font-bold">Teléfono: </h3><textarea placeholder="834-000-0000"></textarea>
+       <h3 class="font-bold">Email: </h3><textarea placeholder="ejemplo@gmail.com"></textarea>
+       <h3 class="font-bold">Dirección: </h3><textarea placeholder="Calle Los Tacata, Fraccionamiento UPV"></textarea>
+       <h3 class="font-bold">Contacto de Emergencia: </h3><textarea placeholder="Mauricio Rodríguez Manzur"></textarea>
+       <h3 class="font-bold">Teléfono de Emergencia: </h3><textarea placeholder="834-000-0000"></textarea>
+       <h3 class="font-bold">Alergias: </h3><textarea placeholder="Ibuprofeno, JavaScript, Polvo"></textarea>
+       <h3 class="font-bold">Antecedentes Médicos: </h3><textarea placeholder="Operación de pelo, Implante de orejas"></textarea>
+       <h3 class="font-bold">Fecha de Registro (POR DEFECTO): </h3><input type="date">
+
+       <h3 class="font-bold">Estatus: </h3>
+       <h3 class="font-bold">Activo: </h3><input type="radio" name="Activo" value="1">
+       <h3 class="font-bold">Inactivo: </h3><input type="radio" name="Inactivo" value="0">
     </form>
 
     <div>
