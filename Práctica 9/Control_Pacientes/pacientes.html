@@ -1,67 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pacientes - SGHSM</title>
     <link rel="stylesheet" href="/Práctica 9/output.css">
 </head>
-<body>
-    <!-- Formulario de Pacientes -->
-    <h1>Control de Pacientes</h1>
+<body class="min-h-screen bg-gradient-to-br from-blue-400 via-blue-200 p-8">
+    <div class="max-w-full mx-auto">
+        <h1 class="text-4xl font-bold text-blue-700 mb-6">Control de Pacientes</h1>
 
-    <button id="btnAgregarPaciente" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">+ Agregar Paciente</button>
-    <form class="hidden mt-4">
-        <h1>Agregar Paciente</h1>
-        <br>
-        <h3 class="font-bold">Nombre: </h3><textarea placeholder="Ricardo Sebastian Balderas González"></textarea>
-        <h3 class="font-bold">CURP: </h3><textarea placeholder="BAGR061229HTSLNCA0"></textarea>
-       <h3 class="font-bold">Fecha de Nacimiento: </h3><input type="date">
+        <button id="btnAgregarPaciente" type="button" class="text-black bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-4">
+            Agregar Paciente
+        </button>
 
-        <div>
-       <h3 class="font-bold">Sexo (Female, Man, Other): </h3>
-        <textarea placeholder="F, M u O"></textarea>
+        <!-- Formulario Modal -->
+        <div id="formPacienteContainer" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <!-- Botón X para cerrar -->
+                <button id="btnCerrarFormulario" type="button" class="float-right text-red-600 hover:text-red-800 text-2xl font-bold">
+                    ×
+                </button>
+
+                <h2 class="text-2xl font-bold text-blue-700 mb-4">Agregar Paciente</h2>
+
+                <form id="formPaciente" class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="font-bold">Nombre:</label>
+                        <input type="text" id="nombre" placeholder="Ricardo Sebastian Balderas González" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">CURP:</label>
+                        <input type="text" id="curp" placeholder="BAGR061229HTSLNCA0" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Fecha de Nacimiento:</label>
+                        <input type="date" id="fechaNacimiento" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Sexo:</label>
+                        <select id="sexo" class="w-full border rounded-lg px-3 py-2" required>
+                            <option value="">Selecciona...</option>
+                            <option value="F">Femenino</option>
+                            <option value="M">Masculino</option>
+                            <option value="O">Otro</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Teléfono:</label>
+                        <input type="tel" id="telefono" placeholder="834-000-0000" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Email:</label>
+                        <input type="email" id="email" placeholder="ejemplo@gmail.com" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="font-bold">Dirección:</label>
+                        <input type="text" id="direccion" placeholder="Calle Los Tacata, Fraccionamiento UPV" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Contacto de Emergencia:</label>
+                        <input type="text" id="contactoEmergencia" placeholder="Mauricio Rodríguez Manzur" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Teléfono de Emergencia:</label>
+                        <input type="tel" id="telefonoEmergencia" placeholder="834-000-0000" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="font-bold">Alergias:</label>
+                        <textarea id="alergias" placeholder="Ibuprofeno, Polvo" class="w-full border rounded-lg px-3 py-2"></textarea>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="font-bold">Antecedentes Médicos:</label>
+                        <textarea id="antecedentes" placeholder="Operación de pelo, Implante de orejas" class="w-full border rounded-lg px-3 py-2"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Estatus:</label>
+                        <div>
+                            <label><input type="radio" name="estatus" value="Activo" required> Activo</label>
+                            <label><input type="radio" name="estatus" value="Inactivo"> Inactivo</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="col-span-2 bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800">Guardar Paciente</button>
+                </form>
+            </div>
         </div>
 
-       <h3 class="font-bold">Teléfono: </h3><textarea placeholder="834-000-0000"></textarea>
-       <h3 class="font-bold">Email: </h3><textarea placeholder="ejemplo@gmail.com"></textarea>
-       <h3 class="font-bold">Dirección: </h3><textarea placeholder="Calle Los Tacata, Fraccionamiento UPV"></textarea>
-       <h3 class="font-bold">Contacto de Emergencia: </h3><textarea placeholder="Mauricio Rodríguez Manzur"></textarea>
-       <h3 class="font-bold">Teléfono de Emergencia: </h3><textarea placeholder="834-000-0000"></textarea>
-       <h3 class="font-bold">Alergias: </h3><textarea placeholder="Ibuprofeno, JavaScript, Polvo"></textarea>
-       <h3 class="font-bold">Antecedentes Médicos: </h3><textarea placeholder="Operación de pelo, Implante de orejas"></textarea>
-       <h3 class="font-bold">Fecha de Registro (POR DEFECTO): </h3><input type="date">
-
-       <h3 class="font-bold">Estatus: </h3>
-       <h3 class="font-bold">Activo: </h3><input type="radio" name="Activo" value="1">
-       <h3 class="font-bold">Inactivo: </h3><input type="radio" name="Inactivo" value="0">
-    </form>
-
-    <div>
-        
+        <!-- Tabla de Pacientes -->
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse border border-gray-300 mt-6 bg-white">
+                <thead class="bg-blue-700 text-white">
+                    <tr>
+                        <th class="border px-4 py-2">ID</th>
+                        <th class="border px-4 py-2">Nombre</th>
+                        <th class="border px-4 py-2">CURP</th>
+                        <th class="border px-4 py-2">Fecha de Nacimiento</th>
+                        <th class="border px-4 py-2">Sexo</th>
+                        <th class="border px-4 py-2">Teléfono</th>
+                        <th class="border px-4 py-2">Email</th>
+                        <th class="border px-4 py-2">Dirección</th>
+                        <th class="border px-4 py-2">Contacto de Emergencia</th>
+                        <th class="border px-4 py-2">Teléfono de Emergencia</th>
+                        <th class="border px-4 py-2">Alergias</th>
+                        <th class="border px-4 py-2">Antecedentes Médicos</th>
+                        <th class="border px-4 py-2">Fecha Registro</th>
+                        <th class="border px-4 py-2">Estatus</th>
+                        <th class="border px-4 py-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaPacientes">
+                    <!-- Los pacientes se cargarán aquí con JS -->
+                </tbody>
+            </table>
+        </div>
     </div>
-        <table>
-            <tr>
-            <th>ID</th> <!-- Los voy a guardar ej. 001 -->
-            <th>Nombre</th> 
-            <th>CURP</th>
-            <th>Fecha de Nacimiento</th>
-            <th>Sexo</th> <!-- Siempre -->
-            <th>Teléfono</th>
-            <th>Email</th>
-            <th>Dirección</th>
-            <th>Contacto de Emergencia</th>
-            <th>Teléfono de Emergencia</th>
-            <th>Alergias</th>
-            <th>Antecedentes Médicos</th>
-            <th>Fecha Registro</th>
-            <th>Estatus</th>
 
-
-        </tr>
-    
-        </table>
-
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/Práctica 9/Control_Pacientes/pacientes.js"></script>
 </body>
 </html>
