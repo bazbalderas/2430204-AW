@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - SGHSM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-400 via-blue-200 p-8">
+    <div class="max-w-full mx-auto">
+        <!-- Título -->
+        <h1 class="text-4xl font-bold text-blue-700 mb-6">Control de Agenda</h1>
+
+        <!-- Botón agregar cita -->
+        <button id="btnAgregarCita" type="button" class="text-black bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-4">
+            Agregar Cita
+        </button>
+
+        <!-- Modal -->
+        <div id="formCitaContainer" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <button id="btnCerrarFormulario" type="button" class="float-right text-red-600 hover:text-red-800 text-2xl font-bold">×</button>
+
+                <h2 class="text-2xl font-bold text-blue-700 mb-4">Agendar Cita</h2>
+
+                <!-- Formulario -->
+                <form id="formCita" class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="font-bold">ID Paciente:</label>
+                        <input type="number" id="idPaciente" placeholder="1" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">ID Médico:</label>
+                        <input type="number" id="idMedico" placeholder="1" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Fecha de Cita:</label>
+                        <input type="datetime-local" id="fechaCita" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Motivo de Consulta:</label>
+                        <input type="text" id="motivoConsulta" placeholder="Dolor de cabeza" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Estado de Cita:</label>
+                        <select id="estadoCita" class="w-full border rounded-lg px-3 py-2" required>
+                            <option value="Programada">Programada</option>
+                            <option value="Cancelada">Cancelada</option>
+                            <option value="Atendida">Atendida</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="font-bold">Observaciones:</label>
+                        <textarea id="observaciones" placeholder="Notas adicionales" class="w-full border rounded-lg px-3 py-2"></textarea>
+                    </div>
+
+                    <button type="submit" class="col-span-2 bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800">Guardar Cita</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabla -->
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse border border-gray-300 mt-6 bg-white">
+                <thead class="bg-blue-700 text-white">
+                    <tr>
+                        <th class="border px-4 py-2">ID Cita</th>
+                        <th class="border px-4 py-2">ID Paciente</th>
+                        <th class="border px-4 py-2">ID Médico</th>
+                        <th class="border px-4 py-2">Fecha Cita</th>
+                        <th class="border px-4 py-2">Motivo</th>
+                        <th class="border px-4 py-2">Estado</th>
+                        <th class="border px-4 py-2">Observaciones</th>
+                        <th class="border px-4 py-2">Fecha Registro</th>
+                        <th class="border px-4 py-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaCitas"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="agenda.js"></script>
+</body>
+</html>

@@ -4,52 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/Práctica 9/logo.webp">
-    <!-- Tailwind CSS -->
-    <link rel="stylesheet" href="/Práctica 9/output.css">
     <title>Login - SCHSM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body class="min-h-screen h-full bg-gradient-to-br from-blue-400 via-blue-200 flex items-center justify-center">
-    <div class="max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center">
-        
-        <!-- Formulario del login -->
-        <div class="flex items-center mb-4">
-            <img src="/Práctica 9/logo_azul.png" class="w-10 mr-4">
-            <h1 class="text-4xl text-blue-700 font-bold">Hospital San Mario</h1>
+<body class="min-h-screen bg-gradient-to-br from-blue-400 via-blue-200 flex items-center justify-center p-8">
+    <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+        <!-- Logo y título -->
+        <div class="flex items-center justify-center mb-6">
+            <img src="/Práctica 9/logo_azul.png" class="w-16 h-16 mr-3">
+            <h1 class="text-3xl text-blue-700 font-bold">Hospital San Mario</h1>
         </div>
         
+        <!-- Formulario -->
         <form id="loginFormulario">
-            <h2 class="font-bold">¡Bienvenido al Sistema de Control del Hospital San Mario!</h2>
-            <br><br>
+            <h2 class="text-center font-bold text-gray-700 mb-6">Iniciar Sesión</h2>
 
-            <h2 class="font-bold text-blue-700">Usuario</h2>
-            <textarea id="usuario" placeholder="Usuario" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
+            <div class="mb-4">
+                <label class="font-bold text-blue-700">Usuario</label>
+                <input type="text" id="usuario" placeholder="Ingrese su usuario" class="w-full border rounded-lg px-4 py-2 mt-1" required>
+            </div>
 
-            <br><br>
-            <h2 class="font-bold text-blue-700">Contraseña</h2>
-            <textarea id="contraseña" placeholder="Ingrese su contraseña" class="bg-transparent text-blue-400 border rounded-3xl focus:ring-2 focus:ring-blue-700 w-full mb-4 px-4 py-2 placeholder:text-blue-700"></textarea>
-            <br><br>
+            <div class="mb-6">
+                <label class="font-bold text-blue-700">Contraseña</label>
+                <input type="password" id="contraseña" placeholder="Ingrese su contraseña" class="w-full border rounded-lg px-4 py-2 mt-1" required>
+            </div>
 
-            <button id="enviar" href="/Práctica 9/Dashboard/dashboard.html" type="submit" class="w-full py-3 px-4 bg-blue-700 rounded-xl shadow-lg hover:shadow-xl text-white font-bold text-base transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
+            <button type="submit" class="w-full bg-blue-700 text-white py-3 rounded-lg font-bold">
                 Ingresar
             </button>
         </form>
 
         <!-- Usuario por defecto -->
-        <br>
-        <div class="border w-56 border-blue-950 focus:animate-bounce">
-            <h4>
-                <h4 class="font-bold">Correo:</h4>admin
-            </h4>
-            <h4>
-                <h4 class="font-bold">Contraseña:</h4>colofox
-            </h4>
+        <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg text-center">
+            <p class="text-sm font-bold text-blue-700 mb-2">Usuario por defecto:</p>
+            <p class="text-sm text-gray-600">Usuario: <span class="font-bold">admin</span></p>
+            <p class="text-sm text-gray-600">Contraseña: <span class="font-bold">colofox</span></p>
         </div>
-        <br>
 
-        <!-- Botón de redirección hacia crear una nueva cuenta -->
-        <h3>¿Aún no tienes una cuenta? <a href="/Práctica 9/Registro/registro.html">Registrate aquí</a></h3>
+        <!-- Enlace de registro -->
+        <div class="mt-4 text-center">
+            <p class="text-sm text-gray-600">¿No tienes cuenta? <a href="/Práctica 9/Registro/registro.html" class="text-blue-700 font-bold">Regístrate aquí</a></p>
+        </div>
     </div>
+
+    <script src="login.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/Práctica 9/Index/login.js"></script>
 </html>

@@ -5,22 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/Práctica 9/logo.webp">
     <title>Dashboard - SCHSM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div>
-       <button><a href="/Práctica 9/Index/index.html">Cerrar Sesión</a></button>
-       <button><a href="/Práctica 9/Control_Pacientes/pacientes.html">Control de Pacientes</a></button>
-       <button><a href="/Práctica 9/Control_Médico/control_medico.html">Control de Médicos</a></button>
-       <button><a href="/Práctica 9/Especialidades/especialidades.html">Especialidades</a></button>
-       <button><a href="/Práctica 9/Agenda/agenda.html">Agenda</a></button>
-       <button><a href="/Práctica 9/Expedientes_Clinicos/expedientes_clinicos.html">Expedientes Clínicos</a></button>
-       <button><a href="/Práctica 9/Gestor_Tarifas/gestor_tarifas.html">Gestor de Tarifas</a></button>
-       <button><a href="/Práctica 9/Gestor_Pagos/gestor_pagos.html">Gestor de Pagos</a></button>
-       <button><a href="/Práctica 9/Reportes/reportes.html">Reportes</a></button>
-       <button><a href="/Práctica 9/Usuarios/usuarios.html">Usuarios</a></button>
-       <button><a href="/Práctica 9/Bitácoras_de_acceso/bitacoras.html">Bitácora de Acceso</a></button>
+<body class="min-h-screen bg-gradient-to-br from-blue-400 via-blue-200 p-8">
+    <div class="max-w-full mx-auto">
+        <!-- Encabezado -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="/Práctica 9/logo_azul.png" class="w-12 h-12 mr-3">
+                <h1 class="text-3xl font-bold text-blue-700">Dashboard - Hospital San Mario</h1>
+            </div>
+            <button onclick="cerrarSesion()" class="bg-red-600 text-white px-4 py-2 rounded-lg">Cerrar Sesión</button>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <h3 class="text-gray-600 text-sm font-bold mb-2">Total Pacientes</h3>
+                <p class="text-4xl font-bold text-blue-600" id="totalPacientes">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <h3 class="text-gray-600 text-sm font-bold mb-2">Total Médicos</h3>
+                <p class="text-4xl font-bold text-green-600" id="totalMedicos">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <h3 class="text-gray-600 text-sm font-bold mb-2">Citas Registradas</h3>
+                <p class="text-4xl font-bold text-purple-600" id="totalCitas">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <h3 class="text-gray-600 text-sm font-bold mb-2">Pagos Registrados</h3>
+                <p class="text-4xl font-bold text-orange-600" id="totalPagos">0</p>
+            </div>
+        </div>
+
+        <!-- Accesos rápidos -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-blue-700 mb-6">Accesos Rápidos</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="/Práctica 9/Control_Pacientes/pacientes.html" class="bg-blue-500 text-white p-6 rounded-lg text-center">
+                    <p class="font-bold text-lg">Control de Pacientes</p>
+                </a>
+                <a href="/Práctica 9/Control_Médico/control_medico.html" class="bg-green-500 text-white p-6 rounded-lg text-center">
+                    <p class="font-bold text-lg">Control de Médicos</p>
+                </a>
+                <a href="/Práctica 9/Especialidades/especialidades.html" class="bg-yellow-500 text-white p-6 rounded-lg text-center">
+                    <p class="font-bold text-lg">Especialidades</p>
+                </a>
+                <a href="/Práctica 9/Agenda/agenda.html" class="bg-purple-500 text-white p-6 rounded-lg text-center">
+                    <p class="font-bold text-lg">Agenda</p>
+                </a>
+                <a href="/Práctica 9/Expedientes_Clinicos/expedientes_clinicos.html" class="bg-pink-500 text-white p-6 rounded-lg text-center">
+                    <p class="font-bold text-lg">Expedientes Clínicos</p>
+                </a>
+                <a href="/Práctica 9/Gestor_Tarifas/gestor_tarifas.html" class="bg-indigo-500 text-white p-6 rounded-lg text-center">
+                    <p class="font-bold text-lg">Gestor de Tarifas</p>
+                </a>
+                <a href="/Práctica 9/Gestor_Pagos/gestor_pagos.html" class="bg-red-500 text-white p-6 rounded-lg text-center">
+                    <p class="font-bold text-lg">Gestor de Pagos</p>
+                </a>
+                <a href="/Práctica 9/Reportes/reportes.html" class="bg-teal-500 text-white p-6 rounded-lg text-center">
+                    <p class="font-bold text-lg">Reportes</p>
+                </a>
+            </div>
+        </div>
     </div>
 
-    
+    <script src="dashboard.js"></script>
 </body>
 </html>

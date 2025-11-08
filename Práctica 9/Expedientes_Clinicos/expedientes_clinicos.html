@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expedientes Clínicos - SGHSM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-400 via-blue-200 p-8">
+    <div class="max-w-full mx-auto">
+        <h1 class="text-4xl font-bold text-blue-700 mb-6">Expedientes Clínicos</h1>
+
+        <button id="btnAgregarExpediente" type="button" class="text-black bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-4">
+            Agregar Expediente
+        </button>
+
+        <!-- Modal -->
+        <div id="formExpedienteContainer" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+                <button id="btnCerrarFormulario" type="button" class="float-right text-red-600 hover:text-red-800 text-2xl font-bold">×</button>
+
+                <h2 class="text-2xl font-bold text-blue-700 mb-4">Nuevo Expediente Clínico</h2>
+
+                <form id="formExpediente" class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="font-bold">ID Paciente:</label>
+                        <input type="number" id="idPaciente" placeholder="1" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">ID Médico:</label>
+                        <input type="number" id="idMedico" placeholder="1" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div>
+                        <label class="font-bold">Fecha de Consulta:</label>
+                        <input type="datetime-local" id="fechaConsulta" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="font-bold">Síntomas:</label>
+                        <textarea id="sintomas" placeholder="Fiebre, dolor de cabeza..." class="w-full border rounded-lg px-3 py-2" required></textarea>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="font-bold">Diagnóstico:</label>
+                        <textarea id="diagnostico" placeholder="Gripe común" class="w-full border rounded-lg px-3 py-2" required></textarea>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="font-bold">Tratamiento:</label>
+                        <textarea id="tratamiento" placeholder="Paracetamol 500mg cada 8 horas" class="w-full border rounded-lg px-3 py-2" required></textarea>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="font-bold">Receta Médica:</label>
+                        <textarea id="recetaMedica" placeholder="Detalles de la receta" class="w-full border rounded-lg px-3 py-2"></textarea>
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="font-bold">Notas Adicionales:</label>
+                        <textarea id="notasAdicionales" placeholder="Observaciones generales" class="w-full border rounded-lg px-3 py-2"></textarea>
+                    </div>
+
+                    <button type="submit" class="col-span-2 bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800">Guardar Expediente</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabla -->
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse border border-gray-300 mt-6 bg-white">
+                <thead class="bg-blue-700 text-white">
+                    <tr>
+                        <th class="border px-4 py-2">ID</th>
+                        <th class="border px-4 py-2">ID Paciente</th>
+                        <th class="border px-4 py-2">ID Médico</th>
+                        <th class="border px-4 py-2">Fecha Consulta</th>
+                        <th class="border px-4 py-2">Síntomas</th>
+                        <th class="border px-4 py-2">Diagnóstico</th>
+                        <th class="border px-4 py-2">Tratamiento</th>
+                        <th class="border px-4 py-2">Próxima Cita</th>
+                        <th class="border px-4 py-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaExpedientes"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="expedientes_clinicos.js"></script>
+</body>
+</html>

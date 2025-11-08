@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialidades - SGHSM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-400 via-blue-200 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl font-bold text-blue-700 mb-6">Especialidades Médicas</h1>
+
+        <button id="btnAgregarEspecialidad" type="button" class="text-black bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-4">
+            Agregar Especialidad
+        </button>
+
+        <!-- Modal -->
+        <div id="formEspecialidadContainer" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full">
+                <button id="btnCerrarFormulario" type="button" class="float-right text-red-600 hover:text-red-800 text-2xl font-bold">×</button>
+
+                <h2 class="text-2xl font-bold text-blue-700 mb-4">Agregar Especialidad</h2>
+
+                <form id="formEspecialidad">
+                    <div class="mb-4">
+                        <label class="font-bold">Nombre de Especialidad:</label>
+                        <input type="text" id="nombreEspecialidad" placeholder="Cardiología" class="w-full border rounded-lg px-3 py-2" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="font-bold">Descripción:</label>
+                        <textarea id="descripcion" placeholder="Descripción breve" class="w-full border rounded-lg px-3 py-2"></textarea>
+                    </div>
+
+                    <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 w-full">Guardar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabla -->
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse border border-gray-300 mt-6 bg-white">
+                <thead class="bg-blue-700 text-white">
+                    <tr>
+                        <th class="border px-4 py-2">ID</th>
+                        <th class="border px-4 py-2">Nombre</th>
+                        <th class="border px-4 py-2">Descripción</th>
+                        <th class="border px-4 py-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaEspecialidades"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="especialidades.js"></script>
+</body>
+</html>
