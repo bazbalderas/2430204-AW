@@ -11,7 +11,7 @@ btnAgregar.addEventListener('click', () => formContainer.classList.remove('hidde
 btnCerrar.addEventListener('click', () => formContainer.classList.add('hidden'));
 formContainer.addEventListener('click', (e) => { if(e.target === formContainer) formContainer.classList.add('hidden'); });
 
-// Guardar usuario
+// Guardar usuario (en localStorage Y en MySQL)
 form.addEventListener('submit', function(event){
     event.preventDefault();
 
@@ -20,13 +20,14 @@ form.addEventListener('submit', function(event){
     const usuario = {
         id: String(idCounter).padStart(3, '0'),
         usuario: document.getElementById('usuario').value,
-        contrasenaHash: document.getElementById('contrasena').value,
+        contrasena: document.getElementById('contrasena').value,
         rol: document.getElementById('rol').value,
         idMedico: document.getElementById('idMedico').value || null,
         activo: document.querySelector('input[name="activo"]:checked').value,
         ultimoAcceso: ultimoAcceso
     };
 
+    // 1. Guardar en localStorage para mostrar en tabla HTML
     let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
     usuarios.push(usuario);
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
@@ -34,7 +35,35 @@ form.addEventListener('submit', function(event){
     idCounter++;
     localStorage.setItem('usuarioIdCounter', JSON.stringify(idCounter));
 
-    Swal.fire({ icon: 'success', title: 'Usuario guardado' });
+    // 2. Enviar a PHP para guardar en MySQL
+    const formData = new FormData();
+    formData.append('usuario', usuario.usuario);
+    formData.append('contrasena', usuario.contrasena);
+    formData.append('rol', usuario.rol);
+    formData.append('idMedico', usuario.idMedico);
+    formData.append('activo', usuario.activo);
+
+    fetch('guardar_usuario.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log('Respuesta de PHP:', data);
+        Swal.fire({ 
+            icon: 'success', 
+            title: 'Usuario guardado',
+            text: 'Se guardó en la tabla HTML y en MySQL'
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({ 
+            icon: 'warning', 
+            title: 'Guardado en tabla HTML',
+            text: 'Hubo un error al guardar en MySQL'
+        });
+    });
     
     form.reset();
     formContainer.classList.add('hidden');
