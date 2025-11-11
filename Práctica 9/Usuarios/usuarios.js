@@ -20,7 +20,7 @@ form.addEventListener('submit', function(event){
     const usuario = {
         id: String(idCounter).padStart(3, '0'),
         usuario: document.getElementById('usuario').value,
-        contrasenaHash: document.getElementById('contrasenaHash').value,
+        contrasenaHash: document.getElementById('contrasena').value,
         rol: document.getElementById('rol').value,
         idMedico: document.getElementById('idMedico').value || null,
         activo: document.querySelector('input[name="activo"]:checked').value,
